@@ -1,0 +1,9 @@
+/* .vitepress/theme/custom.css */
+
+:root {
+  --vp-c-brand-1: #646cff;
+  --vp-c-brand-2: red;
+  /* .vitepress/theme/custom.css */
+  /* 更改自定义字体 */
+  /* --vp-font-family-base: "JetBrains Mono"; */
+}
