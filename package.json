@@ -2,6 +2,7 @@
   "devDependencies": {
     "@whyframe/core": "^0.1.10",
     "@whyframe/vue": "^0.1.6",
+    "tailwindcss": "^3.3.3",
     "unplugin-vue-components": "^0.25.2",
     "vitepress": "^1.0.0-rc.10"
   },
@@ -13,6 +14,9 @@
   },
   "dependencies": {
     "ant-design-vue": "^4.0.2",
-    "dayjs": "^1.11.9"
+    "autoprefixer": "^10.4.15",
+    "dayjs": "^1.11.9",
+    "postcss": "^8.4.29",
+    "sass": "^1.66.1"
   }
 }

@@ -1,4 +1,7 @@
 /* .vitepress/theme/custom.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --vp-c-brand-1: #646cff;

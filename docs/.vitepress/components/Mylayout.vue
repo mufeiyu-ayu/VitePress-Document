@@ -1,6 +1,8 @@
 <!-- .vitepress/theme/Layout.vue -->
 <template>
-  <DefaultTheme.Layout> </DefaultTheme.Layout>
+  <DefaultTheme.Layout>
+    <template #home-features-before> My custom sidebar top content </template>
+  </DefaultTheme.Layout>
 </template>
 
 <script setup lang="ts">

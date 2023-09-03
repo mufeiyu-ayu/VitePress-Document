@@ -1,4 +1,4 @@
-[Vue2 文档](https://v2.cn.vuejs.org/)<br/><br/>
+[Vue2 文档](https://v2.cn.vuejs.org/)<br/>
 [Vue3 文档](https://cn.vuejs.org/)
 
 <!-- @include:./reactive/index.md -->

@@ -1,60 +1,51 @@
 {
-  "hash": "73d8a10f",
-  "browserHash": "2a327408",
+  "hash": "a7567235",
+  "browserHash": "ca680845",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "e1486b54",
+      "fileHash": "921a0c24",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
       "src": "../../../../node_modules/@vue/devtools-api/lib/esm/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "5c76c80c",
+      "fileHash": "f31206b3",
       "needsInterop": false
     },
     "ant-design-vue": {
       "src": "../../../../node_modules/ant-design-vue/es/index.js",
       "file": "ant-design-vue.js",
-      "fileHash": "611e585a",
+      "fileHash": "0061e0a9",
       "needsInterop": false
     },
     "@whyframe/core/utils": {
       "src": "../../../../node_modules/@whyframe/core/src/utils.js",
       "file": "@whyframe_core_utils.js",
-      "fileHash": "aa7bd38c",
+      "fileHash": "46f2dcc0",
       "needsInterop": false
     },
     "vitepress > @vueuse/integrations/useFocusTrap": {
       "src": "../../../../node_modules/@vueuse/integrations/useFocusTrap.mjs",
       "file": "vitepress___@vueuse_integrations_useFocusTrap.js",
-      "fileHash": "c9948ae9",
+      "fileHash": "190a1f7e",
       "needsInterop": false
     },
     "vitepress > mark.js/src/vanilla.js": {
       "src": "../../../../node_modules/mark.js/src/vanilla.js",
       "file": "vitepress___mark__js_src_vanilla__js.js",
-      "fileHash": "a1e0ebbd",
+      "fileHash": "aadcbfdb",
       "needsInterop": false
     },
     "vitepress > minisearch": {
       "src": "../../../../node_modules/minisearch/dist/es/index.js",
       "file": "vitepress___minisearch.js",
-      "fileHash": "e5b1178b",
-      "needsInterop": false
-    },
-    "ant-design-vue/es": {
-      "src": "../../../../node_modules/ant-design-vue/es/index.js",
-      "file": "ant-design-vue_es.js",
-      "fileHash": "997f48b9",
+      "fileHash": "3abb5580",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-FSJ5HT64": {
-      "file": "chunk-FSJ5HT64.js"
-    },
     "chunk-V634PGSD": {
       "file": "chunk-V634PGSD.js"
     },
