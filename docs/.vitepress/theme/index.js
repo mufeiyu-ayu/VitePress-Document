@@ -1,8 +1,8 @@
 import Theme from "vitepress/theme";
-import DynamicLayout from "../components/DynamicLayout.vue";
+// import DynamicLayout from "../components/DynamicLayout.vue";
 import GlobalComponent from "../components/GlobalComponents.vue";
 import Mylayout from "../components/Mylayout.vue";
-
+import Outline from "../components/Outline.vue";
 import "./custom.css";
 export default {
   ...Theme,
@@ -12,5 +12,6 @@ export default {
   enhanceApp(ctx) {
     // register your custom global components
     ctx.app.component("MyGlobalComponent", GlobalComponent /* ... */);
+    ctx.app.component("Outline", Outline /* ... */);
   },
 };

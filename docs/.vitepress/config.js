@@ -1,7 +1,5 @@
 import { defineConfig } from "vitepress";
 import { fileURLToPath, URL } from "node:url";
-import { whyframe } from "@whyframe/core";
-import { whyframeVue } from "@whyframe/vue";
 import Components from "unplugin-vue-components/vite";
 import { AntDesignVueResolver } from "unplugin-vue-components/resolvers";
 // https://vitepress.dev/reference/site-config
@@ -97,15 +95,6 @@ export default defineConfig({
   },
   vite: {
     plugins: [
-      // Initialize core plugin
-      whyframe({
-        defaultSrc: "/src/frames/default", // provide our own html
-      }),
-
-      // Initialize Vue integration plugin
-      whyframeVue({
-        include: /\.(?:vue|md)$/, // also scan in markdown files
-      }),
       Components({
         resolvers: [
           AntDesignVueResolver({
@@ -127,6 +116,12 @@ export default defineConfig({
           find: /^.*\/VPHomeFeatures\.vue$/,
           replacement: fileURLToPath(
             new URL("./components/Test.vue", import.meta.url)
+          ),
+        },
+        {
+          find: /^.*\/VPDocAsideOutline\.vue$/,
+          replacement: fileURLToPath(
+            new URL("./components/Outline.vue", import.meta.url)
           ),
         },
       ],
