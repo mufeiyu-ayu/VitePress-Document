@@ -16,12 +16,6 @@ pageClass: root
 
 ---
 
-<script setup>
-  // 导入自定义组件
-import CustomComponent from './components/CustomComponent.vue'
-</script>
-
 # Docs
 
 This is a .md using a custom component
-<CustomComponent />

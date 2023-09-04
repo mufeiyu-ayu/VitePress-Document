@@ -1,17 +1,15 @@
 <!-- .vitepress/theme/Layout.vue -->
 <template>
-  <DefaultTheme.Layout>
-    <template #home-features-before> My custom sidebar top content </template>
-  </DefaultTheme.Layout>
+  <DefaultTheme.Layout> </DefaultTheme.Layout>
 </template>
 
 <script setup lang="ts">
 import { useData } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import { nextTick, provide } from "vue";
-
+import nprogressFn from "../utils/nprogress";
 const { isDark } = useData();
-
+nprogressFn();
 const enableTransitions = () =>
   "startViewTransition" in document &&
   window.matchMedia("(prefers-reduced-motion: no-preference)").matches;

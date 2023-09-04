@@ -24,7 +24,6 @@ const selectedKeys = ref([]);
 let result = ref([]);
 onContentUpdated(() => {
   result.value = getHeaders();
-  console.log(result, 11111);
 });
 const handleExpand = (keys, { expanded, node }) => {
   const tempKeys = (

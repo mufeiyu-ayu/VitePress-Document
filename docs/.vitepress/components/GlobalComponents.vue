@@ -3,8 +3,9 @@
     <div class="bg-container-author">
       <div class="autho-title">
         <div class="bg-blue-500 text-white p-4">
-          这是一个使用 Tailwind CSS 样式的内容块。
+          这是一个使用 Tailwind CSS 样式的内容块。 a-bu
         </div>
+        <a-button type="primary" @click="btnClick">跳转页面</a-button>
       </div>
     </div>
   </div>
@@ -13,9 +14,10 @@
 
 <script setup lang="ts">
 import {} from "vue";
-
+import { useRouter } from "vitepress";
+const router = useRouter();
 function btnClick() {
-  window.location.href = "/ayu/Html/html";
+  router.go("/Html/html");
 }
 </script>
 
@@ -24,7 +26,8 @@ function btnClick() {
   position: relative;
   width: 100%;
   height: 100vh;
-  background: url("./bg.jpg") no-repeat center center;
+  background: url("https://s2.loli.net/2023/09/04/Hz3xOTlDLrCAGIV.jpg")
+    no-repeat center center;
   background-size: cover;
   &::before {
     content: "";
@@ -43,7 +46,7 @@ function btnClick() {
     width: 500px;
     height: 500px;
     text-align: center;
-    background-color: pink;
+    // background-color: pink;
   }
 }
 </style>

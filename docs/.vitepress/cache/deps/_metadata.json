@@ -1,62 +1,68 @@
 {
-  "hash": "0a577a89",
-  "browserHash": "08148a27",
+  "hash": "334e3601",
+  "browserHash": "557007a9",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "bf622f43",
+      "fileHash": "f1e46303",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
       "src": "../../../../node_modules/@vue/devtools-api/lib/esm/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "62344443",
+      "fileHash": "9c473fd8",
       "needsInterop": false
     },
     "ant-design-vue": {
       "src": "../../../../node_modules/ant-design-vue/es/index.js",
       "file": "ant-design-vue.js",
-      "fileHash": "ca829a2d",
+      "fileHash": "abeea588",
       "needsInterop": false
     },
     "vitepress > @vueuse/integrations/useFocusTrap": {
       "src": "../../../../node_modules/@vueuse/integrations/useFocusTrap.mjs",
       "file": "vitepress___@vueuse_integrations_useFocusTrap.js",
-      "fileHash": "6d166b56",
+      "fileHash": "23b360f4",
       "needsInterop": false
     },
     "vitepress > mark.js/src/vanilla.js": {
       "src": "../../../../node_modules/mark.js/src/vanilla.js",
       "file": "vitepress___mark__js_src_vanilla__js.js",
-      "fileHash": "75a4687d",
+      "fileHash": "8a1f2f4e",
       "needsInterop": false
     },
     "vitepress > minisearch": {
       "src": "../../../../node_modules/minisearch/dist/es/index.js",
       "file": "vitepress___minisearch.js",
-      "fileHash": "9a38d75a",
+      "fileHash": "936464fb",
       "needsInterop": false
     },
     "ant-design-vue/es": {
       "src": "../../../../node_modules/ant-design-vue/es/index.js",
       "file": "ant-design-vue_es.js",
-      "fileHash": "5629f872",
+      "fileHash": "b1dce383",
       "needsInterop": false
     },
     "lodash-es/difference": {
       "src": "../../../../node_modules/lodash-es/difference.js",
       "file": "lodash-es_difference.js",
-      "fileHash": "64570507",
+      "fileHash": "4de3f35d",
       "needsInterop": false
+    },
+    "nprogress": {
+      "src": "../../../../node_modules/nprogress/nprogress.js",
+      "file": "nprogress.js",
+      "fileHash": "0e9917d7",
+      "needsInterop": true
     }
   },
   "chunks": {
-    "chunk-XJRJO5O3": {
-      "file": "chunk-XJRJO5O3.js"
+    "chunk-VQWXT5A7": {
+      "file": "chunk-VQWXT5A7.js"
     },
-    "chunk-SBK622YG": {
-      "file": "chunk-SBK622YG.js"
+    "chunk-T24IMQL4": {
+      "file": "chunk-T24IMQL4.js"
     },
     "chunk-V634PGSD": {
       "file": "chunk-V634PGSD.js"

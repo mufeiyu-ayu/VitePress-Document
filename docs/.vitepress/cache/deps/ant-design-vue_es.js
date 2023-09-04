@@ -156,8 +156,8 @@ import {
   useStyleRegister,
   version_default,
   watermark_default
-} from "./chunk-XJRJO5O3.js";
-import "./chunk-SBK622YG.js";
+} from "./chunk-VQWXT5A7.js";
+import "./chunk-T24IMQL4.js";
 import "./chunk-V634PGSD.js";
 import "./chunk-5WWUZCGV.js";
 export {

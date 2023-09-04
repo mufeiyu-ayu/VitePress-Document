@@ -16,6 +16,7 @@
     "ant-design-vue": "^4.0.2",
     "autoprefixer": "^10.4.15",
     "dayjs": "^1.11.9",
+    "nprogress": "^0.2.0",
     "postcss": "^8.4.29",
     "sass": "^1.66.1"
   }
