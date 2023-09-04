@@ -44,32 +44,39 @@ export default defineConfig({
     },
     //导航
     nav: [
-      { text: "Home", link: "/" },
-      { text: "Examples", link: "/markdown-examples" },
+      { text: "前端", link: "/Web/" },
+      { text: "后端", link: "/Page/" },
     ],
     // 侧边栏
-    sidebar: [
-      {
-        text: "前端",
-        items: [
-          { text: "HTML", link: "/Html/html" },
-          { text: "CSS", link: "/Css/css" },
-          { text: "JavaScript", link: "/JavaScript/javaScript" },
-          { text: "TypeScript", link: "/Typescript/index" },
-          { text: "Vue", link: "/Vue/Vue" },
-
-          { text: "Eprw", link: "/eprw" },
-          { text: "Frames Default", link: "/frames/default" },
-        ],
-      },
-      {
-        text: "工具",
-        items: [],
-      },
-    ],
+    sidebar: {
+      "/Web/": [
+        {
+          text: "Web",
+          items: [
+            { text: "前言", link: "/Web/" },
+            { text: "HTML", link: "/Web/Html/html" },
+            { text: "CSS", link: "/Web/Css/css" },
+            { text: "JavaScript", link: "/Web/JavaScript/javaScript" },
+            { text: "TypeScript", link: "/Web/Typescript/index" },
+            { text: "Vue", link: "/Web/Vue/Vue" },
+            { text: "Eprw", link: "/Web/eprw" },
+            { text: "Frames Default", link: "/Web/frames/default" },
+          ],
+        },
+      ],
+      "/Page/": [
+        {
+          text: "后端",
+          items: [
+            { text: "前言", link: "/Page/" },
+            { text: "happy", link: "/Page/happy" },
+          ],
+        },
+      ],
+    },
     socialLinks: [{ icon: "github", link: "https://github.com/mufeiyu-ayu" }],
     footer: {
-      message: "邮箱：2382839439 个人微信号:jiaxiaoyi825",
+      message: "Email:2382839439@qq.com Vx:jiaxiaoyi825",
       copyright: "Copyright © 2019-present Evan You",
     },
     // 上一页下一页

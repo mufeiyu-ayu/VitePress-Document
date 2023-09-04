@@ -1,5 +1,7 @@
 <template>
-  <div style="margin-bottom: 6px">大纲</div>
+  <div style="margin-bottom: 6px; color: #b0b0b0; font-size: 14px">
+    {{ result.length ? "大纲" : "" }}
+  </div>
   <a-tree
     v-model:selectedKeys="selectedKeys"
     :expanded-keys="expandedKeys"

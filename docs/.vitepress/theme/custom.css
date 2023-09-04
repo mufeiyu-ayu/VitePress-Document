@@ -1,6 +1,6 @@
 /* .vitepress/theme/custom.css */
 @import "tailwindcss/base";
-@import "../style/index1.css";
+/* @import "../style/index1.css"; */
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 

@@ -2,9 +2,6 @@
   <div class="bg-container">
     <div class="bg-container-author">
       <div class="autho-title">
-        <div class="bg-blue-500 text-white p-4">
-          这是一个使用 Tailwind CSS 样式的内容块。 a-bu
-        </div>
         <a-button type="primary" @click="btnClick">跳转页面</a-button>
       </div>
     </div>
@@ -19,12 +16,13 @@ import throttle from "../utils/throttle ";
 const scrollDistance = ref(500);
 const router = useRouter();
 function btnClick() {
-  router.go("/Html/html");
+  router.go("/Web/Html/html");
 }
 
 window.addEventListener(
   "wheel",
   throttle(function (event) {
+    if (!location.href.endsWith("/ayu/")) return;
     handleMouseWheel(scrollDistance, event);
   }, 600)
 );
