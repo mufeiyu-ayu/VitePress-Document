@@ -11,19 +11,30 @@
   </div>
   <div>1111</div>
 </template>
-
-<script setup lang="ts">
-import {} from "vue";
+<script setup>
+import { ref } from "vue";
 import { useRouter } from "vitepress";
+import handleMouseWheel from "../utils/scroll";
+import throttle from "../utils/throttle ";
+const scrollDistance = ref(500);
 const router = useRouter();
 function btnClick() {
   router.go("/Html/html");
 }
+
+window.addEventListener(
+  "wheel",
+  throttle(function (event) {
+    handleMouseWheel(scrollDistance, event);
+  }, 600)
+);
+// 滚动距离，默认为0
 </script>
 
 <style lang="scss">
 .bg-container {
   position: relative;
+  top: -64px;
   width: 100%;
   height: 100vh;
   background: url("https://s2.loli.net/2023/09/04/Hz3xOTlDLrCAGIV.jpg")

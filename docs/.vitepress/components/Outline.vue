@@ -1,10 +1,12 @@
 <template>
+  <div style="margin-bottom: 6px">大纲</div>
   <a-tree
     v-model:selectedKeys="selectedKeys"
     :expanded-keys="expandedKeys"
     :tree-data="result"
     @expand="handleExpand"
     class="more"
+    :style="bgColor"
   >
     <template #title="{ title, link, key }">
       <div class="tree">
@@ -15,13 +17,28 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, watch } from "vue";
 import { getHeaders } from "../utils/outline";
 import difference from "lodash-es/difference";
-import { onContentUpdated } from "vitepress";
+import { onContentUpdated, useData } from "vitepress";
+const { isDark } = useData();
 const expandedKeys = ref([]);
 const selectedKeys = ref([]);
+const bgColor = ref("");
 let result = ref([]);
+if (localStorage.getItem("vitepress-theme-appearance") === "dark") {
+  bgColor.value = { backgroundColor: "#1b1b1f" };
+} else {
+  bgColor.value = { backgroundColor: "#fff" };
+}
+watch(isDark, (newValue) => {
+  if (newValue) {
+    bgColor.value = { backgroundColor: "#1b1b1f" };
+  } else {
+    bgColor.value = { backgroundColor: "#fff" };
+  }
+});
+
 onContentUpdated(() => {
   result.value = getHeaders();
 });
@@ -45,7 +62,7 @@ a {
   width: 190px;
   display: block;
   line-height: 28px;
-  color: var(--vp-c-text-2);
+  color: #b0b0b0;
   transition: color 0.5s;
   font-weight: 400;
 }

@@ -1,0 +1,6 @@
+@layer base {
+  h1 {
+    background-color: red;
+    color: blue;
+  }
+}
