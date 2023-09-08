@@ -1,19 +1,37 @@
 /* .vitepress/theme/custom.css */
-@import "tailwindcss/base";
+@import 'tailwindcss/base';
 /* @import "../style/index1.css"; */
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@font-face {
+	font-family: 'iconfont'; /* Project id 4243208 */
+	src: url('//at.alicdn.com/t/c/font_4243208_n74mw0xf8a.woff2?t=1694152006730')
+			format('woff2'),
+		url('//at.alicdn.com/t/c/font_4243208_n74mw0xf8a.woff?t=1694152006730')
+			format('woff'),
+		url('//at.alicdn.com/t/c/font_4243208_n74mw0xf8a.ttf?t=1694152006730')
+			format('truetype');
+}
+
+.iconfont {
+	font-family: 'iconfont' !important;
+	font-size: 16px;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
 
 :root {
-  --vp-c-brand-1: #646cff;
-  --vp-c-brand-2: red;
-  /* .vitepress/theme/custom.css */
-  /* 更改自定义字体 */
-  /* --vp-font-family-base: "JetBrains Mono"; */
+	--vp-c-brand-1: #646cff;
+	--vp-c-brand-2: red;
+	/* .vitepress/theme/custom.css */
+	/* 更改自定义字体 */
+	/* --vp-font-family-base: "JetBrains Mono"; */
 }
 @layer components {
-  .card {
-    background-color: black;
-    color: white;
-  }
+	.card {
+		background-color: black;
+		color: white;
+	}
 }

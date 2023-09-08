@@ -1,5 +1,5 @@
 ---
-title: 页面标题
+title: 页面标题是什么啊
 lang: en-US
 # titleTemplate: Vite111 可结合title 覆盖默认config.title
 # desription:vitepress
@@ -7,7 +7,7 @@ lang: en-US
 # sidebar: false 是否显示侧边栏 默认true type：bol
 # aside: false 中心内容是否偏移 默认true type bol|'left'
 # outline:2
-
+lastUpdated: false
 pageClass: root
 ---
 

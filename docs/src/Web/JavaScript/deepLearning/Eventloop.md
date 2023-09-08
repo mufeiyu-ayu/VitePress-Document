@@ -5,7 +5,7 @@
 - **同步任务**
 - **异步任务**
 
-当我们打开网站时，网页的渲染过程就是一大堆同步任务，比如页面骨架和页面元素的渲染。而像加载图片音乐之类占用资源大耗时久的任务，就是异步任务。关于这部分有严格的文字定义，但本文的目的是用最小的学习成本彻底弄懂执行机制，所以我们用导图来说明：![imgaes](/ayu/images/event1.png)
+当我们打开网站时，网页的渲染过程就是一大堆同步任务，比如页面骨架和页面元素的渲染。而像加载图片音乐之类占用资源大耗时久的任务，就是异步任务。关于这部分有严格的文字定义，但本文的目的是用最小的学习成本彻底弄懂执行机制，所以我们用导图来说明：![imgaes](/images/event1.png)
 
 - 同步和异步任务分别进入不同的执行"场所"，同步的进入主线程，异步的进入 Event Table 并注册函数。
 - 当指定的事情完成时，Event Table 会将这个函数移入 Event Queue。
@@ -19,47 +19,47 @@
 
 **不同类型的任务会进入对应的 Event Queue，比如 setTimeout 和 setInterval 会进入相同的 Event Queue。**<br />**事件循环的顺序，决定 js 代码的执行顺序。进入整体代码(宏任务)后，开始第一次循环。接着执行所有的微任务。然后再次从宏任务开始，找到其中一个任务队列执行完毕，再执行所有的微任务。听起来有点绕，我们用文章最开始的一段代码说明**：
 
-![imgaes](/ayu/images/event2.png)
+![imgaes](/images/event2.png)
 
 //例题
 
 ```javascript
-console.log("1");
+console.log('1')
 
 setTimeout(function () {
-  console.log("2");
-  process.nextTick(function () {
-    console.log("3");
-  });
-  new Promise(function (resolve) {
-    console.log("4");
-    resolve();
-  }).then(function () {
-    console.log("5");
-  });
-});
+	console.log('2')
+	process.nextTick(function () {
+		console.log('3')
+	})
+	new Promise(function (resolve) {
+		console.log('4')
+		resolve()
+	}).then(function () {
+		console.log('5')
+	})
+})
 process.nextTick(function () {
-  console.log("6");
-});
+	console.log('6')
+})
 new Promise(function (resolve) {
-  console.log("7");
-  resolve();
+	console.log('7')
+	resolve()
 }).then(function () {
-  console.log("8");
-});
+	console.log('8')
+})
 
 setTimeout(function () {
-  console.log("9");
-  process.nextTick(function () {
-    console.log("10");
-  });
-  new Promise(function (resolve) {
-    console.log("11");
-    resolve();
-  }).then(function () {
-    console.log("12");
-  });
-});
+	console.log('9')
+	process.nextTick(function () {
+		console.log('10')
+	})
+	new Promise(function (resolve) {
+		console.log('11')
+		resolve()
+	}).then(function () {
+		console.log('12')
+	})
+})
 ```
 
 第一轮事件循环流程分析如下：

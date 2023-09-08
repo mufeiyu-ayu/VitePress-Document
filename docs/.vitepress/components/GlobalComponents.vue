@@ -1,61 +1,75 @@
 <template>
-  <div class="bg-container">
-    <div class="bg-container-author">
-      <div class="autho-title">
-        <a-button type="primary" @click="btnClick">跳转页面</a-button>
-      </div>
-    </div>
-  </div>
-  <div>1111</div>
+	<div>
+		<div
+			class="home w-full h-screen relative md:-mt-[64px] -mt-[64px] flex items-center justify-center"
+		>
+			<img
+				class="w-full h-full object-cover"
+				src="https://images.unsplash.com/photo-1518655048521-f130df041f66?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+				alt=""
+			/>
+			<div
+				class="w-4/5 lg:w-1/2 h-1/2 absolute text-center flex flex-col justify-start items-"
+			>
+				<div class="text-3xl lg:text-5xl text-[#2563eb] font-blod">
+					Black Cat's Document
+				</div>
+				<Font :value="value" class="ml-auto mr-auto mt-6 h-24" />
+				<div class="flex justify-around lg:px-32">
+					<a-button type="primary" size="large" class="start w-36" href="Web/"
+						>start</a-button
+					>
+					<a-button type="primary" danger size="large" class="github w-36"
+						>GitHub</a-button
+					>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 <script setup>
-import { ref } from "vue";
-import { useRouter } from "vitepress";
-import handleMouseWheel from "../utils/scroll";
-import throttle from "../utils/throttle ";
-const scrollDistance = ref(500);
-const router = useRouter();
+import Quick from './Quick.vue'
+import {ref} from 'vue'
+import {useRouter} from 'vitepress'
+import handleMouseWheel from '../utils/scroll'
+import throttle from '../utils/throttle'
+import Font from './Font.vue'
+import {Button as AButton} from 'ant-design-vue'
+
+const scrollDistance = ref(500)
+
+const router = useRouter()
+const value = ref(
+	'In your code, leave no room for doubt and regret, only comments and reflection.',
+)
 function btnClick() {
-  router.go("/Web/Html/html");
+	router.go('/Web/Tagml/index')
 }
 
-window.addEventListener(
-  "wheel",
-  throttle(function (event) {
-    if (!location.href.endsWith("/ayu/")) return;
-    handleMouseWheel(scrollDistance, event);
-  }, 600)
-);
-// 滚动距离，默认为0
+// window.addEventListener(
+//   "wheel",
+//   throttle(function (event) {
+//     if (!location.href.endsWith("/ayu/")) return;
+//     handleMouseWheel(scrollDistance, event);
+//   }, 600)
+// );
 </script>
 
-<style lang="scss">
-.bg-container {
-  position: relative;
-  top: -64px;
-  width: 100%;
-  height: 100vh;
-  background: url("https://s2.loli.net/2023/09/04/Hz3xOTlDLrCAGIV.jpg")
-    no-repeat center center;
-  background-size: cover;
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.258); /* 半透明的背景色 */
-  }
-  .bg-container-author {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px;
-    height: 500px;
-    text-align: center;
-    // background-color: pink;
-  }
+<style>
+.start::before {
+	left: 20%;
+	top: 20%;
+	position: absolute;
+	display: block;
+	content: '\e86e';
+	font-family: 'iconfont';
+}
+.github::before {
+	left: 15%;
+	top: 20%;
+	position: absolute;
+	display: block;
+	content: '\e85a';
+	font-family: 'iconfont';
 }
 </style>

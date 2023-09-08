@@ -1,66 +1,63 @@
 {
-  "hash": "9bc2948d",
-  "browserHash": "65a0e18c",
+  "hash": "4575e6fd",
+  "browserHash": "26cb8afd",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "f0877541",
+      "fileHash": "8692700c",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
       "src": "../../../../node_modules/@vue/devtools-api/lib/esm/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "374e4906",
-      "needsInterop": false
-    },
-    "ant-design-vue": {
-      "src": "../../../../node_modules/ant-design-vue/es/index.js",
-      "file": "ant-design-vue.js",
-      "fileHash": "d291ec4c",
+      "fileHash": "84f819ab",
       "needsInterop": false
     },
     "vitepress > @vueuse/integrations/useFocusTrap": {
       "src": "../../../../node_modules/@vueuse/integrations/useFocusTrap.mjs",
       "file": "vitepress___@vueuse_integrations_useFocusTrap.js",
-      "fileHash": "471b48bc",
+      "fileHash": "d0117bdd",
       "needsInterop": false
     },
     "vitepress > mark.js/src/vanilla.js": {
       "src": "../../../../node_modules/mark.js/src/vanilla.js",
       "file": "vitepress___mark__js_src_vanilla__js.js",
-      "fileHash": "721ec9e8",
+      "fileHash": "8c841f3a",
       "needsInterop": false
     },
     "vitepress > minisearch": {
       "src": "../../../../node_modules/minisearch/dist/es/index.js",
       "file": "vitepress___minisearch.js",
-      "fileHash": "cec38cb3",
+      "fileHash": "34018f43",
       "needsInterop": false
     },
-    "ant-design-vue/es": {
+    "ant-design-vue": {
       "src": "../../../../node_modules/ant-design-vue/es/index.js",
-      "file": "ant-design-vue_es.js",
-      "fileHash": "fdedb906",
+      "file": "ant-design-vue.js",
+      "fileHash": "15698f6c",
       "needsInterop": false
     },
     "lodash-es/difference": {
       "src": "../../../../node_modules/lodash-es/difference.js",
       "file": "lodash-es_difference.js",
-      "fileHash": "583caacd",
+      "fileHash": "309741a6",
+      "needsInterop": false
+    },
+    "storejs": {
+      "src": "../../../../node_modules/storejs/dist/store.esm.js",
+      "file": "storejs.js",
+      "fileHash": "636e5b08",
       "needsInterop": false
     },
     "nprogress": {
       "src": "../../../../node_modules/nprogress/nprogress.js",
       "file": "nprogress.js",
-      "fileHash": "7bda7932",
+      "fileHash": "52bee858",
       "needsInterop": true
     }
   },
   "chunks": {
-    "chunk-C7ZGYY7S": {
-      "file": "chunk-C7ZGYY7S.js"
-    },
     "chunk-V634PGSD": {
       "file": "chunk-V634PGSD.js"
     },

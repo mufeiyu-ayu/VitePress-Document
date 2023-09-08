@@ -18,15 +18,11 @@ function scrollToDistance(distance) {
 function scrollUp(height) {
   if (!height.value) return;
   height.value -= 500;
-  console.log(height.value, "向上");
-
   scrollToDistance(height.value);
 }
 
 // 向下滚动
 function scrollDown(height) {
   height.value += 500;
-  console.log(height.value, "向下");
-
   scrollToDistance(height.value);
 }

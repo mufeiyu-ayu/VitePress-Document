@@ -45,7 +45,7 @@ vue create navie-mall
 # 选择代码格式化工具
 ```
 
-![images](/ayu/images/v1.png)<br />然后按照终端提示完成以下操作：
+![images](/images/v1.png)<br />然后按照终端提示完成以下操作：
 
 ```bash
 Choose a version of Vue.js that you want to start the project with
@@ -65,7 +65,7 @@ Sass/SCSS (with node-sass)
 
 ```
 
-启动项目 npm run serve，访问 http://localhost:8080，如下图：<br />![images](/ayu/images/v2.png)表示 Webpack + Vue3 + TypeScript + Vue Router 简单的项目骨架搭建完毕，下面我们来为这个项目集成 Pinia、Navie UI、Axios、Sass。
+启动项目 npm run serve，访问 http://localhost:8080，如下图：<br />![images](/images/v2.png)表示 Webpack + Vue3 + TypeScript + Vue Router 简单的项目骨架搭建完毕，下面我们来为这个项目集成 Pinia、Navie UI、Axios、Sass。
 
 ### 修改 vue.config 配置文件
 
@@ -113,32 +113,32 @@ npm install pinia -S
 ```
 
 ```typescript
-import { defineStore } from "pinia";
+import {defineStore} from 'pinia'
 
-export const useMainStore = defineStore("main", {
-  state: () => ({}),
-  getters: {},
-  actions: {},
-});
+export const useMainStore = defineStore('main', {
+	state: () => ({}),
+	getters: {},
+	actions: {},
+})
 ```
 
 3. 在 main.ts 文件中挂载 Vuex 配置
 
 ```typescript
-import { createApp } from "vue";
-import { createPinia } from "Pinia";
-import App from "./App.vue";
-const pinia = createPinia();
-const app = createApp(App);
-app.use(pinia);
-app.mount("#app");
+import {createApp} from 'vue'
+import {createPinia} from 'Pinia'
+import App from './App.vue'
+const pinia = createPinia()
+const app = createApp(App)
+app.use(pinia)
+app.mount('#app')
 ```
 
 4. 在组件中如何使用
 
 ```typescript
-import { useUserStore } from "@/stores/main";
-const userStore = useUserStore();
+import {useUserStore} from '@/stores/main'
+const userStore = useUserStore()
 ```
 
 ### 集成 UI 框架 Naive
@@ -154,22 +154,22 @@ npm i -D vfonts
 
 ```typescript
 // 按需全局安装组件
-import { createApp } from "vue";
-import { create, NButton } from "naive-ui";
+import {createApp} from 'vue'
+import {create, NButton} from 'naive-ui'
 
 const naive = create({
-  components: [NButton],
-});
+	components: [NButton],
+})
 
-const app = createApp();
-app.use(naive);
+const app = createApp()
+app.use(naive)
 ```
 
 3. 你可以这样在 SFC 中使用你安装的组件。
 
 ```html
 <template>
-  <n-button>naive-ui</n-button>
+	<n-button>naive-ui</n-button>
 </template>
 ```
 
@@ -188,53 +188,53 @@ Axios 作为 HTTP 工具，我们在 utils 目录下创建 axios.ts 作为 Axios
 ```
 
 ```typescript
-import Axios from "axios";
-import { useMessage } from "navie";
+import Axios from 'axios'
+import {useMessage} from 'navie'
 
-const baseURL = "https://api.github.com";
-const Message = useMessage();
+const baseURL = 'https://api.github.com'
+const Message = useMessage()
 const axios = Axios.create({
-  baseURL,
-  timeout: 20000, // 请求超时 20s
-});
+	baseURL,
+	timeout: 20000, // 请求超时 20s
+})
 
 // 前置拦截器（发起请求之前的拦截）
 axios.interceptors.request.use(
-  (response) => {
-    /**
-     * 根据你的项目实际情况来对 config 做处理
-     * 这里对 config 不做任何处理，直接返回
-     */
-    return response;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
+	(response) => {
+		/**
+		 * 根据你的项目实际情况来对 config 做处理
+		 * 这里对 config 不做任何处理，直接返回
+		 */
+		return response
+	},
+	(error) => {
+		return Promise.reject(error)
+	},
+)
 
 // 后置拦截器（获取到响应时的拦截）
 axios.interceptors.response.use(
-  (response) => {
-    /**
-     * 根据你的项目实际情况来对 response 和 error 做处理
-     * 这里对 response 和 error 不做任何处理，直接返回
-     */
-    return response;
-  },
-  (error) => {
-    if (error.response && error.response.data) {
-      const code = error.response.status;
-      const msg = error.response.data.message;
-      Message.error(`Code: ${code}, Message: ${msg}`);
-      console.error(`[Axios Error]`, error.response);
-    } else {
-      Message.error(`${error}`);
-    }
-    return Promise.reject(error);
-  }
-);
+	(response) => {
+		/**
+		 * 根据你的项目实际情况来对 response 和 error 做处理
+		 * 这里对 response 和 error 不做任何处理，直接返回
+		 */
+		return response
+	},
+	(error) => {
+		if (error.response && error.response.data) {
+			const code = error.response.status
+			const msg = error.response.data.message
+			Message.error(`Code: ${code}, Message: ${msg}`)
+			console.error(`[Axios Error]`, error.response)
+		} else {
+			Message.error(`${error}`)
+		}
+		return Promise.reject(error)
+	},
+)
 
-export default axios;
+export default axios
 ```
 
 3. 使用 Axios 在需要使用 Axios 文件里，引入 Axios 配置文件，参考如下：
@@ -242,21 +242,21 @@ export default axios;
 ```vue
 <template></template>
 <script lang="ts">
-import { defineComponent } from "vue";
-import axios from "../utils/axios";
+import {defineComponent} from 'vue'
+import axios from '../utils/axios'
 
 export default defineComponent({
-  setup() {
-    axios
-      .get("/users/XPoet")
-      .then((res) => {
-        console.log("res: ", res);
-      })
-      .catch((err) => {
-        console.log("err: ", err);
-      });
-  },
-});
+	setup() {
+		axios
+			.get('/users/XPoet')
+			.then((res) => {
+				console.log('res: ', res)
+			})
+			.catch((err) => {
+				console.log('err: ', err)
+			})
+	},
+})
 </script>
 ```
 
@@ -297,7 +297,7 @@ trim_trailing_whitespace = false
 
 注意：
 
-- VSCode 使用 EditorConfig 需要去插件市场下载插件 **EditorConfig for VS Code** 。![images](/ayu/images/v3.png)
+- VSCode 使用 EditorConfig 需要去插件市场下载插件 **EditorConfig for VS Code** 。![images](/images/v3.png)
 - JetBrains 系列（WebStorm、IntelliJ IDEA 等）则不用额外安装插件，可直接使用 EditorConfig 配置。
 
 ### 集成 Prettier 配置
@@ -318,13 +318,13 @@ Prettier 支持多种格式的[配置文件](https://link.juejin.cn/?target=http
 
 ```json
 {
-  "useTabs": false,
-  "tabWidth": 2,
-  "printWidth": 100,
-  "singleQuote": true,
-  "trailingComma": "none",
-  "bracketSpacing": true,
-  "semi": false
+	"useTabs": false,
+	"tabWidth": 2,
+	"printWidth": 100,
+	"singleQuote": true,
+	"trailingComma": "none",
+	"bracketSpacing": true,
+	"semi": false
 }
 ```
 
@@ -339,7 +339,7 @@ npx prettier --write .
 
 - VSCode 编辑器使用 Prettier 配置需要下载插件 **Prettier - Code formatter** 。
 
-![images](/ayu/images/v4.png)
+![images](/images/v4.png)
 
 - JetBrains 系列编辑器（WebStorm、IntelliJ IDEA 等）则不用额外安装插件，可直接使用 Prettier 配置。
 
@@ -584,61 +584,61 @@ npx commitizen init cz-customizable --save-dev --save-exact --force
 
 ```javascript
 module.exports = {
-  // type 类型（定义之后，可通过上下键选择）
-  types: [
-    { value: "feat", name: "feat:     新增功能" },
-    { value: "fix", name: "fix:      修复 bug" },
-    { value: "docs", name: "docs:     文档变更" },
-    {
-      value: "style",
-      name: "style:    代码格式（不影响功能，例如空格、分号等格式修正）",
-    },
-    {
-      value: "refactor",
-      name: "refactor: 代码重构（不包括 bug 修复、功能新增）",
-    },
-    { value: "perf", name: "perf:     性能优化" },
-    { value: "test", name: "test:     添加、修改测试用例" },
-    {
-      value: "build",
-      name: "build:    构建流程、外部依赖变更（如升级 npm 包、修改 webpack 配置等）",
-    },
-    { value: "ci", name: "ci:       修改 CI 配置、脚本" },
-    {
-      value: "chore",
-      name: "chore:    对构建过程或辅助工具和库的更改（不影响源文件、测试用例）",
-    },
-    { value: "revert", name: "revert:   回滚 commit" },
-  ],
+	// type 类型（定义之后，可通过上下键选择）
+	types: [
+		{value: 'feat', name: 'feat:     新增功能'},
+		{value: 'fix', name: 'fix:      修复 bug'},
+		{value: 'docs', name: 'docs:     文档变更'},
+		{
+			value: 'style',
+			name: 'style:    代码格式（不影响功能，例如空格、分号等格式修正）',
+		},
+		{
+			value: 'refactor',
+			name: 'refactor: 代码重构（不包括 bug 修复、功能新增）',
+		},
+		{value: 'perf', name: 'perf:     性能优化'},
+		{value: 'test', name: 'test:     添加、修改测试用例'},
+		{
+			value: 'build',
+			name: 'build:    构建流程、外部依赖变更（如升级 npm 包、修改 webpack 配置等）',
+		},
+		{value: 'ci', name: 'ci:       修改 CI 配置、脚本'},
+		{
+			value: 'chore',
+			name: 'chore:    对构建过程或辅助工具和库的更改（不影响源文件、测试用例）',
+		},
+		{value: 'revert', name: 'revert:   回滚 commit'},
+	],
 
-  // scope 类型（定义之后，可通过上下键选择）
-  scopes: [
-    ["components", "组件相关"],
-    ["hooks", "hook 相关"],
-    ["utils", "utils 相关"],
-    ["element-ui", "对 element-ui 的调整"],
-    ["styles", "样式相关"],
-    ["deps", "项目依赖"],
-    ["auth", "对 auth 修改"],
-    ["other", "其他修改"],
-    // 如果选择 custom，后面会让你再输入一个自定义的 scope。也可以不设置此项，把后面的 allowCustomScopes 设置为 true
-    ["custom", "以上都不是？我要自定义"],
-  ].map(([value, description]) => {
-    return {
-      value,
-      name: `${value.padEnd(30)} (${description})`,
-    };
-  }),
+	// scope 类型（定义之后，可通过上下键选择）
+	scopes: [
+		['components', '组件相关'],
+		['hooks', 'hook 相关'],
+		['utils', 'utils 相关'],
+		['element-ui', '对 element-ui 的调整'],
+		['styles', '样式相关'],
+		['deps', '项目依赖'],
+		['auth', '对 auth 修改'],
+		['other', '其他修改'],
+		// 如果选择 custom，后面会让你再输入一个自定义的 scope。也可以不设置此项，把后面的 allowCustomScopes 设置为 true
+		['custom', '以上都不是？我要自定义'],
+	].map(([value, description]) => {
+		return {
+			value,
+			name: `${value.padEnd(30)} (${description})`,
+		}
+	}),
 
-  // 是否允许自定义填写 scope，在 scope 选择的时候，会有 empty 和 custom 可以选择。
-  // allowCustomScopes: true,
-  // allowTicketNumber: false,
-  // isTicketNumberRequired: false,
-  // ticketNumberPrefix: 'TICKET-',
-  // ticketNumberRegExp: '\\d{1,5}',
+	// 是否允许自定义填写 scope，在 scope 选择的时候，会有 empty 和 custom 可以选择。
+	// allowCustomScopes: true,
+	// allowTicketNumber: false,
+	// isTicketNumberRequired: false,
+	// ticketNumberPrefix: 'TICKET-',
+	// ticketNumberRegExp: '\\d{1,5}',
 
-  // 针对每一个 type 去定义对应的 scopes，例如 fix
-  /*
+	// 针对每一个 type 去定义对应的 scopes，例如 fix
+	/*
   scopeOverrides: {
     fix: [
       { name: 'merge' },
@@ -649,31 +649,31 @@ module.exports = {
   },
   */
 
-  // 交互提示信息
-  messages: {
-    type: "确保本次提交遵循 Angular 规范！\n选择你要提交的类型：",
-    scope: "\n选择一个 scope（可选）：",
-    // 选择 scope: custom 时会出下面的提示
-    customScope: "请输入自定义的 scope：",
-    subject: `请以云效任务id结尾填写简短精炼的提交描述,例如:"还原首页设计稿 [#task_id]"：\n`,
-    body: '填写更加详细的变更描述（可选）。使用 "|" 换行：\n',
-    breaking: "列举非兼容性重大的变更（可选）：\n",
-    footer: "列举出所有变更的 ISSUES CLOSED（可选）。 例如: #31, #34：\n",
-    confirmCommit: "确认提交？",
-  },
+	// 交互提示信息
+	messages: {
+		type: '确保本次提交遵循 Angular 规范！\n选择你要提交的类型：',
+		scope: '\n选择一个 scope（可选）：',
+		// 选择 scope: custom 时会出下面的提示
+		customScope: '请输入自定义的 scope：',
+		subject: `请以云效任务id结尾填写简短精炼的提交描述,例如:"还原首页设计稿 [#task_id]"：\n`,
+		body: '填写更加详细的变更描述（可选）。使用 "|" 换行：\n',
+		breaking: '列举非兼容性重大的变更（可选）：\n',
+		footer: '列举出所有变更的 ISSUES CLOSED（可选）。 例如: #31, #34：\n',
+		confirmCommit: '确认提交？',
+	},
 
-  // 设置只有 type 选择了 feat 或 fix，才询问 breaking message
-  allowBreakingChanges: ["feat", "fix"],
+	// 设置只有 type 选择了 feat 或 fix，才询问 breaking message
+	allowBreakingChanges: ['feat', 'fix'],
 
-  // 跳过要询问的步骤
-  skipQuestions: ["body", "footer"],
+	// 跳过要询问的步骤
+	skipQuestions: ['body', 'footer'],
 
-  // subject 限制长度
-  subjectLimit: 100,
-  breaklineChar: "|", // 支持 body 和 footer
-  // footerPrefix : 'ISSUES CLOSED:'
-  // askForBreakingChangeFirst : true,
-};
+	// subject 限制长度
+	subjectLimit: 100,
+	breaklineChar: '|', // 支持 body 和 footer
+	// footerPrefix : 'ISSUES CLOSED:'
+	// askForBreakingChangeFirst : true,
+}
 ```
 
 <br />建议大家结合项目实际情况来自定义配置提交规则，例如很多时候我们不需要写长描述，公司内部的代码仓库也不需要管理 issue，那么可以把询问 body 和 footer 的步骤跳过（在 .cz-config.js 中修改成 skipQuestions: ['body', 'footer']）。
@@ -695,7 +695,7 @@ npm i @commitlint/config-conventional @commitlint/cli -D
 - 创建 commitlint.config.js 文件 在项目根目录下创建 commitlint.config.js 文件，并填入以下内容：
 
 ```javascript
-module.exports = { extends: ["@commitlint/config-conventional"] };
+module.exports = {extends: ['@commitlint/config-conventional']}
 ```
 
 - 或直接使用快捷命令：
@@ -742,18 +742,18 @@ npm i @vue/test-utils@next jest vue-jest@next ts-jest -D
 
 ```javascript
 module.exports = {
-  moduleFileExtensions: ["vue", "js", "ts"],
-  preset: "ts-jest",
-  testEnvironment: "jsdom",
-  transform: {
-    "^.+\\.vue$": "vue-jest",
-    // vue 文件用 vue-jest 转换
-    "^.+\\.ts$": "ts-jest",
-    // ts 文件用 ts-jest 转换
-  },
-  // 匹配 __tests__ 目录下的 .js/.ts 文件 或其他目录下的 xx.test.js/ts xx.spec.js/ts
-  testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.(ts)$",
-};
+	moduleFileExtensions: ['vue', 'js', 'ts'],
+	preset: 'ts-jest',
+	testEnvironment: 'jsdom',
+	transform: {
+		'^.+\\.vue$': 'vue-jest',
+		// vue 文件用 vue-jest 转换
+		'^.+\\.ts$': 'ts-jest',
+		// ts 文件用 ts-jest 转换
+	},
+	// 匹配 __tests__ 目录下的 .js/.ts 文件 或其他目录下的 xx.test.js/ts xx.spec.js/ts
+	testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(ts)$',
+}
 ```
 
 ### 创建单元测试文件
@@ -770,39 +770,39 @@ module.exports = {
 
 ```vue
 <template>
-  <div class="test-container page-container">
-    <div class="page-title">Unit Test Page</div>
-    <p>count is: {{ count }}</p>
-    <button @click="increment">increment</button>
-  </div>
+	<div class="test-container page-container">
+		<div class="page-title">Unit Test Page</div>
+		<p>count is: {{ count }}</p>
+		<button @click="increment">increment</button>
+	</div>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import {defineComponent, ref} from 'vue'
 export default defineComponent({
-  name: "Vuex",
-  setup() {
-    const count = ref<number>(0);
-    const increment = () => {
-      count.value += 1;
-    };
-    return { count, increment };
-  },
-});
+	name: 'Vuex',
+	setup() {
+		const count = ref<number>(0)
+		const increment = () => {
+			count.value += 1
+		}
+		return {count, increment}
+	},
+})
 </script>
 ```
 
 - Test.spec.ts
 
 ```typescript
-import { mount } from "@vue/test-utils";
-import Test from "../src/views/Test.vue";
-test("Test.vue", async () => {
-  const wrapper = mount(Test);
-  expect(wrapper.html()).toContain("Unit Test Page");
-  expect(wrapper.html()).toContain("count is: 0");
-  await wrapper.find("button").trigger("click");
-  expect(wrapper.html()).toContain("count is: 1");
-});
+import {mount} from '@vue/test-utils'
+import Test from '../src/views/Test.vue'
+test('Test.vue', async () => {
+	const wrapper = mount(Test)
+	expect(wrapper.html()).toContain('Unit Test Page')
+	expect(wrapper.html()).toContain('count is: 0')
+	await wrapper.find('button').trigger('click')
+	expect(wrapper.html()).toContain('count is: 1')
+})
 ```
 
 ### 集成 @types/jest
