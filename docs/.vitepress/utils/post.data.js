@@ -12,7 +12,6 @@ export default createContentLoader('src/**/*.md', {
 	transform(rawData) {
 		// map, sort, or filter the raw data as you wish.
 		// the final result is what will be shipped to the client.
-		console.log(1)
 
 		return rawData
 			.map(({url, frontmatter, excerpt, html, src}) => {

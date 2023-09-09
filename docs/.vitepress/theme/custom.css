@@ -25,13 +25,29 @@
 :root {
 	--vp-c-brand-1: #646cff;
 	--vp-c-brand-2: red;
+
 	/* .vitepress/theme/custom.css */
 	/* 更改自定义字体 */
 	/* --vp-font-family-base: "JetBrains Mono"; */
 }
-@layer components {
-	.card {
-		background-color: black;
-		color: white;
-	}
+.btn {
+	@apply w-[150px] border-solid py-[10px] rounded-full hover:bg-midnight hover:border-none cursor-pointer active:bg-purple;
+}
+
+.overlay {
+	position: fixed; /* 固定定位，覆盖整个视口 */
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7); /* 半透明黑色背景 */
+
+	z-index: 1000; /* 设置z-index以确保在其他内容之上 */
+}
+.bigImg {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-25%, -25%) !important;
+	transition: all 1.3s;
 }

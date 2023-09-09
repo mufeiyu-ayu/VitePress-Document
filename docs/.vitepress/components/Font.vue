@@ -1,7 +1,7 @@
 <template>
 	<div class="w-3/5">
 		<span
-			class="text-#1c1917 font-light"
+			class="font-semibold"
 			v-for="(char, index) in displayedText"
 			:key="index"
 			>{{ char }}</span
@@ -14,6 +14,7 @@ import {ref, onMounted, defineProps, onBeforeUnmount} from 'vue'
 const data = defineProps({
 	value: String,
 })
+const element = ref(null)
 
 // 这里设置你的文本值
 const displayedText = ref('')
@@ -30,15 +31,6 @@ const typeText = () => {
 			isErasing.value = true
 			timer = setTimeout(typeText, 1000)
 		}
-	} else {
-		if (charIndex > 0) {
-			displayedText.value = displayedText.value.slice(0, -1)
-			charIndex--
-			setTimeout(typeText, 200)
-		} else {
-			isErasing.value = false
-			setTimeout(typeText, 500)
-		}
 	}
 }
 function stopTimer() {
@@ -47,11 +39,10 @@ function stopTimer() {
 	}
 }
 onMounted(() => {
-	// typeText()
+	typeText()
 })
 
 onBeforeUnmount(() => {
 	stopTimer()
-	console.log('清除定时器')
 })
 </script>

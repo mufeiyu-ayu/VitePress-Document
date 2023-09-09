@@ -5,23 +5,20 @@
 		>
 			<img
 				class="w-full h-full object-cover"
-				src="https://images.unsplash.com/photo-1518655048521-f130df041f66?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+				src="https://w.wallhaven.cc/full/e7/wallhaven-e7jj6r.jpg"
 				alt=""
 			/>
 			<div
 				class="w-4/5 lg:w-1/2 h-1/2 absolute text-center flex flex-col justify-start items-"
 			>
-				<div class="text-3xl lg:text-5xl text-[#2563eb] font-blod">
+				<div
+					class="text-3xl animate__heartBeat lg:text-5xl italic text-[#D098B6 ] font-blod"
+				>
 					Black Cat's Document
 				</div>
 				<Font :value="value" class="ml-auto mr-auto mt-6 h-24" />
-				<div class="flex justify-around lg:px-32">
-					<a-button type="primary" size="large" class="start w-36" href="Web/"
-						>start</a-button
-					>
-					<a-button type="primary" danger size="large" class="github w-36"
-						>GitHub</a-button
-					>
+				<div class="flex justify-center">
+					<div class="btn" @click="btnClick">start</div>
 				</div>
 			</div>
 		</div>
@@ -42,6 +39,7 @@ const router = useRouter()
 const value = ref(
 	'In your code, leave no room for doubt and regret, only comments and reflection.',
 )
+
 function btnClick() {
 	router.go('/Web/Tagml/index')
 }

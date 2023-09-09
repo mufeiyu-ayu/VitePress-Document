@@ -3,9 +3,11 @@ import Theme from 'vitepress/theme'
 import GlobalComponent from '../components/GlobalComponents.vue'
 import Mylayout from '../components/Mylayout.vue'
 import Outline from '../components/Outline.vue'
-import './custom.css'
-import 'nprogress/nprogress.css'
 
+import 'nprogress/nprogress.css'
+import 'animate.css'
+import '../utils/imageClick'
+import './custom.css'
 export default {
 	...Theme,
 	// use our custom layout component that we'll create next

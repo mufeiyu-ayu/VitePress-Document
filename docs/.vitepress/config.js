@@ -1,5 +1,6 @@
 import {defineConfig} from 'vitepress'
 import {fileURLToPath, URL} from 'node:url'
+import {optimizeHtml} from 'vitepress-payload-extractor'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
 	title: 'Ayu',
@@ -9,7 +10,9 @@ export default defineConfig({
 
 	// 自定义源目录（自定义路由页面）
 	lastUpdated: true,
-
+	transformHtml(code) {
+		return optimizeHtml(code)
+	},
 	head: [
 		[
 			'link',
