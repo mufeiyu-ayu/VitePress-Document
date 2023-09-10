@@ -6,7 +6,7 @@ import Outline from '../components/Outline.vue'
 
 import 'nprogress/nprogress.css'
 import 'animate.css'
-import '../utils/imageClick'
+
 import './custom.css'
 export default {
 	...Theme,

@@ -10,7 +10,6 @@
 </template>
 
 <script setup>
-import {ref, onMounted, defineProps, onBeforeUnmount} from 'vue'
 const data = defineProps({
 	value: String,
 })

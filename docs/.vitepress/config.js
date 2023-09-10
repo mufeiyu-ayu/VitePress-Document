@@ -1,6 +1,10 @@
 import {defineConfig} from 'vitepress'
 import {fileURLToPath, URL} from 'node:url'
+import {AntDesignVueResolver} from 'unplugin-vue-components/resolvers'
+import Components from 'unplugin-vue-components/vite'
+// import vue from '@vitejs/plugin-vue'
 import {optimizeHtml} from 'vitepress-payload-extractor'
+import AutoImport from 'unplugin-auto-import/vite'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
 	title: 'Ayu',
@@ -93,6 +97,15 @@ export default defineConfig({
 		},
 	},
 	vite: {
+		plugins: [
+			AutoImport({
+				imports: ['vue'],
+				resolvers: [AntDesignVueResolver()],
+			}),
+			Components({
+				resolvers: [AntDesignVueResolver({importStyle: false})],
+			}),
+		],
 		resolve: {
 			// 使用内部组件替换首页home-hero，home-Features组件
 			alias: [

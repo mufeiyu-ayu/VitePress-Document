@@ -19,8 +19,6 @@
 </template>
 
 <script setup>
-import {Tree as ATree} from 'ant-design-vue'
-import {ref, watch} from 'vue'
 import {getHeaders} from '../utils/outline'
 import difference from 'lodash-es/difference'
 import {onContentUpdated, useData} from 'vitepress'
