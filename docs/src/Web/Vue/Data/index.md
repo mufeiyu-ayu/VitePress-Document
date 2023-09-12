@@ -1,3 +1,13 @@
+---
+title: 简单吃透vue数据劫持
+lastUpdated: 1666445040
+like: 16
+Comment: 7
+Collection: 13
+img: https://codfeather.oss-cn-shenzhen.aliyuncs.com/blog/homeVue1.jpeg
+des: 众所周知vue2是通过Object.defineProperty,vue3通过proxy实现对于数据也就是data的劫持，然后监听数据的变化也就是响应式，从而让页面与数据保持同步刷新，今天和大家聊一下vue2中数据劫持，通过原生实现让大家彻底搞懂，彻底了解，并且轻松过面试嘻嘻
+---
+
 ## 数据劫持
 
 ### 前言：

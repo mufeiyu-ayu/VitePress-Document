@@ -6,14 +6,13 @@
 
 @font-face {
 	font-family: 'iconfont'; /* Project id 4243208 */
-	src: url('//at.alicdn.com/t/c/font_4243208_n74mw0xf8a.woff2?t=1694152006730')
+	src: url('//at.alicdn.com/t/c/font_4243208_l49cro65smj.woff2?t=1694442139782')
 			format('woff2'),
-		url('//at.alicdn.com/t/c/font_4243208_n74mw0xf8a.woff?t=1694152006730')
+		url('//at.alicdn.com/t/c/font_4243208_l49cro65smj.woff?t=1694442139782')
 			format('woff'),
-		url('//at.alicdn.com/t/c/font_4243208_n74mw0xf8a.ttf?t=1694152006730')
+		url('//at.alicdn.com/t/c/font_4243208_l49cro65smj.ttf?t=1694442139782')
 			format('truetype');
 }
-
 .iconfont {
 	font-family: 'iconfont' !important;
 	font-size: 16px;
@@ -50,4 +49,8 @@
 	left: 50%;
 	transform: translate(-25%, -25%) !important;
 	transition: all 1.3s;
+}
+
+.VPHome[data-v-11bf3ff9] {
+	padding-bottom: 0px;
 }

@@ -21,6 +21,7 @@
 <script setup>
 import {getHeaders} from '../utils/outline'
 import difference from 'lodash-es/difference'
+import {Tree as ATree} from 'ant-design-vue'
 import {onContentUpdated, useData} from 'vitepress'
 import store from 'storejs'
 const {isDark} = useData()

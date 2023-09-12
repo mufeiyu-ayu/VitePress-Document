@@ -1,3 +1,13 @@
+---
+title: v8中的promise
+lastUpdated: 1665324480
+like: 28
+Comment: 7
+Collection: 15
+img: https://codfeather.oss-cn-shenzhen.aliyuncs.com/blog/homePromise.png
+des: 上个文章我们利用promsieA+规范实现了promise，这可以帮助我们理解大部分的promise知识并且做解决大部分的面试题以及开发问题，但是却还有很多瑕疵，我会用简单的篇幅让大家了解，让promise在大家眼里变的简单
+---
+
 ## promise 后续
 
 ### 前言

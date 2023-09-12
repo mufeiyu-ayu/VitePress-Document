@@ -1,3 +1,13 @@
+---
+title: Vue 的 data 为啥是函数
+lastUpdated: 1665825120
+like: 85
+Comment: 16
+Collection: 88
+img: https://codfeather.oss-cn-shenzhen.aliyuncs.com/blog/homeVue1.jpeg
+des: 在学习vue的时候vue2只有在组件中严格要求data必须是一个函数，而在普通vue实例中，data可以是一个对象，但是在vue3出现后data必须一个函数，当时看着官方文档说的是好像是对象的引用问题，但是内部原理却不是很了解，今天通过一个简单的例子来说明为啥data必须是一个函数
+---
+
 ## Vue 的 data 为啥是函数
 
 ### 前言

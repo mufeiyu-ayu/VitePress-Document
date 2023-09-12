@@ -1,3 +1,13 @@
+---
+title: 手写promise + 方法
+lastUpdated: 1665324480
+like: 110
+Comment: 19
+Collection: 200
+img: https://codfeather.oss-cn-shenzhen.aliyuncs.com/blog/homePromise2.png
+des: 在网上阅读过很多关于实现promise的文章，大致分为2类，一种是基于promiseA+规范，一种是基于ECMA规范和v8引擎下的promise，对于A+规范可以快速让我们理解promise的核心，但对些许情况，难以理解，而ECMA规范的promise却很难理解，本文会分别对其经行分析
+---
+
 ## 手写 promise+方法
 
 ### 前言

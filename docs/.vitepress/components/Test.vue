@@ -1,34 +1,72 @@
 <template>
-	<div class="lg:w-3/5 w-full h-[800px] m-auto bg-tahiti">
-		<div class="text-4xl lg:text-9xl italic text-[#00BFFF] text-center">
-			Recent Blogs
-		</div>
-		<div class="w-full lg:h-80 h-28 flex justify-space">
-			<!-- 文章信息 -->
-			<div class="h-full lg:w-2/3 w-4/6 bg-purple">
-				<div class="font-black lg:text-5xl text-xl">简单吃透vue数据劫持</div>
-				<div class="lg:text-3xl text-xs lg:h-2/3 h-16 line-clamp-4 bg-silver">
-					前言：众所周知vue2是通过Object.defineProperty,vue3通过proxy实现对于数据也就是data的劫持，然后监听数据的变化也就是响应式，从而让页面与数据保持同步刷新，今天和大家聊一下vue2中数据劫持，通过原生实现让大家彻底搞懂，彻底了解，并且轻松过面试嘻嘻1111
-				</div>
-				<div>
-					<!-- <span>时间:10月前</span>
-					<span>浏览量:510</span>
-					<span>点赞:16</span>
-					<span>回复7</span> -->
-				</div>
+	<div class="bg-[#eaeaea]">
+		<div class="lg:w-3/5 w-full m-auto">
+			<div
+				class="text-4xl lg:text-9xl italic text-center text-[#fff] bg-[#16a34a]"
+			>
+				Recent Blogs
 			</div>
-			<!-- 图片 -->
-			<div class="h-full lg:w-1/3 w-2/6 bg-midnight">
-				<img
-					class="h-full"
-					src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6079dd8bc6ca4334af1aafc508e336fa~tplv-k3u1fbpfcp-jj:216:144:0:0:q75.awebp"
-					alt=""
-				/>
+			<div class="w-full grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
+				<div
+					v-for="item in list"
+					class="bg-[#fff] aa rounded-lg"
+					@click="routerLink(item.url)"
+				>
+					<img :src="item.img" class="w-full h-48 cursor-pointer" alt="11" />
+					<div class="text-2xl">{{ item.title }}</div>
+					<div class="line-clamp-2">{{ item.des }}</div>
+					<div class="flex text-[xl] space-x-3 leading-[30px] mt-2">
+						<div class="cursor-pointer">{{ getTime(item.lastUpdated) }}</div>
+						<div class="cursor-pointer">
+							<span class="iconfont size">&#xe61d;</span>
+							<span>&nbsp;{{ item.Collection }}</span>
+						</div>
+
+						<div>
+							<span class="iconfont size">&#xec7f;</span>
+							<span>&nbsp;{{ item.like }}</span>
+						</div>
+						<div class="cursor-pointer">
+							<span class="iconfont size">&#xe666;</span>
+							<span>&nbsp;{{ item.Comment }}</span>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
+	<!-- <div>11</div> -->
 </template>
 
-<script setup></script>
+<script setup>
+import {useData} from 'vitepress'
+import {data} from '../utils/post.data'
+import getTime from '../utils/getTime'
+import {useRouter} from 'vitepress'
+const list = ref([])
+const router = useRouter()
+data.forEach((element, index) => {
+	if (element.frontmatter.des) {
+		element.frontmatter['url'] = element.url
+		list.value.push(element.frontmatter)
+	}
+})
+function routerLink(url) {
+	router.go(url)
+}
+</script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.size {
+	font-size: 30px;
+	vertical-align: bottom;
+}
+.aa {
+	transition: transform 0.3s ease !important;
+}
+.aa:hover {
+	transform: scale(1.03) !important;
+}
+</style>
+
+navigationBar

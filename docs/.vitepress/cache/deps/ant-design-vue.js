@@ -156,9 +156,10 @@ import {
   useStyleRegister,
   version_default,
   watermark_default
-} from "./chunk-C7ZGYY7S.js";
-import "./chunk-V634PGSD.js";
+} from "./chunk-5VHMANBD.js";
 import "./chunk-T24IMQL4.js";
+import "./chunk-EZAGQZEH.js";
+import "./chunk-V634PGSD.js";
 import "./chunk-5WWUZCGV.js";
 export {
   affix_default as Affix,

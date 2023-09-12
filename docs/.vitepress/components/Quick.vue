@@ -10,6 +10,10 @@ data.forEach((element, index) => {
 		console.log(element)
 	}
 })
+
+const p1 = new Promise((reoslve,reject)=>{
+  console.log(reoslve);
+})
 </script>
 
 <style lang="scss" scoped></style>

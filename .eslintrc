@@ -1,0 +1,5 @@
+{
+  "extends": "@antfu",
+  // 配置运行使用制表符
+  "allowIndentationTabs":true
+}

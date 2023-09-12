@@ -1,7 +1,7 @@
 <template>
 	<div class="w-3/5">
 		<span
-			class="font-semibold"
+			class="font-semibold lg:text-2xl"
 			v-for="(char, index) in displayedText"
 			:key="index"
 			>{{ char }}</span
