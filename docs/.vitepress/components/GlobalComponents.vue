@@ -64,12 +64,11 @@ function btnClick() {
 	font-family: 'iconfont';
 }
 .github::before {
-	  left: 15%;
-	  top: 20%;
-	  position: absolute;
-	  display: block;
-	  content: '\e85a';
-	  font-family: 'iconfont';
+	left: 15%;
+	top: 20%;
+	position: absolute;
+	display: block;
+	content: '\e85a';
+	font-family: 'iconfont';
 }
-
 </style>
