@@ -79,7 +79,7 @@ export default defineConfig({
     socialLinks: [{ icon: 'github', link: 'https://github.com/mufeiyu-ayu' }],
     footer: {
       message: 'Email:2382839439@qq.com Vx:jiaxiaoyi825',
-      copyright: 'Copyright © 2019-present Evan You',
+      copyright: '版权所有 鄂ICP备2023016974号',
     },
     // 上一页下一页
     docFooter: {

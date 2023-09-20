@@ -25,3 +25,7 @@ nest new project-name
 ```
 
 ### nestjs/cli 命令
+
+```cmd
+nest g resource [name] // crud模块生成器
+```
