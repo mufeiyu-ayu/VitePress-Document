@@ -31,3 +31,5 @@ nest g resource [name] // crud模块生成器
 ```
 
 <!-- @include:./dataRequests.md -->
+<!-- @include:./provider.md -->
+<!-- @include:./module.md -->
