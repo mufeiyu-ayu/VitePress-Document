@@ -71,7 +71,8 @@ export default defineConfig({
           text: '后端',
           items: [
             { text: '前言', link: '/Page/' },
-            { text: 'nestjs', link: '/Page/NestJs/index' },
+            { text: 'NestJs', link: '/Page/NestJs/index' },
+            { text: 'MySQL', link: '/Page/Mysql/index' },
           ],
         },
       ],
