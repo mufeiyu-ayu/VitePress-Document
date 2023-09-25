@@ -43,15 +43,15 @@ select field_age from tabel_name where field_age is not null;  #查询字段不�
 
 select * from tabel_name where field_age = 18 or field = 20;  # 查询字段在某个范围内
 
-select * from table_name where field_age in (18,20);  # in操作符
+select * from table_name where field_age in (18,20);  # in操作符 （不是区间，是指18或20）
 select * from table_name where field_age not in (18,20);  # in操作符取反
 
-select * from table_name whele field_name like %o%;  # like操作符 %:任意多个字符 查询名字有o的
-select * from table_name whele field_name like %o;  #  查询名字以o结尾的
-select * from table_name whele field_name like o%;  #  查询名字以o开头的
-select * from table_name whele field_name like _o%;  #  _:任意单个字符 查询名字第二个字符是o的
-select * from table_name whele field_name like _o_;  #  查询名字第二个字符是o的
-select * from table_name whele filed_name like % /_% #  查询名字中包含_的
+select * from table_name whele field_name like '%o%';  # like操作符 %:任意多个字符 查询名字有o的
+select * from table_name whele field_name like '%o';  #  查询名字以o结尾的
+select * from table_name whele field_name like 'o%';  #  查询名字以o开头的
+select * from table_name whele field_name like '_o%';  #  _:任意单个字符 查询名字第二个字符是o的
+select * from table_name whele field_name like '_o_';  #  查询名字第二个字符是o的
+select * from table_name whele filed_name like '% /_%'; #  查询名字中包含_的
 
 ```
 
@@ -69,7 +69,7 @@ select * from table_name order by field_name1 asc,field_name2 asc; # 这意味�
 #### 单行处理函数
 
 数据处理函数又称为单行函数，是对一组数据进行操作，返回一个单一的结果
-常见的数据处理函数有：lower，upper，substr，length，concat，round，floor，ceil，mod，now，rand，date_format，ifnull，if，case when then else end
+常见的数据处理函数有：lower，upper，substr，length，concat，round，floor，ceil，mod，now，rand，date_format，ifnull，if ，case when then else end
 
 ```bash
 select lower(field_name) from table_name;  # 将字段转换为小写
