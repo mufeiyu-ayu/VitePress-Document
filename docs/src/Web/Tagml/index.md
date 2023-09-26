@@ -1,3 +1,5 @@
+# HTML
+
 ## 一 外边距合并问题
 
 **通常，大盒子中嵌套小盒子，如果给小盒子添加 margin-top 属性，则会出现大盒子和小盒子一起向下移动的现象**。
@@ -6,7 +8,7 @@ html 代码如下
 
 ```html
 <div class="outer">
-	<div class="inner"></div>
+  <div class="inner"></div>
 </div>
 ```
 
@@ -14,17 +16,17 @@ css 代码如下
 
 ```html
 <style type="text/css">
-	.outer {
-		width: 400px;
-		height: 400px;
-		background-color: teal;
-	}
-	.inner {
-		width: 200px;
-		height: 200px;
-		background-color: pink;
-		margin-top: 100px;
-	}
+  .outer {
+    width: 400px;
+    height: 400px;
+    background-color: teal;
+  }
+  .inner {
+    width: 200px;
+    height: 200px;
+    background-color: pink;
+    margin-top: 100px;
+  }
 </style>
 ```
 

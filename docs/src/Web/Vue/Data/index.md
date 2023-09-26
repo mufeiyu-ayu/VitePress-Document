@@ -21,20 +21,20 @@ des: 众所周知vue2是通过Object.defineProperty,vue3通过proxy实现对于�
 
 ```js
 const vm = new Vue({
-	el: '#app',
-	data() {
-		return {
-			title: '标题',
-			main: '研究数据劫持',
-			author: '黑猫',
-			list: [1, 2, 3, 4],
-			info: {
-				a: {
-					b: 1,
-				},
-			},
-		}
-	},
+  el: '#app',
+  data() {
+    return {
+      title: '标题',
+      main: '研究数据劫持',
+      author: '黑猫',
+      list: [1, 2, 3, 4],
+      info: {
+        a: {
+          b: 1,
+        },
+      },
+    }
+  },
 })
 console.log(vm)
 ```
@@ -54,17 +54,17 @@ console.log(vm)
 ```js
 // 初始化Vue
 function Vue(options) {
-	this._init(options)
+  this._init(options)
 }
 // 初始化操作
 Vue.prototype._init = function (options) {
-	let vm = this
-	vm.$options = options
-	initState(vm)
+  const vm = this
+  vm.$options = options
+  initState(vm)
 }
 
 function initState(vm) {
-	// 对后面的数据进行初始化操作
+  // 对后面的数据进行初始化操作
 }
 ```
 
@@ -76,7 +76,7 @@ function initState(vm) {
 
 ```js
 console.log(vm.title) // 标题
-console.log(vm._data.title) //标题
+console.log(vm._data.title) // 标题
 vm._data.title = '修改标题1'
 console.log(vm.title) // 修改标题1
 vm.title = '修改标题2'
@@ -89,30 +89,26 @@ console.log(vm.title) // 修改标题2
 
 ```js
 function initState(vm) {
-	let options = vm.$options
-	if (options.data) {
-		initData(vm)
-	}
+  const options = vm.$options
+  if (options.data) initData(vm)
 }
 
 function initData(vm) {
-	let data = vm.$options.data
-	vm._data = data = typeof data === 'function' ? data.call(vm) : {}
-	for (let key in data) {
-		proxy(vm, '_data', key)
-	}
+  let data = vm.$options.data
+  vm._data = data = typeof data === 'function' ? data.call(vm) : {}
+  for (const key in data) proxy(vm, '_data', key)
 }
 
 function proxy(vm, target, key) {
-	Object.defineProperty(vm, key, {
-		get() {
-			return vm[target][key]
-		},
-		set(newValue) {
-			vm[target][key] = newValue
-			// 这里就可以做响应式刷新页面呀，做侦听器呀，等等操作，本次就不讨论了
-		},
-	})
+  Object.defineProperty(vm, key, {
+    get() {
+      return vm[target][key]
+    },
+    set(newValue) {
+      vm[target][key] = newValue
+      // 这里就可以做响应式刷新页面呀，做侦听器呀，等等操作，本次就不讨论了
+    },
+  })
 }
 ```
 
@@ -138,12 +134,11 @@ vm.title = '设置标题'
 
 ```js
 function initData(vm) {
-	let data = vm.$options.data
-	vm._data = data = typeof data === 'function' ? data.call(vm) : {}
-	for (let key in data) {
-		proxy(vm, '_data', key)
-	}
-	observe(vm._data) //直接在这里添一行做处理啦
+  let data = vm.$options.data
+  vm._data = data = typeof data === 'function' ? data.call(vm) : {}
+  for (const key in data) proxy(vm, '_data', key)
+
+  observe(vm._data) // 直接在这里添一行做处理啦
 }
 ```
 
@@ -152,43 +147,40 @@ function initData(vm) {
 ```js
 // 初始化Vue
 function Vue(options) {
-	this._init(options)
+  this._init(options)
 }
 // 初始化操作
 Vue.prototype._init = function (options) {
-	let vm = this
-	vm.$options = options
-	initState(vm)
+  const vm = this
+  vm.$options = options
+  initState(vm)
 }
 // 初始化状态
 function initState(vm) {
-	let options = vm.$options
-	if (options.data) {
-		initData(vm)
-	}
+  const options = vm.$options
+  if (options.data) initData(vm)
 }
 // 初始化data
 function initData(vm) {
-	let data = vm.$options.data
-	vm._data = data = typeof data === 'function' ? data.call(vm) : {}
-	for (let key in data) {
-		proxy(vm, '_data', key)
-	}
-	observe(vm._data)
+  let data = vm.$options.data
+  vm._data = data = typeof data === 'function' ? data.call(vm) : {}
+  for (const key in data) proxy(vm, '_data', key)
+
+  observe(vm._data)
 }
 // 对全局访问data做数据劫持
 function proxy(vm, target, key) {
-	Object.defineProperty(vm, key, {
-		get() {
-			// console.log(`访问属性`)
+  Object.defineProperty(vm, key, {
+    get() {
+      // console.log(`访问属性`)
 
-			return vm[target][key]
-		},
-		set(newValue) {
-			//  console.log(`设置属性`)
-			vm[target][key] = newValue
-		},
-	})
+      return vm[target][key]
+    },
+    set(newValue) {
+      //  console.log(`设置属性`)
+      vm[target][key] = newValue
+    },
+  })
 }
 ```
 
@@ -198,41 +190,41 @@ function proxy(vm, target, key) {
 
 ```js
 function observe(data) {
-	if (typeof data !== 'object' || data === null) return // 此判断后面解释
-	return new Observer(data)
+  if (typeof data !== 'object' || data === null) return // 此判断后面解释
+  return new Observer(data)
 }
 
 function Observer(data) {
-	if (Array.isArray(data)) {
-		// 先不了解，后面解释
-	} else {
-		this.walk(data)
-	}
+  if (Array.isArray(data)) {
+    // 先不了解，后面解释
+  } else {
+    this.walk(data)
+  }
 }
 // 对_data的数据进行处理
 Observer.prototype.walk = function (data) {
-	var keys = Object.keys(data)
-	for (let i = 0; i < keys.length; i++) {
-		let key = keys[i],
-			value = data[key]
-		defineReactiveData(data, key, value)
-	}
+  const keys = Object.keys(data)
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i]
+    const value = data[key]
+    defineReactiveData(data, key, value)
+  }
 }
 // 数据劫持
 function defineReactiveData(data, key, value) {
-	observe(value)
-	Object.defineProperty(data, key, {
-		get() {
-			console.log('获取数据', value)
-			return value
-		},
-		set(newValue) {
-			console.log('设置新值', newValue)
-			if (newValue === value) return // 做点小优化嘻嘻
-			observe(newValue)
-			value = newValue
-		},
-	})
+  observe(value)
+  Object.defineProperty(data, key, {
+    get() {
+      console.log('获取数据', value)
+      return value
+    },
+    set(newValue) {
+      console.log('设置新值', newValue)
+      if (newValue === value) return // 做点小优化嘻嘻
+      observe(newValue)
+      value = newValue
+    },
+  })
 }
 ```
 
@@ -246,7 +238,7 @@ function defineReactiveData(data, key, value) {
 看看下面的代码
 
 ```js
-//这里info是个2层对象忘记可以看看开头模板
+// 这里info是个2层对象忘记可以看看开头模板
 console.log(vm.info.a.b)
 vm.info.a = 33
 ```
@@ -258,83 +250,80 @@ vm.info.a = 33
 ```js
 // 初始化Vue
 function Vue(options) {
-	this._init(options)
+  this._init(options)
 }
 // 初始化操作
 Vue.prototype._init = function (options) {
-	let vm = this
-	vm.$options = options
-	initState(vm)
+  const vm = this
+  vm.$options = options
+  initState(vm)
 }
 // 挂载options以及处理data函数
 function initState(vm) {
-	let options = vm.$options
-	if (options.data) {
-		initData(vm)
-	}
+  const options = vm.$options
+  if (options.data) initData(vm)
 }
 // 处理data
 function initData(vm) {
-	let data = vm.$options.data
-	vm._data = data = typeof data === 'function' ? data.call(vm) : {}
-	for (let key in data) {
-		proxy(vm, '_data', key)
-	}
-	observe(vm._data)
+  let data = vm.$options.data
+  vm._data = data = typeof data === 'function' ? data.call(vm) : {}
+  for (const key in data) proxy(vm, '_data', key)
+
+  observe(vm._data)
 }
 // 给从Vue实例直接访问属性做代理
 function proxy(vm, target, key) {
-	Object.defineProperty(vm, key, {
-		get() {
-			// console.log(`访问属性`)
-			return vm[target][key]
-		},
-		set(newValue) {
-			//  console.log(`设置属性`)
-			vm[target][key] = newValue
-		},
-	})
+  Object.defineProperty(vm, key, {
+    get() {
+      // console.log(`访问属性`)
+      return vm[target][key]
+    },
+    set(newValue) {
+      //  console.log(`设置属性`)
+      vm[target][key] = newValue
+    },
+  })
 }
 
 // 为vm的_data中的数据做数据劫持
 function observe(data) {
-	if (typeof data !== 'object' || data === null) return
-	return new Observer(data)
+  if (typeof data !== 'object' || data === null) return
+  return new Observer(data)
 }
 
 // 数组对象处理方法不同
 function Observer(data) {
-	if (Array.isArray(data)) {
-		// 先不了解，后面解释
-	} else {
-		this.walk(data)
-	}
+  if (Array.isArray(data)) {
+    // 先不了解，后面解释
+  } else {
+    this.walk(data)
+  }
 }
-//针对对象代理的准备工作
+// 针对对象代理的准备工作
 Observer.prototype.walk = function (data) {
-	var keys = Object.keys(data)
-	for (let i = 0; i < keys.length; i++) {
-		let key = keys[i],
-			value = data[key]
-		defineReactiveData(data, key, value)
-	}
+  const keys = Object.keys(data)
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i]
+    const value = data[key]
+    defineReactiveData(data, key, value)
+  }
 }
 
 // 对data为对象的情况做数据劫持
 function defineReactiveData(data, key, value) {
-	observe(value)
-	Object.defineProperty(data, key, {
-		get() {
-			console.log('获取数据', value)
-			return value
-		},
-		set(newValue) {
-			console.log('设置新值', newValue)
-			if (newValue === value) return // 做点小优化嘻嘻
-			observe(newValue)
-			value = newValue
-		},
-	})
+  observe(value)
+  Object.defineProperty(data, key, {
+    get() {
+      console.log('获取数据', value)
+      return value
+    },
+    set(newValue) {
+      console.log('设置新值', newValue)
+      if (newValue === value) return // 做点小优化嘻嘻
+      observe(newValue)
+      value = newValue
+    },
+  })
 }
 ```
 
@@ -344,22 +333,22 @@ function defineReactiveData(data, key, value) {
 
 ```js
 const vm = {
-	data: {
-		list: [1, 2, 3, 4],
-	},
+  data: {
+    list: [1, 2, 3, 4],
+  },
 }
-for (let key in vm.data) {
-	Object.defineProperty(vm, key, {
-		get() {
-			console.log('数组被读')
+for (const key in vm.data) {
+  Object.defineProperty(vm, key, {
+    get() {
+      console.log('数组被读')
 
-			return vm.data[key]
-		},
-		set(newValue) {
-			console.log('数组被写')
-			vm.data[key] = newValue
-		},
-	})
+      return vm.data[key]
+    },
+    set(newValue) {
+      console.log('数组被写')
+      vm.data[key] = newValue
+    },
+  })
 }
 console.log(vm.list)
 vm.list = 3
@@ -378,48 +367,46 @@ console.log(vm.list)
 
 ```js
 function Observer(data) {
-	if (Array.isArray(data)) {
-		data.__proto__ = arrMethods
-		observeArr(data)
-	} else {
-		this.walk(data)
-	}
+  if (Array.isArray(data)) {
+    data.__proto__ = arrMethods
+    observeArr(data)
+  } else {
+    this.walk(data)
+  }
 }
 const ARR_METHODS = [
-	'push',
-	'pop',
-	'unshift',
-	'shift',
-	'splice',
-	'sort',
-	'reverse',
+  'push',
+  'pop',
+  'unshift',
+  'shift',
+  'splice',
+  'sort',
+  'reverse',
 ]
-const originArray = Array.prototype,
-	arrMethods = Object.create(originArray)
+const originArray = Array.prototype
+const arrMethods = Object.create(originArray)
 
 ARR_METHODS.forEach((item) => {
-	arrMethods[item] = function (...arg) {
-		// 执行原来数组的方法
-		let rt = originArray[item].apply(this, arg)
-		console.log('数组新方法', arg) // 在这里就可以检测到
-		let newArr
-		switch (item) {
-			case 'push':
-			case 'unshit':
-				newArr = arg
-				break
-			case 'splice':
-				newArr = arg.slice(2)
-			default:
-				break
-		}
-		newArr && observeArr(newArr)
-	}
+  arrMethods[item] = function (...arg) {
+    // 执行原来数组的方法
+    const rt = originArray[item].apply(this, arg)
+    console.log('数组新方法', arg) // 在这里就可以检测到
+    let newArr
+    switch (item) {
+      case 'push':
+      case 'unshit':
+        newArr = arg
+        break
+      case 'splice':
+        newArr = arg.slice(2)
+      default:
+        break
+    }
+    newArr && observeArr(newArr)
+  }
 })
 function observeArr(arr) {
-	for (let i = 0; i < arr.length; i++) {
-		observe(arr[i])
-	}
+  for (let i = 0; i < arr.length; i++) observe(arr[i])
 }
 ```
 
@@ -429,122 +416,117 @@ function observeArr(arr) {
 ```js
 // 初始化Vue
 function Vue(options) {
-	this._init(options)
+  this._init(options)
 }
 // 初始化操作
 Vue.prototype._init = function (options) {
-	let vm = this
-	vm.$options = options
-	initState(vm)
+  const vm = this
+  vm.$options = options
+  initState(vm)
 }
 
 // 初始化状态
 function initState(vm) {
-	let options = vm.$options
-	if (options.data) {
-		initData(vm)
-	}
+  const options = vm.$options
+  if (options.data) initData(vm)
 }
 // data的初始化函数
 function initData(vm) {
-	let data = vm.$options.data
-	vm._data = data = typeof data === 'function' ? data.call(vm) : {}
-	for (let key in data) {
-		proxy(vm, '_data', key)
-	}
-	observe(vm._data)
+  let data = vm.$options.data
+  vm._data = data = typeof data === 'function' ? data.call(vm) : {}
+  for (const key in data) proxy(vm, '_data', key)
+
+  observe(vm._data)
 }
 
 // 对于vm实例第一层的数据劫持
 function proxy(vm, target, key) {
-	Object.defineProperty(vm, key, {
-		get() {
-			// console.log(`访问属性`)
-			return vm[target][key]
-		},
-		set(newValue) {
-			//  console.log(`设置属性`)
-			vm[target][key] = newValue
-		},
-	})
+  Object.defineProperty(vm, key, {
+    get() {
+      // console.log(`访问属性`)
+      return vm[target][key]
+    },
+    set(newValue) {
+      //  console.log(`设置属性`)
+      vm[target][key] = newValue
+    },
+  })
 }
 
 // 对于vm._data
 function observe(data) {
-	if (typeof data !== 'object' || data === null) return
-	return new Observer(data)
+  if (typeof data !== 'object' || data === null) return
+  return new Observer(data)
 }
 // 要改写的数组方法
 const ARR_METHODS = [
-	'push',
-	'pop',
-	'unshift',
-	'shift',
-	'splice',
-	'sort',
-	'reverse',
+  'push',
+  'pop',
+  'unshift',
+  'shift',
+  'splice',
+  'sort',
+  'reverse',
 ]
-const originArray = Array.prototype,
-	arrMethods = Object.create(originArray)
+const originArray = Array.prototype
+const arrMethods = Object.create(originArray)
 
 // 改写数组方法
 ARR_METHODS.forEach((item) => {
-	arrMethods[item] = function (...arg) {
-		// 执行原来数组的方法
-		let rt = originArray[item].apply(this, arg)
-		console.log('数组新方法', arg)
-		let newArr
-		switch (item) {
-			case 'push':
-			case 'unshit':
-				newArr = arg
-				break
-			case 'splice':
-				newArr = arg.slice(2)
-			default:
-				break
-		}
-		newArr && observeArr(newArr)
-	}
+  arrMethods[item] = function (...arg) {
+    // 执行原来数组的方法
+    const rt = originArray[item].apply(this, arg)
+    console.log('数组新方法', arg)
+    let newArr
+    switch (item) {
+      case 'push':
+      case 'unshit':
+        newArr = arg
+        break
+      case 'splice':
+        newArr = arg.slice(2)
+      default:
+        break
+    }
+    newArr && observeArr(newArr)
+  }
 })
 
 function observeArr(arr) {
-	for (let i = 0; i < arr.length; i++) {
-		observe(arr[i])
-	}
+  for (let i = 0; i < arr.length; i++) observe(arr[i])
 }
 // 对于数组和对象分别处理劫持
 function Observer(data) {
-	console.log(data)
-	if (Array.isArray(data)) {
-		data.__proto__ = arrMethods
-		observeArr(data)
-	} else {
-		this.walk(data)
-	}
+  console.log(data)
+  if (Array.isArray(data)) {
+    data.__proto__ = arrMethods
+    observeArr(data)
+  } else {
+    this.walk(data)
+  }
 }
 Observer.prototype.walk = function (data) {
-	var keys = Object.keys(data)
-	for (let i = 0; i < keys.length; i++) {
-		let key = keys[i],
-			value = data[key]
-		defineReactiveData(data, key, value)
-	}
+  const keys = Object.keys(data)
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i]
+    const value = data[key]
+    defineReactiveData(data, key, value)
+  }
 }
 function defineReactiveData(data, key, value) {
-	observe(value)
-	Object.defineProperty(data, key, {
-		get() {
-			console.log('获取数据', value)
-			return value
-		},
-		set(newValue) {
-			console.log('设置新值', newValue)
-			if (newValue === value) return // 做点小优化嘻嘻
-			observe(newValue)
-			value = newValue
-		},
-	})
+  observe(value)
+  Object.defineProperty(data, key, {
+    get() {
+      console.log('获取数据', value)
+      return value
+    },
+    set(newValue) {
+      console.log('设置新值', newValue)
+      if (newValue === value) return // 做点小优化嘻嘻
+      observe(newValue)
+      value = newValue
+    },
+  })
 }
 ```
 

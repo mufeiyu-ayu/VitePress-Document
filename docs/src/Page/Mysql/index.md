@@ -15,7 +15,7 @@ select * from table_name;   # 查看表数据
 
 ```
 
-### 查询语句
+### DQL 查询语句
 
 #### 简单查询
 
@@ -112,8 +112,6 @@ select min(field_name) from table_name;  # 最小值
 分组查询
 
 ```bash
- # 分组查询
-select field_name1,field_name2 from table_name group by field_name1;
  # 按职位分组求和
 select job sum(sal) from 'table_name' group by job;
  # 按职位分组求和 并且求和大于1000
@@ -126,4 +124,182 @@ select deptno,job,max(sal) from table_name group by deptno,job
 select deptno,max(sal) from table_name group by deptno having max(sal) > 2000  #效率很低
 # 先过滤再分组
 select deptno,max(sal) from table_name where sal > 2000 group by deptno
+```
+
+### 连接查询
+
+从一张表中单独查询称为单表查询,从多张表中查询称为多表查询也叫连接查询
+
+````bash
+
+select name,cname from table_name1,table_name2;  # 笛卡尔积
+#  内部连接  等值连接
+#  查询效率很慢， name,以及cname不知道是哪个表的字段
+select name,cname
+from table_name1,table_name2
+where table_name1.id = table_name2.id;  # 内连接
+# 优化写法并给表起别名 92版本之前 语意不清晰，汇总后表的数据如果还要过滤则需要使用and 或者having
+select a.name,b.name from table_name1 a,table_name2 b where a.id = b.id;  # 内连接
+
+# 98版本之后 使用inner明确是内连接
+select a.name b.name
+from worker a
+inner join jiajia b
+on a.id = b.id
+where a.salary>5000;  # 内连接
+
+```bash
+# 内部连接 非等值连接
+# 查询员工的工资等级 并且统计工资等级大于3的信息，并且按照等级升序排列
+select a.name,b.name
+from worker a
+inner join jiajia2 b
+on a.salary between b.losal and b.hisal # 范围
+where b.grade > 3
+order by b.grade;
+````
+
+```bash
+# 内部连接 自连接
+# 在一张表中查出员工以及老板以及他们的编号 （员工和老板在一张表，员工的老板编号是老板编号）
+# 思路:把一张表看成2张表
+SELECT
+    a.ename as '员工',
+    a.mgr,
+    b.ename as '老板',
+    b.empno
+from emp a
+    INNER JOIN emp b on a.mgr = b.empno
+
+```
+
+```bash
+#外部连接
+# 根据员工的部门编号查询员工的信息以及部门的信息(部门表中存有null)
+select e.ename,d.dname
+from emp e
+right join dept d
+on e.deptno = d.deptno;  # 右外连接 也可以左连接
+#right表示将右边的表作为主表，主表的信息都要，次表为emp
+
+# 根据员工上级编号查询员工的信息以及上级的信息(员工表中存有null)并且将带有null的员工信息也查询出来、
+select a.ename as '员工',b.ename as '上级'
+from emp a
+left join emp b
+on a.mgr = b.empno;  # 左外连接(主表要确定清楚！！！)
+```
+
+```bash
+# 多张表连接
+# 要求查询员工姓名，部门名称，工资，工资等级，老板信息 其中员工的老板编号为null的也要显示出来
+select a.ename as '员工',d.dname as '部门',a.sal as '工资',c.grade as '工资等级',b.ename as '老板'
+from emp a
+left join emp b
+on a.mgr = b.empno
+left join salgrade c
+on a.sal between c.losal and c.hisal
+left join dept d
+on a.deptno = d.deptno;
+```
+
+### 子查询
+
+```bash
+select
+    ...(select)
+    from
+    ...(select)
+    where
+    ...(select)
+```
+
+```bash
+# where 中的子查询
+select ename,sal from emp where sal
+> (select min(sal) from emp)
+
+# from中的子查询
+# 找出员工单位，平均薪资以及平均薪资的薪资等级
+
+# 思路 先找 员工信息以及平均薪资
+select job,avg(sal) from emp group by job; #把它看成一张表
+
+# 再找出平均薪资的薪资等级
+select t1.*,t2.grade
+from (select job,avg(sal) avgvgsal from emp group by job) t1
+join salgrade t2 on t1.avgvgsal between t2.losal and t2.hisal;
+
+# unione 相加查询结果
+select ename,job from emp where job in('MANAGER','SALESMAN')
+
+select eanme,job from emp where job = 'manager'
+unione
+select eanme,job from emp where job = 'salesman'
+
+
+# limit 限制查询结果数量
+# limit resultlength
+# limit startNum,resultlength
+# limit 在order by之后
+select * from emp limit 3; # 查询前三条
+select * from emp limit 3,3; # 查询第三条开始的三条
+
+
+# limit 分页
+
+# 用户发起请求包含字段 1：当前页码，字段 2：每页显示的条数，则对应的 sql 语句为
+
+select * from table_name limit (page - 1) * pageSize,pageSize;
+
+```
+
+**DQL 语句总结**
+select ...
+from ...
+where ...
+group by ...
+having ...
+order by ...
+limit ...
+
+**执行顺序**
+from -> where -> group by -> having -> select -> order by -> limit
+
+## DDL
+
+DDL 包括 creat ，drop ， alter
+
+### 建表
+
+````bash
+    create table_name(
+        field_name1 field_type1,
+        field_name2 field_type2,
+        field_name3 field_type3,
+        ...
+        field_nameN field_typeN
+    );
+    ```
+````
+
+### 数据类型
+
+| type     | des                                     |
+| -------- | --------------------------------------- |
+| varchar  | 可变长度字符串，动态分配空间            |
+| char     | 定长字符串，固定分配空间                |
+| int      | 数字的整数型                            |
+| bigint   | 数字的长整形                            |
+| flot     | 单精度浮点型                            |
+| double   | 双精度浮点型                            |
+| date     | 短日期类型                              |
+| datetime | 长日期类型                              |
+| clob     | 字符大对象 最多 4G 的字符串比如存储文章 |
+| blob     | 图片，声音，视频，等流媒体数据          |
+
+**删除表**
+
+```bash
+# 如果表存在则删除，直接删除如果表不存在则会报错
+drop table if exists table_name;
 ```
