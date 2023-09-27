@@ -41,7 +41,7 @@ select * from table_name whele sex = male and (age > 18 or age <23);  # and:并�
 select field_age from tabel_name where field_age is null;  #查询字段为null
 select field_age from tabel_name where field_age is not null;  #查询字段不为null
 
-select * from tabel_name where field_age = 18 or field = 20;  # 查询字段在某个范围内
+select * from tabel_name where field_age = 18 or field = 20;  # 查询字段为18或者20
 
 select * from table_name where field_age in (18,20);  # in操作符 （不是区间，是指18或20）
 select * from table_name where field_age not in (18,20);  # in操作符取反
@@ -242,7 +242,7 @@ select eanme,job from emp where job = 'salesman'
 # limit startNum,resultlength
 # limit 在order by之后
 select * from emp limit 3; # 查询前三条
-select * from emp limit 3,3; # 查询第三条开始的三条
+select * from emp limit 3,3; # 查询第四条开始的三条
 
 
 # limit 分页
@@ -272,7 +272,7 @@ DDL 包括 creat ，drop ， alter
 ### 建表
 
 ````bash
-    create table_name(
+    create table table_name(
         field_name1 field_type1,
         field_name2 field_type2,
         field_name3 field_type3,
@@ -284,22 +284,118 @@ DDL 包括 creat ，drop ， alter
 
 ### 数据类型
 
-| type     | des                                     |
-| -------- | --------------------------------------- |
-| varchar  | 可变长度字符串，动态分配空间            |
-| char     | 定长字符串，固定分配空间                |
-| int      | 数字的整数型                            |
-| bigint   | 数字的长整形                            |
-| flot     | 单精度浮点型                            |
-| double   | 双精度浮点型                            |
-| date     | 短日期类型                              |
-| datetime | 长日期类型                              |
-| clob     | 字符大对象 最多 4G 的字符串比如存储文章 |
-| blob     | 图片，声音，视频，等流媒体数据          |
+| type     | des                                             |
+| -------- | ----------------------------------------------- |
+| varchar  | 可变长度字符串，动态分配空间                    |
+| char     | 定长字符串，固定分配空间                        |
+| int      | 数字的整数型                                    |
+| bigint   | 数字的长整形                                    |
+| flot     | 单精度浮点型                                    |
+| double   | 双精度浮点型                                    |
+| date     | 短日期类型 YYYY-MM-DD                           |
+| time     | 存储时间 HH:MM:SS                               |
+| datetime | 长日期类型 YYYY-MM-DD HH:MM:SS                  |
+| clob     | 字符大对象 最多 4G 的字符串比如存储文章         |
+| text     | 用于存储大量的文本数据，最大长度为 65535 个字符 |
+| blob     | 图片，声音，视频，等流媒体数据                  |
+| json     | json 格式数据                                   |
 
 **删除表**
 
 ```bash
 # 如果表存在则删除，直接删除如果表不存在则会报错
 drop table if exists table_name;
+```
+
+## DML
+
+DML 包括 insert ，update ，delete
+
+```bash
+# insert 插入数据
+insert into table_name(field_name1,field_name2,field_name3) values(value1,value2,value3);
+insert into table_name values(value1,value2,value3); # 表示插入所有字段
+# 插入多条数据
+inser into table_name values
+(value1,...),
+(value1,...),
+(value1,...),
+(value1,...),
+(value1,...)
+
+```
+
+```bash
+# update 更新数据
+# 没有条件会更新所有数据
+ update table_name set field_name1 = value1,field_name2 = value2 where 条件;
+
+```
+
+```bash
+# delete 删除数据
+# 没有条件会删除所有数据
+delete from table_name where 条件;
+
+# 这种删除效率比较慢，虽然数据被删除，但是表的空间没有被释放，
+# 但如果删除后后悔了可以使用rollback回滚得到数据
+truncate table_name; # 删除表中所有数据并且释放表空间 ，还不能回滚
+```
+
+## 约束
+
+1. 非空约束 not null 约束的字段不能为 null
+2. 唯一约束 unique 约束的字段不能重复 但是可以为 null
+3. 主键约束 primary key
+4. 外键约束 foreign key
+5. 检查约束 check
+6. 默认约束 default
+
+当约束没有在列的后面称为表级约束，当约束在列的后面称为列级约束<br/>
+使用表级约束的情况:多个字段需要联合约束
+
+**当一个字段同时被 not null 以及 unique 约束时，字段成为主键约束**
+
+### 主键约束
+
+主键值是每一行记录的唯一标识，类似于每个人的身份证号码，任何一张表都应该有主键，没有主键，表无效！！
+
+主键特征：unique + not null
+
+```bash
+create table table_name (
+    id int, # primary key 一个字段作主键为单一主键
+    name vachar(255),
+    primary key(id,name) # 多个字段作为主键为联合主键
+)
+# 在实际开发不建议使用联合主键， 单一主键即可
+# 一张表只能有一个主键
+
+# 主键自增
+create table table_name (
+    id int primary key auto_increment,
+    name vachar(255)
+)
+# 下面就不需要指定id的值了
+insert into table_name(name) values('张三');
+insert into table_name(name) values('张三');
+insert into table_name(name) values('张三')
+```
+
+### 外键约束
+
+```bash
+# 先创建父表
+create table t_father (
+    classno init primary key,
+    classname varchar(255)
+)
+# 再创建子表
+create table t_son  if not exists (  #不存在就创建
+    id int primary key auto_increment,
+    name varchar(255),
+    classno int,
+    foreign key(classno) references t_father(classno)
+    # classno 是子表的字段，t_father(classno) 是父表的字段
+)
 ```

@@ -37,10 +37,6 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="w-3/5">
-    <span
-      v-for="(char, index) in displayedText"
-      :key="index"
-      class="font-semibold lg:text-2xl"
-    >{{ char }}</span>
+    <span v-for="(char, index) in displayedText" :key="index" class="font-semibold lg:text-2xl">{{ char }}</span>
   </div>
 </template>
