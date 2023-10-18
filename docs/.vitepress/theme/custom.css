@@ -30,7 +30,7 @@
 	/* --vp-font-family-base: "JetBrains Mono"; */
 }
 .btn {
-	@apply w-[150px] border-solid py-[10px] rounded-full hover:bg-midnight hover:border-none cursor-pointer active:bg-purple;
+	@apply w-[150px] border-solid  py-[10px] rounded-full hover:bg-[#1677ff] hover:border-none cursor-pointer;
 }
 
 .overlay {

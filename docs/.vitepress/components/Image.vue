@@ -5,7 +5,6 @@ const data = defineProps({
     type: String,
   },
 })
-console.log(data)
 </script>
 
 <template>

@@ -1,20 +1,18 @@
 <!-- .vitepress/theme/Layout.vue -->
-<template>
-	<DefaultTheme.Layout> </DefaultTheme.Layout>
-</template>
-
 <script setup lang="ts">
-import {useData} from 'vitepress'
-import DefaultTheme from 'vitepress/theme'
-import {nextTick, provide} from 'vue'
-import nprogressFn from '../utils/nprogress'
-const {isDark} = useData()
-nprogressFn()
-const enableTransitions = () =>
-	'startViewTransition' in document &&
-	window.matchMedia('(prefers-reduced-motion: no-preference)').matches
+import { useData } from 'vitepress';
+import DefaultTheme from 'vitepress/theme';
+import { nextTick, provide } from 'vue';
+import nprogressFn from '../utils/nprogress';
 
-provide('toggle-appearance', async ({clientX: x, clientY: y}: MouseEvent) => {
+const { isDark } = useData()
+nprogressFn()
+function enableTransitions() {
+	return 'startViewTransition' in document
+		&& window.matchMedia('(prefers-reduced-motion: no-preference)').matches
+}
+
+provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
 	if (!enableTransitions()) {
 		isDark.value = !isDark.value
 		return
@@ -34,7 +32,7 @@ provide('toggle-appearance', async ({clientX: x, clientY: y}: MouseEvent) => {
 	}).ready
 
 	document.documentElement.animate(
-		{clipPath: isDark.value ? clipPath.reverse() : clipPath},
+		{ clipPath: isDark.value ? clipPath.reverse() : clipPath },
 		{
 			duration: 300,
 			easing: 'ease-in',
@@ -43,6 +41,10 @@ provide('toggle-appearance', async ({clientX: x, clientY: y}: MouseEvent) => {
 	)
 })
 </script>
+
+<template>
+	<DefaultTheme.Layout />
+</template>
 
 <style>
 ::view-transition-old(root),

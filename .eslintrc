@@ -1,15 +1,15 @@
-{
-  "extends": "@antfu",
-  // 配置运行使用制表符
-  "rules":{
-    // 开启console方法
-    "no-console":"off",
-    // 开启制表符
-    "no-tabs": ["error", { "allowIndentationTabs": true }]
-    // 变量声明未使用报错
-    // "no-unused-vars": "error",
-    // 变量未声明报错
-    // "no-undef": "error"
-  }
+// {
+//   "extends": "@antfu",
+//   // 配置运行使用制表符
+//   "rules":{
+//     // 开启console方法
+//     "no-console":"off",
+//     // 开启制表符
+//     "no-tabs": ["error", { "allowIndentationTabs": true }]
+//     // 变量声明未使用报错
+//     // "no-unused-vars": "error",
+//     // 变量未声明报错
+//     // "no-undef": "error"
+//   }
  
-}
+// }

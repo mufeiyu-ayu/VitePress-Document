@@ -1,13 +1,3 @@
----
-title: Vue 的 data 为啥是函数
-lastUpdated: 1665825120
-like: 85
-Comment: 16
-Collection: 88
-img: https://codfeather.oss-cn-shenzhen.aliyuncs.com/blog/homeVue1.jpeg
-des: 在学习vue的时候vue2只有在组件中严格要求data必须是一个函数，而在普通vue实例中，data可以是一个对象，但是在vue3出现后data必须一个函数，当时看着官方文档说的是好像是对象的引用问题，但是内部原理却不是很了解，今天通过一个简单的例子来说明为啥data必须是一个函数
----
-
 ## Vue 的 data 为啥是函数
 
 ### 前言
@@ -21,12 +11,12 @@ des: 在学习vue的时候vue2只有在组件中严格要求data必须是一个�
 ### 1.Vue3 中的 data
 
 ```js
-const {createApp} = Vue
+const { createApp } = Vue
 const app = {
-	data: {
-		a: 1,
-	},
-	template: `
+  data: {
+    a: 1,
+  },
+  template: `
     <h1>{{a}}</h1>
     `,
 }
@@ -40,8 +30,8 @@ createApp(app).mount('#app')
 
 ```js
 var app = new Vue({
-	el: '#app',
-	data: {a: 'hello world'},
+  el: '#app',
+  data: { a: 'hello world' },
 })
 ```
 
@@ -56,15 +46,15 @@ var app = new Vue({
 ```
 
 ```js
-const data = {message: 'hello world'}
+const data = { message: 'hello world' }
 const vue1 = new Vue({
-	el: '#app1',
-	data,
+  el: '#app1',
+  data,
 })
 
 const vue2 = new Vue({
-	el: '#app2',
-	data,
+  el: '#app2',
+  data,
 })
 ```
 
@@ -92,28 +82,28 @@ vue1.message = 'hello Vue'
 
 ```js
 function Vue(options) {
-	this.$data = proxy(options.data())
+  this.$data = proxy(options.data())
 }
 function proxy(options) {
-	return new Proxy(options, {
-		get(target, key, value, receiver) {
-			return Reflect.get(target, key, value, receiver)
-		},
-		set(target, key, newValue, receiver) {
-			Reflect.set(target, key, newValue, receiver)
-		},
-	})
+  return new Proxy(options, {
+    get(target, key, value, receiver) {
+      return Reflect.get(target, key, value, receiver)
+    },
+    set(target, key, newValue, receiver) {
+      Reflect.set(target, key, newValue, receiver)
+    },
+  })
 }
 const data = function () {
-	return {
-		a: 'hello world',
-	}
+  return {
+    a: 'hello world',
+  }
 }
 const vue1 = new Vue({
-	data,
+  data,
 })
 const vue2 = new Vue({
-	data,
+  data,
 })
 vue1.$data.a = 'hello Vue'
 console.log(vue1.$data.a) // hello Vue
@@ -125,26 +115,26 @@ console.log(vue2.$data.a) // hello world
 
 ```js
 function Vue(options) {
-	this.$data = proxy(options.data)
+  this.$data = proxy(options.data)
 }
 function proxy(options) {
-	return new Proxy(options, {
-		get(target, key, value, receiver) {
-			return Reflect.get(target, key, value, receiver)
-		},
-		set(target, key, newValue, receiver) {
-			Reflect.set(target, key, newValue, receiver)
-		},
-	})
+  return new Proxy(options, {
+    get(target, key, value, receiver) {
+      return Reflect.get(target, key, value, receiver)
+    },
+    set(target, key, newValue, receiver) {
+      Reflect.set(target, key, newValue, receiver)
+    },
+  })
 }
 const data = {
-	a: 'hello world',
+  a: 'hello world',
 }
 const vue1 = new Vue({
-	data,
+  data,
 })
 const vue2 = new Vue({
-	data,
+  data,
 })
 vue1.$data.a = 'hello Vue'
 console.log(vue1.$data.a) // hello Vue

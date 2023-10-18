@@ -1,13 +1,3 @@
----
-title: 手写promise + 方法
-lastUpdated: 1665324480
-like: 110
-Comment: 19
-Collection: 200
-img: https://codfeather.oss-cn-shenzhen.aliyuncs.com/blog/homePromise2.png
-des: 在网上阅读过很多关于实现promise的文章，大致分为2类，一种是基于promiseA+规范，一种是基于ECMA规范和v8引擎下的promise，对于A+规范可以快速让我们理解promise的核心，但对些许情况，难以理解，而ECMA规范的promise却很难理解，本文会分别对其经行分析
----
-
 ## 手写 promise+方法
 
 ### 前言
@@ -22,7 +12,7 @@ des: 在网上阅读过很多关于实现promise的文章，大致分为2类，�
 
 ```js
 let p1 = new Promise((resolve, reject) => {
-	resolve('成功')
+  resolve('成功')
 })
 ```
 
@@ -32,11 +22,11 @@ let p1 = new Promise((resolve, reject) => {
 
 ```js
 class MyPromise {
-	constructor(executor) {
-		const resolve = (value) => {}
-		const reject = (reason) => {}
-		executor(resolve, reject)
-	}
+  constructor(executor) {
+    const resolve = (value) => {}
+    const reject = (reason) => {}
+    executor(resolve, reject)
+  }
 }
 ```
 
@@ -47,28 +37,28 @@ class MyPromise {
 
 ```js
 let p1 = new Promise((resolve, reject) => {
-	resolve('成功')
-	reject('失败')
+  resolve('成功')
+  reject('失败')
 })
 p1.then(
-	(value) => {
-		console.log(value) //成功
-	},
-	(err) => {
-		console.log(err)
-	},
+  (value) => {
+    console.log(value) //成功
+  },
+  (err) => {
+    console.log(err)
+  }
 )
 let p2 = new Promise((resolve, reject) => {
-	reject('失败')
-	resolve('成功')
+  reject('失败')
+  resolve('成功')
 })
 p2.then(
-	(value) => {
-		console.log(value)
-	},
-	(err) => {
-		console.log(err) //失败
-	},
+  (value) => {
+    console.log(value)
+  },
+  (err) => {
+    console.log(err) //失败
+  }
 )
 ```
 
@@ -79,34 +69,34 @@ p2.then(
 ```js
 const [PENDING, FULFILLED, REJECTED] = ['PENDING', 'FULFILLED', 'REJECTED']
 class MyPromise {
-	constructor(executor) {
-		this.status = PENDING
-		this.value = undefined
-		this.reason = undefined
-		const resolve = (value) => {
-			if (this.status === PENDING) {
-				this.status = FULFILLED
-				this.value = value
-			}
-		}
-		const reject = (reason) => {
-			if (this.status === PENDING) {
-				this.status = REJECTED
-				this.reason = reason
-			}
-		}
-		executor(resolve, reject)
-	}
+  constructor(executor) {
+    this.status = PENDING
+    this.value = undefined
+    this.reason = undefined
+    const resolve = (value) => {
+      if (this.status === PENDING) {
+        this.status = FULFILLED
+        this.value = value
+      }
+    }
+    const reject = (reason) => {
+      if (this.status === PENDING) {
+        this.status = REJECTED
+        this.reason = reason
+      }
+    }
+    executor(resolve, reject)
+  }
 
-	then(onFulfilled, onRejected) {
-		if (this.status === FULFILLED) {
-			onFulfilled(this.value)
-		}
+  then(onFulfilled, onRejected) {
+    if (this.status === FULFILLED) {
+      onFulfilled(this.value)
+    }
 
-		if (this.status === REJECTED) {
-			onRejected(this.reaosn)
-		}
-	}
+    if (this.status === REJECTED) {
+      onRejected(this.reaosn)
+    }
+  }
 }
 ```
 
@@ -120,12 +110,12 @@ class MyPromise {
 
 ```js
 const p1 = new Promise((resolve, reject) => {
-	setTimeout(function () {
-		resolve('成功')
-	})
+  setTimeout(function () {
+    resolve('成功')
+  })
 }, 3000)
 p1.then((value) => {
-	console.log(value)
+  console.log(value)
 })
 ```
 
@@ -135,40 +125,40 @@ p1.then((value) => {
 ```js
 const [PENDING, FULFILLED, REJECTED] = ['PENDING', 'FULFILLED', 'REJECTED']
 class MyPromise {
-	constructor(executor) {
-		this.status = PENDING
-		this.value = undefined
-		this.reason = undefined
-		const resolve = (value) => {
-			if (this.status === PENDING) {
-				this.status = FULFILLED
-				this.value = value
-				this.onFulfilled && this.onFulfilled(value)
-			}
-		}
-		const reject = (reason) => {
-			if (this.status === PENDING) {
-				this.status = REJECTED
-				this.reason = reason
-				this.onRejected && this.onRejected(reason)
-			}
-		}
-		executor(resolve, reject)
-	}
-	then(onFulfilled, onRejected) {
-		if (this.status === FULFILLED) {
-			onFulfilled(this.value)
-		}
+  constructor(executor) {
+    this.status = PENDING
+    this.value = undefined
+    this.reason = undefined
+    const resolve = (value) => {
+      if (this.status === PENDING) {
+        this.status = FULFILLED
+        this.value = value
+        this.onFulfilled && this.onFulfilled(value)
+      }
+    }
+    const reject = (reason) => {
+      if (this.status === PENDING) {
+        this.status = REJECTED
+        this.reason = reason
+        this.onRejected && this.onRejected(reason)
+      }
+    }
+    executor(resolve, reject)
+  }
+  then(onFulfilled, onRejected) {
+    if (this.status === FULFILLED) {
+      onFulfilled(this.value)
+    }
 
-		if (this.status === REJECTED) {
-			onRejected(this.reaosn)
-		}
-		if (this.status === PENDING) {
-			// 存储回调函数
-			this.onFulfilled = onFulfilled
-			this.onRejected = onRejected
-		}
-	}
+    if (this.status === REJECTED) {
+      onRejected(this.reaosn)
+    }
+    if (this.status === PENDING) {
+      // 存储回调函数
+      this.onFulfilled = onFulfilled
+      this.onRejected = onRejected
+    }
+  }
 }
 ```
 
@@ -181,7 +171,7 @@ class MyPromise {
 
 ```js
 let p1 = new Promise((resolve, reject) => {
-	resolve('成功')
+  resolve('成功')
 })
 p1.then((value) => console.log(value))
 console.log(11)
@@ -220,15 +210,15 @@ then(onFulfilled, onRejected) {
 
 ```js
 let p1 = new Promise((resolve, reject) => {
-	setTimeout(() => {
-		resolve('成功')
-	})
+  setTimeout(() => {
+    resolve('成功')
+  })
 })
 p1.then((value) => {
-	console.log(value, 111)
+  console.log(value, 111)
 })
 p1.then((value) => {
-	console.log(value, 222)
+  console.log(value, 222)
 })
 ```
 
@@ -238,49 +228,49 @@ p1.then((value) => {
 ```js
 const [PENDING, FULFILLED, REJECTED] = ['PENDING', 'FULFILLED', 'REJECTED']
 class MyPromise {
-	constructor(executor) {
-		this.status = PENDING
-		this.value = undefined
-		this.reason = undefined
-		this.onFulfilledCallbacks = []
-		this.onRejectedCallbacks = []
-		const resolve = (value) => {
-			if (this.status === PENDING) {
-				this.status = FULFILLED
-				this.value = value
-				this.onFulfilledCallbacks.forEach((fn) => fn())
-			}
-		}
-		const reject = (reason) => {
-			if (this.status === PENDING) {
-				this.status = REJECTED
-				this.reason = reason
-				this.onRejectedCallbacks.forEach((fn) => fn())
-			}
-		}
-		executor(resolve, reject)
-	}
-	then(onFulfilled, onRejected) {
-		if (this.status === FULFILLED) {
-			setTimeout(() => {
-				onFulfilled(this.value)
-			}, 0)
-		}
+  constructor(executor) {
+    this.status = PENDING
+    this.value = undefined
+    this.reason = undefined
+    this.onFulfilledCallbacks = []
+    this.onRejectedCallbacks = []
+    const resolve = (value) => {
+      if (this.status === PENDING) {
+        this.status = FULFILLED
+        this.value = value
+        this.onFulfilledCallbacks.forEach((fn) => fn())
+      }
+    }
+    const reject = (reason) => {
+      if (this.status === PENDING) {
+        this.status = REJECTED
+        this.reason = reason
+        this.onRejectedCallbacks.forEach((fn) => fn())
+      }
+    }
+    executor(resolve, reject)
+  }
+  then(onFulfilled, onRejected) {
+    if (this.status === FULFILLED) {
+      setTimeout(() => {
+        onFulfilled(this.value)
+      }, 0)
+    }
 
-		if (this.status === REJECTED) {
-			setTimeout(() => {
-				onRejected(this.reason)
-			}, 0)
-		}
-		if (this.status === PENDING) {
-			this.onFulfilledCallbacks.push(() => {
-				onFulfilled(this.value)
-			})
-			this.onRejectedCallbacks.push(() => {
-				onRejected(this.reason)
-			})
-		}
-	}
+    if (this.status === REJECTED) {
+      setTimeout(() => {
+        onRejected(this.reason)
+      }, 0)
+    }
+    if (this.status === PENDING) {
+      this.onFulfilledCallbacks.push(() => {
+        onFulfilled(this.value)
+      })
+      this.onRejectedCallbacks.push(() => {
+        onRejected(this.reason)
+      })
+    }
+  }
 }
 ```
 
@@ -291,15 +281,15 @@ class MyPromise {
 
 ```js
 let p1 = new MyPromise((resolve, reject) => {
-	throw new Error('我要报错')
+  throw new Error('我要报错')
 })
 p1.then(
-	(value) => {
-		console.log(value, 111)
-	},
-	(err) => {
-		console.log(err)
-	},
+  (value) => {
+    console.log(value, 111)
+  },
+  (err) => {
+    console.log(err)
+  }
 )
 ```
 
@@ -382,11 +372,11 @@ then(onFulfilled, onRejected) {
 ```js
 onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : (value) => value
 onRejected =
-	typeof onRejected === 'function'
-		? onRejected
-		: (reason) => {
-				throw reason
-		  }
+  typeof onRejected === 'function'
+    ? onRejected
+    : (reason) => {
+        throw reason
+      }
 ```
 
 这样就简单实现了 then 的穿透，但是只能验证 rejected 的情况，需要将 resolvePromise 函数完成才能达到效果
@@ -401,10 +391,10 @@ onRejected =
 
 ```js
 let p1 = new Promise((resolve, reject) => {
-	resolve('成功')
+  resolve('成功')
 }).then((value) => {
-	return p1
-	// Uncaught (in promise) TypeError: Chaining cycle detected for promise #<Promise>
+  return p1
+  // Uncaught (in promise) TypeError: Chaining cycle detected for promise #<Promise>
 })
 ```
 
@@ -412,11 +402,11 @@ let p1 = new Promise((resolve, reject) => {
 
 ```js
 function resolvePromise(promise2, x, resolve, reject) {
-	if (x === promise2) {
-		return reject(
-			new TypeError('Chaining cycle detected for promise #<MyPromise>'),
-		)
-	}
+  if (x === promise2) {
+    return reject(
+      new TypeError('Chaining cycle detected for promise #<MyPromise>')
+    )
+  }
 }
 ```
 
@@ -431,15 +421,15 @@ function resolvePromise(promise2, x, resolve, reject) {
 
 ```js
 function resolvePromise(promise2, x, resolve, reject) {
-	if (x === promise2) {
-		return reject(
-			new TypeError('Chaining cycle detected for promise #<MyPromise>'),
-		)
-	}
-	if ((typeof x === 'object' && x !== null) || typeof x === 'function') {
-	} else {
-		resolve(x)
-	}
+  if (x === promise2) {
+    return reject(
+      new TypeError('Chaining cycle detected for promise #<MyPromise>')
+    )
+  }
+  if ((typeof x === 'object' && x !== null) || typeof x === 'function') {
+  } else {
+    resolve(x)
+  }
 }
 ```
 
@@ -447,18 +437,18 @@ function resolvePromise(promise2, x, resolve, reject) {
 
 ```js
 let p1 = new MyPromise((resolve, reject) => {
-	resolve('成功')
+  resolve('成功')
 })
-	.then()
-	.then()
-	.then(
-		(value) => {
-			console.log(value) // 成功
-		},
-		(err) => {
-			console.log(err)
-		},
-	)
+  .then()
+  .then()
+  .then(
+    (value) => {
+      console.log(value) // 成功
+    },
+    (err) => {
+      console.log(err)
+    }
+  )
 ```
 
 接下来继续按照规范来，从 2.3.1 处开始处理对象或者函数的情况
@@ -468,20 +458,20 @@ let p1 = new MyPromise((resolve, reject) => {
 
 ```js
 function resolvePromise(promise2, x, resolve, reject) {
-	if (x === promise2) {
-		return reject(
-			new TypeError('Chaining cycle detected for promise #<MyPromise>'),
-		)
-	}
-	if ((typeof x === 'object' && x !== null) || typeof x === 'function') {
-		let then = x.then
-		try {
-		} catch (e) {
-			reject(e)
-		}
-	} else {
-		resolve(x)
-	}
+  if (x === promise2) {
+    return reject(
+      new TypeError('Chaining cycle detected for promise #<MyPromise>')
+    )
+  }
+  if ((typeof x === 'object' && x !== null) || typeof x === 'function') {
+    let then = x.then
+    try {
+    } catch (e) {
+      reject(e)
+    }
+  } else {
+    resolve(x)
+  }
 }
 ```
 
@@ -499,40 +489,40 @@ If `then` is a function, call it with `x` as `this`, first argument `resol
 
 ```js
 function resolvePromise(promise2, x, resolve, reject) {
-	if (x === promise2) {
-		return reject(
-			new TypeError('Chaining cycle detected for promise #<MyPromise>'),
-		)
-	}
-	let called = false
-	if ((typeof x === 'object' && x !== null) || typeof x === 'function') {
-		let then = x.then
-		try {
-			if (typeof then === 'function') {
-				then.call(
-					x,
-					(y) => {
-						if (called) return
-						called = true
-						resolvePromise(promise2, y, resolve, reject)
-					},
-					(r) => {
-						if (called) return
-						called = true
-						reject(r)
-					},
-				)
-			} else {
-				resolve(x)
-			}
-		} catch (e) {
-			if (called) return
-			called = true
-			reject(e)
-		}
-	} else {
-		resolve(x)
-	}
+  if (x === promise2) {
+    return reject(
+      new TypeError('Chaining cycle detected for promise #<MyPromise>')
+    )
+  }
+  let called = false
+  if ((typeof x === 'object' && x !== null) || typeof x === 'function') {
+    let then = x.then
+    try {
+      if (typeof then === 'function') {
+        then.call(
+          x,
+          (y) => {
+            if (called) return
+            called = true
+            resolvePromise(promise2, y, resolve, reject)
+          },
+          (r) => {
+            if (called) return
+            called = true
+            reject(r)
+          }
+        )
+      } else {
+        resolve(x)
+      }
+    } catch (e) {
+      if (called) return
+      called = true
+      reject(e)
+    }
+  } else {
+    resolve(x)
+  }
 }
 ```
 
@@ -542,13 +532,13 @@ function resolvePromise(promise2, x, resolve, reject) {
 
 ```js
 let p1 = new Promise((resolve, reject) => {
-	resolve(
-		new Promise((resolve, reject) => {
-			resolve(11)
-		}),
-	)
+  resolve(
+    new Promise((resolve, reject) => {
+      resolve(11)
+    })
+  )
 }).then((value) => {
-	console.log(value)
+  console.log(value)
 })
 ```
 
@@ -557,15 +547,15 @@ let p1 = new Promise((resolve, reject) => {
 
 ```js
 const resolve = (value) => {
-	if (value instanceof MyPromise) {
-		value.then(resolve, reject)
-		return
-	}
-	if (this.status === PENDING) {
-		this.status = FULFILLED
-		this.value = value
-		this.onFulfilledCallbacks.forEach((fn) => fn())
-	}
+  if (value instanceof MyPromise) {
+    value.then(resolve, reject)
+    return
+  }
+  if (this.status === PENDING) {
+    this.status = FULFILLED
+    this.value = value
+    this.onFulfilledCallbacks.forEach((fn) => fn())
+  }
 }
 ```
 
@@ -574,128 +564,128 @@ const resolve = (value) => {
 ```js
 const [PENDING, FULFILLED, REJECTED] = ['PENDING', 'FULFILLED', 'REJECTED']
 class MyPromise {
-	constructor(executor) {
-		this.status = PENDING
-		this.value = undefined
-		this.reason = undefined
-		this.onFulfilledCallbacks = []
-		this.onRejectedCallbacks = []
-		const resolve = (value) => {
-			if (value instanceof MyPromise) {
-				value.then(resolve, reject)
-				return
-			}
-			if (this.status === PENDING) {
-				this.status = FULFILLED
-				this.value = value
-				this.onFulfilledCallbacks.forEach((fn) => fn())
-			}
-		}
-		const reject = (reason) => {
-			if (this.status === PENDING) {
-				this.status = REJECTED
-				this.reason = reason
-				this.onRejectedCallbacks.forEach((fn) => fn())
-			}
-		}
-		try {
-			executor(resolve, reject)
-		} catch (e) {
-			reject(e)
-		}
-	}
-	then(onFulfilled, onRejected) {
-		onFulfilled =
-			typeof onFulfilled === 'function' ? onFulfilled : (value) => value
-		onRejected =
-			typeof onRejected === 'function'
-				? onRejected
-				: (reason) => {
-						throw reason
-				  }
-		let promise2 = new MyPromise((resolve, reject) => {
-			if (this.status === FULFILLED) {
-				setTimeout(() => {
-					try {
-						let x = onFulfilled(this.value)
-						resolvePromise(promise2, x, resolve, reject)
-					} catch (e) {
-						reject(e)
-					}
-				}, 0)
-			}
+  constructor(executor) {
+    this.status = PENDING
+    this.value = undefined
+    this.reason = undefined
+    this.onFulfilledCallbacks = []
+    this.onRejectedCallbacks = []
+    const resolve = (value) => {
+      if (value instanceof MyPromise) {
+        value.then(resolve, reject)
+        return
+      }
+      if (this.status === PENDING) {
+        this.status = FULFILLED
+        this.value = value
+        this.onFulfilledCallbacks.forEach((fn) => fn())
+      }
+    }
+    const reject = (reason) => {
+      if (this.status === PENDING) {
+        this.status = REJECTED
+        this.reason = reason
+        this.onRejectedCallbacks.forEach((fn) => fn())
+      }
+    }
+    try {
+      executor(resolve, reject)
+    } catch (e) {
+      reject(e)
+    }
+  }
+  then(onFulfilled, onRejected) {
+    onFulfilled =
+      typeof onFulfilled === 'function' ? onFulfilled : (value) => value
+    onRejected =
+      typeof onRejected === 'function'
+        ? onRejected
+        : (reason) => {
+            throw reason
+          }
+    let promise2 = new MyPromise((resolve, reject) => {
+      if (this.status === FULFILLED) {
+        setTimeout(() => {
+          try {
+            let x = onFulfilled(this.value)
+            resolvePromise(promise2, x, resolve, reject)
+          } catch (e) {
+            reject(e)
+          }
+        }, 0)
+      }
 
-			if (this.status === REJECTED) {
-				setTimeout(() => {
-					try {
-						let x = onRejected(this.reason)
-						resolvePromise(promise2, x, resolve, reject)
-					} catch (e) {
-						reject(e)
-					}
-				}, 0)
-			}
-			if (this.status === PENDING) {
-				this.onFulfilledCallbacks.push(() => {
-					setTimeout(() => {
-						try {
-							let x = onFulfilled(this.value)
-							resolvePromise(promise2, x, resolve, reject)
-						} catch (e) {
-							reject(e)
-						}
-					})
-				})
-				this.onRejectedCallbacks.push(() => {
-					setTimeout(() => {
-						try {
-							let x = onRejected(this.reason)
-							resolvePromise(promise2, x, resolve, reject)
-						} catch (e) {
-							reject(e)
-						}
-					})
-				})
-			}
-		})
-		return promise2
-	}
+      if (this.status === REJECTED) {
+        setTimeout(() => {
+          try {
+            let x = onRejected(this.reason)
+            resolvePromise(promise2, x, resolve, reject)
+          } catch (e) {
+            reject(e)
+          }
+        }, 0)
+      }
+      if (this.status === PENDING) {
+        this.onFulfilledCallbacks.push(() => {
+          setTimeout(() => {
+            try {
+              let x = onFulfilled(this.value)
+              resolvePromise(promise2, x, resolve, reject)
+            } catch (e) {
+              reject(e)
+            }
+          })
+        })
+        this.onRejectedCallbacks.push(() => {
+          setTimeout(() => {
+            try {
+              let x = onRejected(this.reason)
+              resolvePromise(promise2, x, resolve, reject)
+            } catch (e) {
+              reject(e)
+            }
+          })
+        })
+      }
+    })
+    return promise2
+  }
 }
 function resolvePromise(promise2, x, resolve, reject) {
-	if (x === promise2) {
-		return reject(
-			new TypeError('Chaining cycle detected for promise #<MyPromise>'),
-		)
-	}
-	let called = false
-	if ((typeof x === 'object' && x !== null) || typeof x === 'function') {
-		let then = x.then
-		try {
-			if (typeof then === 'function') {
-				then.call(
-					x,
-					(y) => {
-						if (called) return
-						called = true
-						resolvePromise(promise2, y, resolve, reject)
-					},
-					(r) => {
-						if (called) return
-						called = true
-						reject(r)
-					},
-				)
-			} else {
-				resolve(x)
-			}
-		} catch (e) {
-			if (called) return
-			called = true
-			reject(e)
-		}
-	} else {
-		resolve(x)
-	}
+  if (x === promise2) {
+    return reject(
+      new TypeError('Chaining cycle detected for promise #<MyPromise>')
+    )
+  }
+  let called = false
+  if ((typeof x === 'object' && x !== null) || typeof x === 'function') {
+    let then = x.then
+    try {
+      if (typeof then === 'function') {
+        then.call(
+          x,
+          (y) => {
+            if (called) return
+            called = true
+            resolvePromise(promise2, y, resolve, reject)
+          },
+          (r) => {
+            if (called) return
+            called = true
+            reject(r)
+          }
+        )
+      } else {
+        resolve(x)
+      }
+    } catch (e) {
+      if (called) return
+      called = true
+      reject(e)
+    }
+  } else {
+    resolve(x)
+  }
 }
 ```
 

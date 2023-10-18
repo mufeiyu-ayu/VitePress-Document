@@ -12,8 +12,10 @@
     "dayjs": "^1.11.9",
     "nprogress": "^0.2.0",
     "postcss": "^8.4.29",
-    "sass": "^1.66.1",
-    "storejs": "^2.0.5"
+    "sass": "^1.69.4",
+    "storejs": "^2.0.5",
+    "tsparticles-slim": "^2.12.0",
+    "vue3-particles": "^2.12.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.41.2",

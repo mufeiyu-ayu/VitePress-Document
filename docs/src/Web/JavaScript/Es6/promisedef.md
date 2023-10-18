@@ -1,13 +1,3 @@
----
-title: v8中的promise
-lastUpdated: 1665324480
-like: 28
-Comment: 7
-Collection: 15
-img: https://codfeather.oss-cn-shenzhen.aliyuncs.com/blog/homePromise.png
-des: 上个文章我们利用promsieA+规范实现了promise，这可以帮助我们理解大部分的promise知识并且做解决大部分的面试题以及开发问题，但是却还有很多瑕疵，我会用简单的篇幅让大家了解，让promise在大家眼里变的简单
----
-
 ## promise 后续
 
 ### 前言
@@ -37,22 +27,22 @@ A+规范的意思是直接同步执行 return 里面的代码，然后将其的 
 ```js
 let p1 = Promise.resolve(1)
 let p2 = p1
-	.then((value) => {
-		console.log('第一个进入微任务队列')
-		return '返回一个普通值'
-	})
-	.then((value) => {
-		console.log('接收返回值:', value)
-	})
+  .then((value) => {
+    console.log('第一个进入微任务队列')
+    return '返回一个普通值'
+  })
+  .then((value) => {
+    console.log('接收返回值:', value)
+  })
 
 let p3 = p1
-	.then((value) => {
-		console.log('第二个进入微任务队列')
-		return '我也return一个普通值'
-	})
-	.then((value) => {
-		console.log('接收返回值:', value)
-	})
+  .then((value) => {
+    console.log('第二个进入微任务队列')
+    return '我也return一个普通值'
+  })
+  .then((value) => {
+    console.log('接收返回值:', value)
+  })
 ```
 
 ![image.png](https://codfeather.oss-cn-shenzhen.aliyuncs.com/blog/resovePromise4.webp)
@@ -64,26 +54,26 @@ let p3 = p1
 let p1 = Promise.resolve(1)
 // 测试用例
 let p2 = p1
-	.then((value) => {
-		console.log('我第一个进入任务队列')
-		return {
-			then(resolve) {
-				resolve('测试值1')
-			},
-		}
-	})
-	.then((value) => {
-		console.log(value)
-	})
+  .then((value) => {
+    console.log('我第一个进入任务队列')
+    return {
+      then(resolve) {
+        resolve('测试值1')
+      },
+    }
+  })
+  .then((value) => {
+    console.log(value)
+  })
 // 对比用例
 let p3 = p1
-	.then((value) => {
-		console.log('我第二个进入任务队列')
-		return '对比值1'
-	})
-	.then((value) => {
-		console.log(value)
-	})
+  .then((value) => {
+    console.log('我第二个进入任务队列')
+    return '对比值1'
+  })
+  .then((value) => {
+    console.log(value)
+  })
 ```
 
 ![image.png](https://codfeather.oss-cn-shenzhen.aliyuncs.com/blog/resovePromise5.webp)
@@ -111,28 +101,28 @@ let p3 = p1
 let p1 = Promise.resolve(1)
 // 测试用例
 let p2 = p1
-	.then((value) => {
-		console.log(1)
-		return new Promise((resolve, reject) => {
-			resolve(2)
-		})
-	})
-	.then((value) => {
-		console.log(value)
-	})
+  .then((value) => {
+    console.log(1)
+    return new Promise((resolve, reject) => {
+      resolve(2)
+    })
+  })
+  .then((value) => {
+    console.log(value)
+  })
 // 对比用例
 let p3 = p1
-	.then((value) => {
-		console.log(3)
-		return 4
-	})
-	.then((value) => {
-		console.log(value)
-		return 5
-	})
-	.then((value) => {
-		console.log(value)
-	})
+  .then((value) => {
+    console.log(3)
+    return 4
+  })
+  .then((value) => {
+    console.log(value)
+    return 5
+  })
+  .then((value) => {
+    console.log(value)
+  })
 // 1 3 4 5 2
 ```
 
@@ -148,30 +138,30 @@ let p3 = p1
 
 ```js
 Promise.resolve()
-	.then(() => {
-		console.log(0)
-		return Promise.resolve(4)
-	})
-	.then((res) => {
-		console.log(res)
-	})
+  .then(() => {
+    console.log(0)
+    return Promise.resolve(4)
+  })
+  .then((res) => {
+    console.log(res)
+  })
 
 Promise.resolve()
-	.then(() => {
-		console.log(1)
-	})
-	.then(() => {
-		console.log(2)
-	})
-	.then(() => {
-		console.log(3)
-	})
-	.then(() => {
-		console.log(5)
-	})
-	.then(() => {
-		console.log(6)
-	})
+  .then(() => {
+    console.log(1)
+  })
+  .then(() => {
+    console.log(2)
+  })
+  .then(() => {
+    console.log(3)
+  })
+  .then(() => {
+    console.log(5)
+  })
+  .then(() => {
+    console.log(6)
+  })
 ```
 
 [类似的题目都在月夕大佬那片]([V8 Promise 源码全面解读 - 掘金 (juejin.cn)](https://juejin.cn/post/7055202073511460895#heading-28))中，大家可以去参考大佬的文章，多读几遍，尤其是重点部分就可以了，开篇的思维导图就是我根据此文章大致总结的需要的可以去我的 github 仓库获取

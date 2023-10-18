@@ -1,11 +1,11 @@
 import { URL, fileURLToPath } from 'node:url'
-import { defineConfig } from 'vitepress'
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
+import { defineConfig } from 'vitepress'
 
 // import vue from '@vitejs/plugin-vue'
-import { optimizeHtml } from 'vitepress-payload-extractor'
 import AutoImport from 'unplugin-auto-import/vite'
+import { optimizeHtml } from 'vitepress-payload-extractor'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -39,7 +39,7 @@ export default defineConfig({
   },
 
   themeConfig: {
-    logo: 'https://img0.baidu.com/it/u=477319750,4101262614&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=301', // 配置标题旁边的商标
+
     custom404: ['/404.md'], // 这里的路径要与你的默认页面路径匹配
     // 大纲
     outline: {
@@ -73,6 +73,7 @@ export default defineConfig({
             { text: '前言', link: '/Page/' },
             { text: 'NestJs', link: '/Page/NestJs/index' },
             { text: 'MySQL', link: '/Page/Mysql/index' },
+            {text:"Hobby",link:'/Page/Hobby/index'}
           ],
         },
       ],
