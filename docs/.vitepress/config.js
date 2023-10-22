@@ -118,15 +118,15 @@ export default defineConfig({
           ),
         },
         {
-          find: /^.*\/VPHomeFeatures\.vue$/,
-          replacement: fileURLToPath(
-            new URL('./components/Test.vue', import.meta.url),
-          ),
-        },
-        {
           find: /^.*\/VPDocAsideOutline\.vue$/,
           replacement: fileURLToPath(
             new URL('./components/Outline.vue', import.meta.url),
+          ),
+        },
+        {
+          find: /^.*\/VPFooter\.vue$/,
+          replacement: fileURLToPath(
+            new URL('./components/Footer.vue', import.meta.url),
           ),
         },
       ],
