@@ -10,7 +10,7 @@ import { optimizeHtml } from 'vitepress-payload-extractor'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: 'Ayu',
-
+  base: '/doc/',
   titleTemplate: 'JiaJia',
   description: '黑猫警长的笔记文档',
 
@@ -73,6 +73,7 @@ export default defineConfig({
             { text: '前言', link: '/Page/' },
             { text: 'NestJs', link: '/Page/NestJs/index' },
             { text: 'MySQL', link: '/Page/Mysql/index' },
+            {text:"Redis",link:'/Page/Redis/index'},
             {text:"Hobby",link:'/Page/Hobby/index'}
           ],
         },

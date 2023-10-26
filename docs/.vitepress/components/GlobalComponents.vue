@@ -22,7 +22,7 @@ const value = ref(
 )
 
 function btnClick() {
-  router.go('/Web/')
+  router.go('/doc/Web/')
 }
 
 
