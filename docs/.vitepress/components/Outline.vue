@@ -47,6 +47,7 @@ function handleExpand(keys, { expanded, node }) {
 			<div class="tree">
 				<a :href="link" class="more">{{ title }}</a>
 			</div>
+
 		</template>
 	</ATree>
 </template>
