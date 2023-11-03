@@ -153,5 +153,50 @@ zremscore key min max # 删除指定范围的元素
 setbit key offset value # 设置指定偏移量的值
 getbit key offset # 获取指定偏移量的位值
 bitpos key bit [start] [end] # 获取指定范围的第一个位值
+BITCOUNT key [start end [BYTE | BIT]] # 获取指定范围的位值为1的数量
+strlen key # 统计字符串长度
+BITOP <AND | OR | XOR | NOT> destkey key [key ...] # 位运算
+#在多个键（包含字符串值）之间执行按位运算，并将结果存储在目标键中
+```
 
+### HyperLogLog
+
+HyperLogLog 是一种概率性数据结构，用于估计集合中的元素数量。它通过使用固定数量的内存来提供近似的基数计数，而不管添加到集合中的元素数量有多少。
+
+```shell
+pfadd key element [element ...] # 添加元素
+pfcount key [key ...] # 获取元素数量
+pfmerge destkey sourcekey [sourcekey ...] # 合并元素
+
+```
+
+HyperLogLog： 它是一种用较少的内存来估计唯一元素数量的算法。虽然它在估计上可能会有一些误差，但相对于存储每个唯一元素的集合，HyperLogLog 的内存使用更少。
+
+集合（Set）： 它存储确切的唯一元素列表，不会有估计误差，但可能在处理大量数据时占用更多内存。
+
+如果你对准确性要求高，而且内存充足，可以使用集合。如果你可以接受一些估计误差，并且想要更有效地使用内存，可以考虑使用 HyperLogLog。希望这次解释更加清楚了！
+
+### GEO
+
+Redis 地理空间索引允许您存储坐标并对其进行搜索。此数据结构可用于查找给定半径或边界框内的邻近点。
+
+```shell
+geoadd key longitude latitude member [longitude latitude member ...] # 添加地理位置
+geopos key member [member ...] # 获取地理位置
+geodist key member1 member2 [unit] # 获取两个地理位置的距离
+geoencode key member1 [member ...] # 获取地理位置的编码
+geohash key member1 [member ...] # 获取地理位置的hash值
+georadius key longitude latitude radius m|km|ft|mi [WITHCOORD] [WITHDIST] [WITHHASH] [COUNT count] [ASC|DESC] [STORE key] [STOREDIST key] # 获取指定范围内的地理位置
+georadiusbymember key member radius m|km|ft|mi [WITHCOORD] [WITHDIST] [WITHHASH] [COUNT count] [ASC|DESC] [STORE key] [STOREDIST key] # 获取指定范围内的地理位置
+```
+
+### Stream
+
+```shell
+xadd key ID field value [field value ...] # 添加元素
+xrange key start end [COUNT count] # 获取指定范围的元素
+xdel key ID [ID ...] # 删除元素
+xlen key # 获取长度
+xtrim key MAXLEN [~] count # 截取元素
+xread [COUNT count] [BLOCK milliseconds] STREAMS key [key ...] ID [ID ...] # 读取元素
 ```
