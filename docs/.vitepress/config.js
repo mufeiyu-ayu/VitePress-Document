@@ -73,7 +73,8 @@ export default defineConfig({
             { text: '前言', link: '/Page/' },
             { text: 'NestJs', link: '/Page/NestJs/index' },
             { text: 'MySQL', link: '/Page/Mysql/index' },
-            {text:"Redis",link:'/Page/Redis/index'},
+            {text:"Redis" ,link:'/Page/Redis/index'},
+            {text:"Docker" ,link:'/Page/Docker/index'},
             {text:"Hobby",link:'/Page/Hobby/index'}
           ],
         },

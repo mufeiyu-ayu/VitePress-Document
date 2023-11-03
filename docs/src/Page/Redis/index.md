@@ -20,3 +20,4 @@ Redis 是一个开源（BSD 许可）内存数据结构存储，用作数据库�
 4. Redis 的集群方案比较复杂，Redis 集群方案在官方还没有成熟的方案，目前大家使用的都是第三方的集群方案。
 
 <!-- @include:./dataType/index.md -->
+<!-- @include:./dataType/index.md -->
