@@ -49,3 +49,48 @@ Docker Registry 公开服务是开放给用户使用、允许用户管理镜像�
 开源的 Docker Registry 镜像只提供了 Docker Registry API 的服务端实现，足以支持 docker 命令，不影响使用。但不包含图形界面，以及镜像维护、用户管理、访问控制等高级功能。
 
 除了官方的 Docker Registry 外，还有第三方软件实现了 Docker Registry API，甚至提供了用户界面以及一些高级功能。比如，Harbor 和 Sonatype Nexus。
+
+## 镜像命令
+
+```bash
+docker images # 列出本地主机上的镜像
+docker search [imagesName] # 从 Docker Hub 查找镜像
+docker pull [imagesName]:[tag] # 从 Docker Hub 下载镜像 (默认 latest最新版本, 也可以指定版本)
+docker system df # 查看镜像占用空间
+docker rmi [imagesName]:[tag] # 删除镜像
+docker rmi -f [imagesName]:[tag] # 强制删除镜像
+```
+
+## 容器命令
+
+```bash
+docker run -it [imagesName]:[tag] /bin/bash # 运行镜像并进入容器
+docker run -it --name=containerName [imagesName]:[tag] /bin/bash # 运行镜像并进入容器并指定容器名
+docker run -it --name=containerName -p 8080:80 [imagesName]:[tag] /bin/bash # 运行镜像并进入容器并指定容器名并指定端口映射
+docker run -d redis # 后台运行容器
+docker ps  # 查看正在运行的容器
+exit # 退出容器并关闭容器
+ctrl + p + q # 退出容器不关闭容器
+docker start containerName  # 启动容器
+
+docker stop containerName  # 停止容器
+docker kill containerName  # 强制停止容器
+docker restart containerName  # 重启容器
+docker rm containerName  # 删除容器
+docker rm -f containerName  # 强制删除容器
+
+docker logs containerName  # 查看容器日志
+docker exec -it containerName /bin/bash  # 重新进入容器
+# 查看容器的状态
+docker inspect containerName | grep Status
+docker cp containerName|containerID:/opt/file.txt /opt/file.txt  # 从容器拷贝文件到宿主机
+docker cp /opt/file.txt containerName|containerID:/opt/file.txt  # 从宿主机拷贝文件到容器
+
+docker export containerName|containerID > /opt/containerName.tar  # 导出容器
+docker import /opt/containerName.tar containerName  # 导入容器
+cat /opt/containerName.tar | docker import - containerName  # 导入容器
+```
+
+```
+
+```

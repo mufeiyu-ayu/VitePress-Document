@@ -1,4 +1,5 @@
 {
   "commentTranslate.hover.enabled": true,
-  "commentTranslate.targetLanguage": "zh-CN"
+  "commentTranslate.targetLanguage": "zh-CN",
+  "commentTranslate.source": "Kaiqun.tencent-cloud-translate-tencentCloud"
 }

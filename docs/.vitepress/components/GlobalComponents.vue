@@ -24,8 +24,6 @@ const value = ref(
 function btnClick() {
   router.go('/doc/Web/')
 }
-
-
 </script>
 
 <template>
@@ -61,6 +59,7 @@ canvas {
   height: 100% !important;
   display: block;
   vertical-align: bottom;
+
 }
 
 #tsparticles {
