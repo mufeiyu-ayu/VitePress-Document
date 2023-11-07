@@ -68,8 +68,7 @@ docker run -it [imagesName]:[tag] /bin/bash # 运行镜像并进入容器
 docker run -it --name=containerName [imagesName]:[tag] /bin/bash # 运行镜像并进入容器并指定容器名
 docker run -it --name=containerName -p 8080:80 [imagesName]:[tag] /bin/bash # 运行镜像并进入容器并指定容器名并指定端口映射
 docker run -d redis # 后台运行容器
-docker ps  # 查看正在运行的容器
-exit # 退出容器并关闭容器
+docker ps  # 查看正在运行的容器xit # 退出容器并关闭容器
 ctrl + p + q # 退出容器不关闭容器
 docker start containerName  # 启动容器
 
@@ -91,6 +90,17 @@ docker import /opt/containerName.tar containerName  # 导入容器
 cat /opt/containerName.tar | docker import - containerName  # 导入容器
 ```
 
-```
+## 数据卷
+
+数据卷（Volume）是一个可供一个或多个容器使用的特殊目录，它绕过 UFS，可以提供很多有用的特性：
+
+1. 数据卷可以在容器之间共享或重用数据
+2. 卷中的更改可以直接实时生效，
+3. 数据卷中的更改不会包含在镜像的更新中
+4. 数据卷的生命周期一直持续到没有容器使用为止
+
+```bash
+docker run -d -it -p 6379:6379 --privileged=true -v /主机目录:/容器内目录 --name=containerName [imagesName]:[tag] /bin/bash # 挂载宿主机目录到容器(数据卷持久化存储)
+docker inspect containerName|containerID  # 查看容器信息
 
 ```
