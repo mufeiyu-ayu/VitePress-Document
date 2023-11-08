@@ -84,7 +84,7 @@ docker exec -it containerName /bin/bash  # 重新进入容器
 docker inspect containerName | grep Status
 docker cp containerName|containerID:/opt/file.txt /opt/file.txt  # 从容器拷贝文件到宿主机
 docker cp /opt/file.txt containerName|containerID:/opt/file.txt  # 从宿主机拷贝文件到容器
-
+copy /opt/file.txt containerName|containerID:/opt/file.txt  # 从宿主机拷贝文件到容器
 docker export containerName|containerID > /opt/containerName.tar  # 导出容器
 docker import /opt/containerName.tar containerName  # 导入容器
 cat /opt/containerName.tar | docker import - containerName  # 导入容器

@@ -75,7 +75,9 @@ export default defineConfig({
             { text: 'MySQL', link: '/Page/Mysql/index' },
             {text:"Redis" ,link:'/Page/Redis/index'},
             {text:"Docker" ,link:'/Page/Docker/index'},
-            {text:"Hobby",link:'/Page/Hobby/index'}
+            {text:"Linux",link:'/Page/Linux/index'},
+            {text:"Hobby",link:'/Page/Hobby/index'},
+            
           ],
         },
       ],
