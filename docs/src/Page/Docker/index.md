@@ -59,6 +59,7 @@ docker pull [imagesName]:[tag] # 从 Docker Hub 下载镜像 (默认 latest最�
 docker system df # 查看镜像占用空间
 docker rmi [imagesName]:[tag] # 删除镜像
 docker rmi -f [imagesName]:[tag] # 强制删除镜像
+
 ```
 
 ## 容器命令

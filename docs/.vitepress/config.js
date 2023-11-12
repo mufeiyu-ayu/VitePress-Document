@@ -76,6 +76,7 @@ export default defineConfig({
             {text:"Redis" ,link:'/Page/Redis/index'},
             {text:"Docker" ,link:'/Page/Docker/index'},
             {text:"Linux",link:'/Page/Linux/index'},
+            {text:"Vim",link:'/Page/Vim/index'},
             {text:"Hobby",link:'/Page/Hobby/index'},
             
           ],

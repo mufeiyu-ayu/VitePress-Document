@@ -19,5 +19,13 @@ Redis 是一个开源（BSD 许可）内存数据结构存储，用作数据库�
 3. Redis 的数据类型比较少，只有 String，List，Hash，Set，Sorted Set 这五种数据类型。
 4. Redis 的集群方案比较复杂，Redis 集群方案在官方还没有成熟的方案，目前大家使用的都是第三方的集群方案。
 
-<!-- @include:./dataType/index.md -->
+**登录**
+
+```bash
+docker exec -it containerName bash
+# 如果配置了redis.conf以及身份验证 则
+redis-cli -a password
+# 否则将会无权限
+```
+
 <!-- @include:./dataType/index.md -->
