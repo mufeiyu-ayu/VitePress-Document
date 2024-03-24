@@ -39,7 +39,6 @@ export default defineConfig({
   },
 
   themeConfig: {
-
     custom404: ['/404.md'], // 这里的路径要与你的默认页面路径匹配
     // 大纲
     outline: {
@@ -63,7 +62,16 @@ export default defineConfig({
             { text: 'JavaScript', link: '/Web/JavaScript/index' },
             { text: 'TypeScript', link: '/Web/Typescript/index' },
             { text: 'Vue', link: '/Web/Vue/Vue' },
+            { text: 'uniapp', link: '/Web/uniapp/index' },
           ],
+        },
+        {
+          text: '工具',
+          items: [{ text: 'Git', link: '/Web/Git/index' }],
+        },
+        {
+          text: '公司学习清单',
+          items: [{ text: '2023-3', link: '/Web/StudyList/index' }],
         },
       ],
       '/Page/': [
@@ -73,12 +81,11 @@ export default defineConfig({
             { text: '前言', link: '/Page/' },
             { text: 'NestJs', link: '/Page/NestJs/index' },
             { text: 'MySQL', link: '/Page/Mysql/index' },
-            {text:"Redis" ,link:'/Page/Redis/index'},
-            {text:"Docker" ,link:'/Page/Docker/index'},
-            {text:"Linux",link:'/Page/Linux/index'},
-            {text:"Vim",link:'/Page/Vim/index'},
-            {text:"Hobby",link:'/Page/Hobby/index'},
-            
+            { text: 'Redis', link: '/Page/Redis/index' },
+            { text: 'Docker', link: '/Page/Docker/index' },
+            { text: 'Linux', link: '/Page/Linux/index' },
+            { text: 'Vim', link: '/Page/Vim/index' },
+            { text: 'Hobby', link: '/Page/Hobby/index' },
           ],
         },
       ],
@@ -119,19 +126,19 @@ export default defineConfig({
         {
           find: /^.*\/VPHomeHero\.vue$/,
           replacement: fileURLToPath(
-            new URL('./components/GlobalComponents.vue', import.meta.url),
+            new URL('./components/GlobalComponents.vue', import.meta.url)
           ),
         },
         {
           find: /^.*\/VPDocAsideOutline\.vue$/,
           replacement: fileURLToPath(
-            new URL('./components/Outline.vue', import.meta.url),
+            new URL('./components/Outline.vue', import.meta.url)
           ),
         },
         {
           find: /^.*\/VPFooter\.vue$/,
           replacement: fileURLToPath(
-            new URL('./components/Footer.vue', import.meta.url),
+            new URL('./components/Footer.vue', import.meta.url)
           ),
         },
       ],

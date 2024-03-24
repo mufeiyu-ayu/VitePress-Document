@@ -82,7 +82,7 @@ docker rm -f containerName  # 强制删除容器
 docker logs containerName  # 查看容器日志
 docker exec -it containerName /bin/bash  # 重新进入容器
 # 查看容器的状态
-docker inspect containerName | grep Status
+docker inspect containerName | grep Status # 查看容器状态      你
 docker cp containerName|containerID:/opt/file.txt /opt/file.txt  # 从容器拷贝文件到宿主机
 docker cp /opt/file.txt containerName|containerID:/opt/file.txt  # 从宿主机拷贝文件到容器
 copy /opt/file.txt containerName|containerID:/opt/file.txt  # 从宿主机拷贝文件到容器
@@ -103,5 +103,8 @@ cat /opt/containerName.tar | docker import - containerName  # 导入容器
 ```bash
 docker run -d -it -p 6379:6379 --privileged=true -v /主机目录:/容器内目录 --name=containerName [imagesName]:[tag] /bin/bash # 挂载宿主机目录到容器(数据卷持久化存储)
 docker inspect containerName|containerID  # 查看容器信息
+
+docker run -p 6379:6379 --name myredis --privileged=true -v /home/ayu/coding/redis/redis/redis.conf:/etc/redis/redis.conf -v /home/ayu/coding/redis/data:/data -d redis redis-server /etc/redis/redis.conf
+ 自定义配置文件，存储文件，数据卷持久化
 
 ```
