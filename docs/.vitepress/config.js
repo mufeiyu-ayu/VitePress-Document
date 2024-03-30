@@ -63,6 +63,7 @@ export default defineConfig({
             { text: 'TypeScript', link: '/Web/Typescript/index' },
             { text: 'Vue', link: '/Web/Vue/Vue' },
             { text: 'uniapp', link: '/Web/uniapp/index' },
+            { text: 'WSL', link: '/Web/WSL/index' },
           ],
         },
         {
