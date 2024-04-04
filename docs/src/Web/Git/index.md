@@ -24,3 +24,9 @@ $ git pull origin test 即拉取远端 origin/test 分支并合并到当前分�
    接着用命令行$git log -p dev..origin/dev 去查看本地dev分支和当前分支的版本差异；
 最后用命令行$git merge origin/dev 来合并远端分支 origin/dev 到当前分支。
    推荐这种方式，可以不用额外建立本地分支。
+
+```shell
+# git diff命令比较本地分支与远程分支之间的差异
+git diff <local_branch> <remote_branch>
+# git diff dev origin/dev
+```
