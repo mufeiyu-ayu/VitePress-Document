@@ -14,7 +14,7 @@
 
 
 ### 公司前端基建
-在2024.3我入职了一家公司，目前负责公司低代码框架的前端工，在这个项目中我第一次见识了基建的强大，刚接受这个项目的时候，老实话，我是有点蒙蔽的，这个项目里面东西太多了，包含好几个项目，文档，脚手架，代码规范，公司内部的组件库，以及封装了很多工具函数，不像我之前接触项目一样，开局创个脚手架就开始干活了。<br/>
+在2024.3我入职了一家公司，目前负责公司低代码框架的工作，在这个项目中我第一次见识了基建的强大，刚接受这个项目的时候，老实话，我是有点蒙蔽的，这个项目里面东西太多了，包含好几个项目，文档，脚手架，代码规范，公司内部的组件库，以及封装了很多工具函数，不像我之前接触项目一样，开局创个脚手架就开始干活了。<br/>
 ![image.png](https://nestdb.oss-cn-shenzhen.aliyuncs.com/web/project.png)
 
 项目采用monorepo+workspace+turbo的方式管理.里面包含了git提交规范，代码规范，命令规范，css规范，等等，这对于公司来说前端保持一定的协调性肯定是不错，减少了很多问题。<br/>
@@ -29,6 +29,23 @@
 ### 我的项目
 正好最近我也打算在闲暇之余做一个自己的项目,里面包含我封装的所有组件，工具函数，以及自己喜欢的代码规范，还有文档说明，以及后续的博客项目，所以我决定采用这种方式来管理我的项目，这样可以让我更好的管理我的项目，提高开发效率，减少开发成本。
 
+#### script命令
+```js
+"scripts": {
+    "lint": "eslint . --ext ts,tsx,vue --report-unused-disable-directives --max-warnings 0",   // 代码规范检查    
+    "lint:fix": "eslint --fix --ext ts,tsx,vue --ignore-path .eslintignore .", // 代码规范检查并修复    
+    "prettier:fix": "prettier --write .", // 代码格式化       
+    "prettier": "prettier --check ."   // 代码格式化检查     
+    "engines": {         // 项目运行环境 
+    "node": ">=16.14.0",
+    "npm": ">=8.3.1"
+    "prepare": "husky install" //安装依赖后自动初始化 Husky，设置 Git 钩子，以便在提交代码时执行预定义的任务。
+        "precommit": "lint-staged" // 在提交代码之前执行 lint-staged
+         
+  },
+}
+
+```
 #### Prettier + Eslint
 
 首先我使用prettier工具进行代码美化，美化如下
@@ -198,8 +215,84 @@ modules.exports = {
         'prefer-arrow-callback': ['error'], // 回调函数必须使用箭头函数
         'object-shorthand': ['error'], // 对象属性简写
         'max-params': [0, 3], // 函数的参数不能超过3个
+        // "vue/multi-word-component-names": "off", // 关闭Vue3中要求.vue文件的名称必须为多个单词的检查
+        "@typescript-eslint/no-unused-vars": "warn", // Typescript变量未使用时，仅发出警告，而不阻止程序运行
+        
     }
 }
+```
+
+完整的配置如下
+```javascript
+module.exports = {
+    env: {
+        browser: true,
+        es2021: true,
+        node: true
+    },
+    globals: {
+        defineEmits: true,
+        document: true,
+        localStorage: true,
+        GLOBAL_VAR: true,
+        window: true,
+        defineProps: true,
+        defineExpose: true,
+        withDefaults: true
+    },
+    extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:prettier/recommended' //
+    ],
+    parserOptions: {
+        ecmaVersion: 'latest',
+        parser: '@typescript-eslint/parser',
+        sourceType: 'module'
+    },
+    ignorePatterns: ['dist', '.eslintrc.cjs', '**/*.json'],
+    parser: 'vue-eslint-parser',
+    plugins: ['@typescript-eslint', 'import'],
+    rules: {
+        indent: [
+            2,
+            2,
+            {
+                SwitchCase: 1
+            }
+        ], //缩进2个空格
+        quotes: [1, 'single'], // 必须使用单引号
+        'no-console': 0, // 禁止console
+        'no-param-reassign': 'off', // 不允许重新分配 function 参数
+        'no-shadow': 'off', // 禁止变量声明与外层作用域的变量同名
+        'no-underscore-dangle': 'off', // 禁止标识符中的悬空下划线_
+        'no-restricted-syntax': 'off', // 禁止指定的语法
+        'no-unused-expressions': 'off', // 禁止未使用的表达式
+        'no-unused-vars': 'off', // 禁止未使用过的变量
+        'no-case-declarations': 'off', // 禁止 case 子句中的词法声明
+        '@typescript-eslint/ban-types': 'off',
+        '@typescript-eslint/no-explicit-any': 'off', // 禁止使用 any 类型
+        'import/no-extraneous-dependencies': [
+            'error',
+            {
+                devDependencies: true
+            }
+        ],
+        'import/no-unresolved': 'off',
+        'import/extensions': 'off',
+        'import/prefer-default-export': 'off',
+        'consistent-return': 'off', // 要求 return 语句始终或从不指定值
+        'new-cap': 'off', // 要求构造函数名称以大写字母开头
+        'guard-for-in': 'off', // 要求 for-in 循环包含 if 语句
+        'class-methods-use-this': 'off', // 强制类方法使用 this
+        camelcase: 'off', // 强制执行驼峰命名约定
+        eqeqeq: ['error'], // 必须使用 ===
+        'prefer-arrow-callback': ['error'], // 回调函数必须使用箭头函数
+        'object-shorthand': ['error'], // 对象属性简写
+        'max-params': [0, 3] // 函数最多只能有3个参数
+    }
+}
+
 ```
 
 
@@ -212,15 +305,4 @@ modules.exports = {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+#### husky
