@@ -64,7 +64,7 @@ export default defineConfig({
             { text: 'Vue', link: '/Web/Vue/Vue' },
             { text: 'uniapp', link: '/Web/uniapp/index' },
             { text: 'WSL', link: '/Web/WSL/index' },
-            { text: 'WebBuild', link: '/Web/WebBuild/index' },
+            { text: '前端工程化', link: '/Web/WebBuild/index' },
           ],
         },
         {

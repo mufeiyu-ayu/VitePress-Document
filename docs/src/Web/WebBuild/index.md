@@ -11,8 +11,6 @@
 4. 工具自动化(Eslint，Prettier，Husky，Lint-staged，Stylelint等)
 5. GIT规范(分支,commit,eslint校验，styleLint校验,prettier校验等)
 
-
-
 ### 公司前端基建
 在2024.3我入职了一家公司，目前负责公司低代码框架的工作，在这个项目中我第一次见识了基建的强大，刚接受这个项目的时候，老实话，我是有点蒙蔽的，这个项目里面东西太多了，包含好几个项目，文档，脚手架，代码规范，公司内部的组件库，以及封装了很多工具函数，不像我之前接触项目一样，开局创个脚手架就开始干活了。<br/>
 ![image.png](https://nestdb.oss-cn-shenzhen.aliyuncs.com/web/project.png)
@@ -27,23 +25,29 @@
 正好最近我也打算在闲暇之余做一个自己的项目,里面包含我封装的所有组件，工具函数，以及自己喜欢的代码规范，还有文档说明，以及后续的博客项目，所以我决定采用这种方式来管理我的项目，这样可以让我更好的管理我的项目，提高我的开发效率，减少我的开发成本。
 
 ### 我的项目
-正好最近我也打算在闲暇之余做一个自己的项目,里面包含我封装的所有组件，工具函数，以及自己喜欢的代码规范，还有文档说明，以及后续的博客项目，所以我决定采用这种方式来管理我的项目，这样可以让我更好的管理我的项目，提高开发效率，减少开发成本。
+正好最近我也打算在闲暇之余做一个自己的项目,里面包含我封装的所有组件，工具函数，以及自己喜欢的代码规范，还有文档说明，以及后续的博客项目，所以我决定采用这种方式来管理我的项目，这样可以让我更好的管理我的项目，提高开发效率，减少开发成本，
+项目采用monorepo+workspace+turbo的方式管理.里面包含了git提交规范，代码规范，命令规范，css规范，配置是Eslint+Prettier+Husky+Lint-staged+Commitlint+Conventional-changelog等等，这对于公司来说前端保持一定的协调性肯定是不错，减少了很多问题。
+
+
 
 #### script命令
 ```js
-"scripts": {
-    "lint": "eslint . --ext ts,tsx,vue --report-unused-disable-directives --max-warnings 0",   // 代码规范检查    
-    "lint:fix": "eslint --fix --ext ts,tsx,vue --ignore-path .eslintignore .", // 代码规范检查并修复    
-    "prettier:fix": "prettier --write .", // 代码格式化       
-    "prettier": "prettier --check ."   // 代码格式化检查     
-    "engines": {         // 项目运行环境 
-    "node": ">=16.14.0",
-    "npm": ">=8.3.1"
-    "prepare": "husky install" //安装依赖后自动初始化 Husky，设置 Git 钩子，以便在提交代码时执行预定义的任务。
-        "precommit": "lint-staged" // 在提交代码之前执行 lint-staged
-         
-  },
-}
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+        "lint": "eslint . --ext ts,tsx,vue --report-unused-disable-directives --max-warnings 0",
+        "lint:fix": "eslint --fix --ext ts,tsx,vue --ignore-path .eslintignore .",
+        "prettier": "prettier --check .",
+        "prettier:fix": "prettier --write .",
+        "clean": "rd/s/q node_modules",
+        "precommit": "lint-staged",
+        "prepare": "husky",
+        "cmt": "git add . && git-cz"
+},
+"config": {
+    "commitizen": {
+        "path": "node_modules/cz-git"
+    }
+},
 
 ```
 #### Prettier + Eslint
@@ -132,7 +136,6 @@ module.exports = {
     },
 }
 ```
-
 ##### Eslint-globals配置全局变量
 globals 是 ESLint 配置中的一个字段，用于指定代码中所使用的全局变量。这个字段的作用是告诉 ESLint 你的代码中可能会使用的全局变量，以便它不会将这些变量当作未定义的变量而报错。
 
@@ -160,7 +163,6 @@ module.exports = {
     ignorePatterns: ['node_modules/', 'dist/'],
 }
 ```
-
 ##### Eslint-plugins配置插件
 plugins 是 ESLint 配置中的一个字段，用于指定需要使用的插件。这个字段的作用是告诉 ESLint 使用指定的插件来检查代码，以便检查代码中可能存在的问题。
 
@@ -295,14 +297,99 @@ module.exports = {
 
 ```
 
+#### husky + lint-staged + commitlint
+husky是一个git hook工具，可以在git提交前执行一些操作，比如代码检查，代码格式化，单元测试等等，这样可以保证我们的代码质量，提高我们的开发效率，减少我们的开发成本。我只使用了husky的pre-commit钩子，用来在git提交前执行代码检查和代码格式化，这样可以保证我们的代码质量，以及commit-msg钩子，用来在git提交时执行commitlint校验，这样可以保证我们的commit信息符合规范，方便我们后续的版本管理。
+
+```npm
+pnpm install husky --save-dev # 安装
+pnpm exec husky init # 初始化 执行此命令后会自动在scripts中添加prepare:husky
+pnpm exec husky add .husky/pre-commit  # 添加pre-commit钩子
+pnpm exec husky add .husky/commit-msg  # 添加commit-msg钩子
+```
+
+```commit-msg
+#!/bin/sh
+
+# shellcheck source=./_/husky.sh
+. "$(dirname "$0")/_/husky.sh"
+npx --no-install commitlint --config .commitlintrc.cjs --color --edit $1
+```
+
+```pre-commit
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+npx lint-staged
+```
+
+```js
+// lint-staged.config.js
+module.exports = {
+  '*.{js,jsx,ts,tsx}': ['pnpm eslint --fix', 'pnpm prettier --write'],
+  '*.vue': ['pnpm eslint --fix', 'pnpm prettier --write']
+  // '*.vue': ['pnpm eslint --fix', 'pnpm stylelint --fix', 'pnpm prettier --write']
+  // '*.{scss,less,styl,html}': ['pnpm stylelint --fix', 'pnpm prettier --write']
+}
+```
+
+```js
+// .commitlintrc.cjs
+module.exports = {
+  extends: ['@commitlint/config-conventional'],
+  rules: {
+    // header最大94字符
+    'header-max-length': [0, 'always', 94],
+
+    // subject不能为空
+    'subject-empty': [2, 'never'],
+
+    // type必须在指定范围内
+    'type-enum': [
+      2,
+      'always',
+      ['feat', 'fix', 'docs', 'style', 'chore', 'ci', 'perf', 'refactor', 'test', 'build', 'init']
+    ],
+    // type不能为空
+    'type-empty': [2, 'never'],
+
+    // type必须小写
+    'type-case': [2, 'always', 'lowerCase'],
+
+    'scope-empty': [0],
+    'scope-case': [0],
+    'subject-full-stop': [0],
+    'subject-case': [0]
+  },
+  prompt: {
+    messages: {
+      type: '请选择提交类型:',
+      customScope: '请输入修改范围(可选):',
+      subject: '请简要描述提交(必填):',
+      body: '请输入详细描述(可选):',
+      footer: '请输入要关闭的issue(可选):',
+      confirmCommit: '确认使用以上信息提交？(y/n/e/h)'
+    },
+    types: [
+      { value: 'feat', name: 'feat:     新功能' },
+      { value: 'fix', name: 'fix:      修复' },
+      { value: 'docs', name: 'docs:     文档变更' },
+      { value: 'style', name: 'style:    代码格式(不影响代码运行的变动)' },
+      {
+        value: 'refactor',
+        name: 'refactor: 重构(既不是增加feature，也不是修复bug)'
+      },
+      { value: 'perf', name: 'perf:     性能优化' },
+      { value: 'test', name: 'test:     增加测试' },
+      { value: 'chore', name: 'chore:    构建过程或辅助工具的变动' },
+      { value: 'revert', name: 'revert:   回退' },
+      { value: 'build', name: 'build:    打包' }
+    ],
+    // 跳过问题
+    skipQuestions: ['body', 'footer', 'issues type', 'customScope', 'breaking', 'private', 'scope'],
+    // subject文字长度默认是72
+    subjectLimit: 72
+  }
+}
+```
 
 
 
-
-
-
-
-
-
-
-#### husky

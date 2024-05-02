@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "vitepress dev docs --open",
     "build": "vitepress build docs",
-    "preview": "vitepress preview docs",
+    "preview": "vitepress preview docs"
   },
   "dependencies": {
     "animate.css": "^4.1.1",
