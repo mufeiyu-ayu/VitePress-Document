@@ -68,6 +68,10 @@ export default defineConfig({
           ],
         },
         {
+          text: '源码学习',
+          items: [{ text: '手搓element-plus', link: '/Web/SourceCode/index' }],
+        },
+        {
           text: '工具',
           items: [{ text: 'Git', link: '/Web/Git/index' }],
         },
@@ -113,6 +117,11 @@ export default defineConfig({
     },
   },
   vite: {
+    // 写端口号
+    server: {
+      port: 5179,
+    },
+
     plugins: [
       AutoImport({
         imports: ['vue'],
