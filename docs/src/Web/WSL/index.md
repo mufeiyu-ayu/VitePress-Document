@@ -35,10 +35,12 @@ alias gt="git status"
 # alias savez = "source ~/.zshrc"
 # open the zshrc file in the code editor
 alias zshconfig="code ~/.zshrc"
+alias zshconfig="webstorm64.exe ~/.zshrc"
 # set ths proyx
 alias proxy='export all_proxy=http://127.0.0.1:7980'
 # unset the proxy
 alias unproxy='unset all_proxy'
+alias ws='webstorm64.exe'
 ```
 
 **常用命令**

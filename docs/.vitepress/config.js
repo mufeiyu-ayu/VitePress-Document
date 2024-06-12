@@ -72,8 +72,8 @@ export default defineConfig({
           items: [{ text: '手搓element-plus', link: '/Web/SourceCode/index' }],
         },
         {
-          text: '工具',
-          items: [{ text: 'Git', link: '/Web/Git/index' }],
+          text: '工具集合',
+          items: [{ text: '前端', link: '/Web/Utils/index' }],
         },
         {
           text: '公司学习清单',
