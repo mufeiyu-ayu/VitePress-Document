@@ -59,7 +59,6 @@ definePageMeta 定义页面元数据，用于在页面上设置元数据，例�
 ``` ts
 definePageMeta({
   layout: 'default', // 设置页面布局
-  middleware: 'auth', // 设置页面中间件
-
+ middleware: 'auth',
 })
 ```
