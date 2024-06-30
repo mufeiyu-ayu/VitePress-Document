@@ -5,7 +5,7 @@ import GlobalComponent from '../components/GlobalComponents.vue'
 import Mylayout from '../components/Mylayout.vue'
 import Outline from '../components/Outline.vue'
 import Image from '../components/Image.vue'
-import Particles from "vue3-particles";
+import Particles from 'vue3-particles'
 import 'nprogress/nprogress.css'
 import 'animate.css'
 
