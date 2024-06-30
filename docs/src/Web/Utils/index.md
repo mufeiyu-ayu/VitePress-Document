@@ -18,3 +18,13 @@
 | ctrl + 3    | 翻译          |
 | ctrl + 回车 | 打开/关闭终端 |
 | alt + 1     | 打开/关闭     |
+
+**mac系统**
+通过终端命令打开vscode，webstorm
+    
+```bash
+#vscode
+code .
+#webstorm
+copen my-project 或者 copen my-project w
+    ```

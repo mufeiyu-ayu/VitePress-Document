@@ -10,6 +10,7 @@ import Theme from 'vitepress/theme'
 import FrameDefaultLayout from './FrameDefaultLayout.vue'
 
 const route = useRoute()
+
 </script>
 
 <style></style>

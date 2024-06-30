@@ -1,6 +1,6 @@
 import "./chunk-5WWUZCGV.js";
 
-// node_modules/storejs/dist/store.esm.js
+// node_modules/.pnpm/storejs@2.0.6/node_modules/storejs/dist/store.esm.js
 function isJSON(obj) {
   obj = JSON.stringify(obj);
   if (!/^\{[\s\S]*\}$/.test(obj)) {
@@ -74,7 +74,7 @@ Store.prototype = {
     return this;
   },
   get: function get(key) {
-    if (!key) {
+    if (key === void 0) {
       var ret = {};
       this.forEach(function(key2, val) {
         return ret[key2] = val;

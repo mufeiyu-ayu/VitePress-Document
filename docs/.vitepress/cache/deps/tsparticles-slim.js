@@ -50,10 +50,10 @@ import {
   rgbToHsl,
   setRangeValue,
   tsParticles
-} from "./chunk-RXYKNIVE.js";
+} from "./chunk-TBLUOB55.js";
 import "./chunk-5WWUZCGV.js";
 
-// node_modules/tsparticles-particles.js/esm/marcbruederlin/Particles.js
+// node_modules/.pnpm/tsparticles-particles.js@2.12.0/node_modules/tsparticles-particles.js/esm/marcbruederlin/Particles.js
 var Particles = class _Particles {
   static init(options) {
     var _a;
@@ -135,7 +135,7 @@ var Particles = class _Particles {
   }
 };
 
-// node_modules/tsparticles-particles.js/esm/VincentGarreau/particles.js
+// node_modules/.pnpm/tsparticles-particles.js@2.12.0/node_modules/tsparticles-particles.js/esm/VincentGarreau/particles.js
 var initParticlesJS = (engine) => {
   const particlesJS = (tagId, options) => {
     return engine.load(tagId, options);
@@ -156,7 +156,7 @@ var initParticlesJS = (engine) => {
   return { particlesJS, pJSDom };
 };
 
-// node_modules/tsparticles-particles.js/esm/index.js
+// node_modules/.pnpm/tsparticles-particles.js@2.12.0/node_modules/tsparticles-particles.js/esm/index.js
 var initPjs = (engine) => {
   const { particlesJS, pJSDom } = initParticlesJS(engine);
   window.particlesJS = particlesJS;
@@ -165,7 +165,7 @@ var initPjs = (engine) => {
   return { particlesJS, pJSDom, Particles };
 };
 
-// node_modules/tsparticles-move-base/esm/Utils.js
+// node_modules/.pnpm/tsparticles-move-base@2.12.0/node_modules/tsparticles-move-base/esm/Utils.js
 function applyDistance(particle) {
   const initialPosition = particle.initialPosition, { dx, dy } = getDistances(initialPosition, particle.position), dxFixed = Math.abs(dx), dyFixed = Math.abs(dy), { maxDistance } = particle.retina, hDistance = maxDistance.horizontal, vDistance = maxDistance.vertical;
   if (!hDistance && !vDistance) {
@@ -264,7 +264,7 @@ function getProximitySpeedFactor(particle) {
   return particle.slow.inRange ? particle.slow.factor : 1;
 }
 
-// node_modules/tsparticles-move-base/esm/BaseMover.js
+// node_modules/.pnpm/tsparticles-move-base@2.12.0/node_modules/tsparticles-move-base/esm/BaseMover.js
 var diffFactor = 2;
 var BaseMover = class {
   constructor() {
@@ -315,12 +315,12 @@ var BaseMover = class {
   }
 };
 
-// node_modules/tsparticles-move-base/esm/index.js
+// node_modules/.pnpm/tsparticles-move-base@2.12.0/node_modules/tsparticles-move-base/esm/index.js
 async function loadBaseMover(engine, refresh = true) {
   await engine.addMover("base", () => new BaseMover(), refresh);
 }
 
-// node_modules/tsparticles-shape-circle/esm/CircleDrawer.js
+// node_modules/.pnpm/tsparticles-shape-circle@2.12.0/node_modules/tsparticles-shape-circle/esm/CircleDrawer.js
 var CircleDrawer = class {
   draw(context, particle, radius) {
     if (!particle.circleRange) {
@@ -344,12 +344,12 @@ var CircleDrawer = class {
   }
 };
 
-// node_modules/tsparticles-shape-circle/esm/index.js
+// node_modules/.pnpm/tsparticles-shape-circle@2.12.0/node_modules/tsparticles-shape-circle/esm/index.js
 async function loadCircleShape(engine, refresh = true) {
   await engine.addShape("circle", new CircleDrawer(), refresh);
 }
 
-// node_modules/tsparticles-updater-color/esm/Utils.js
+// node_modules/.pnpm/tsparticles-updater-color@2.12.0/node_modules/tsparticles-updater-color/esm/Utils.js
 function updateColorValue(delta, colorValue, valueAnimation, max, decrease) {
   if (!colorValue || !valueAnimation.enable || (colorValue.maxLoops ?? 0) > 0 && (colorValue.loops ?? 0) > (colorValue.maxLoops ?? 0)) {
     return;
@@ -411,7 +411,7 @@ function updateColor(particle, delta) {
   }
 }
 
-// node_modules/tsparticles-updater-color/esm/ColorUpdater.js
+// node_modules/.pnpm/tsparticles-updater-color@2.12.0/node_modules/tsparticles-updater-color/esm/ColorUpdater.js
 var ColorUpdater = class {
   constructor(container) {
     this.container = container;
@@ -431,12 +431,12 @@ var ColorUpdater = class {
   }
 };
 
-// node_modules/tsparticles-updater-color/esm/index.js
+// node_modules/.pnpm/tsparticles-updater-color@2.12.0/node_modules/tsparticles-updater-color/esm/index.js
 async function loadColorUpdater(engine, refresh = true) {
   await engine.addParticleUpdater("color", (container) => new ColorUpdater(container), refresh);
 }
 
-// node_modules/tsparticles-updater-opacity/esm/Utils.js
+// node_modules/.pnpm/tsparticles-updater-opacity@2.12.0/node_modules/tsparticles-updater-opacity/esm/Utils.js
 function checkDestroy(particle, value, minValue, maxValue) {
   switch (particle.options.opacity.animation.destroy) {
     case "max":
@@ -499,7 +499,7 @@ function updateOpacity(particle, delta) {
   }
 }
 
-// node_modules/tsparticles-updater-opacity/esm/OpacityUpdater.js
+// node_modules/.pnpm/tsparticles-updater-opacity@2.12.0/node_modules/tsparticles-updater-opacity/esm/OpacityUpdater.js
 var OpacityUpdater = class {
   constructor(container) {
     this.container = container;
@@ -532,12 +532,12 @@ var OpacityUpdater = class {
   }
 };
 
-// node_modules/tsparticles-updater-opacity/esm/index.js
+// node_modules/.pnpm/tsparticles-updater-opacity@2.12.0/node_modules/tsparticles-updater-opacity/esm/index.js
 async function loadOpacityUpdater(engine, refresh = true) {
   await engine.addParticleUpdater("opacity", (container) => new OpacityUpdater(container), refresh);
 }
 
-// node_modules/tsparticles-updater-out-modes/esm/Utils.js
+// node_modules/.pnpm/tsparticles-updater-out-modes@2.12.0/node_modules/tsparticles-updater-out-modes/esm/Utils.js
 function bounceHorizontal(data) {
   if (data.outMode !== "bounce" && data.outMode !== "bounce-horizontal" && data.outMode !== "bounceHorizontal" && data.outMode !== "split" || data.direction !== "left" && data.direction !== "right") {
     return;
@@ -597,7 +597,7 @@ function bounceVertical(data) {
   }
 }
 
-// node_modules/tsparticles-updater-out-modes/esm/BounceOutMode.js
+// node_modules/.pnpm/tsparticles-updater-out-modes@2.12.0/node_modules/tsparticles-updater-out-modes/esm/BounceOutMode.js
 var BounceOutMode = class {
   constructor(container) {
     this.container = container;
@@ -633,7 +633,7 @@ var BounceOutMode = class {
   }
 };
 
-// node_modules/tsparticles-updater-out-modes/esm/DestroyOutMode.js
+// node_modules/.pnpm/tsparticles-updater-out-modes@2.12.0/node_modules/tsparticles-updater-out-modes/esm/DestroyOutMode.js
 var DestroyOutMode = class {
   constructor(container) {
     this.container = container;
@@ -664,7 +664,7 @@ var DestroyOutMode = class {
   }
 };
 
-// node_modules/tsparticles-updater-out-modes/esm/NoneOutMode.js
+// node_modules/.pnpm/tsparticles-updater-out-modes@2.12.0/node_modules/tsparticles-updater-out-modes/esm/NoneOutMode.js
 var NoneOutMode = class {
   constructor(container) {
     this.container = container;
@@ -696,7 +696,7 @@ var NoneOutMode = class {
   }
 };
 
-// node_modules/tsparticles-updater-out-modes/esm/OutOutMode.js
+// node_modules/.pnpm/tsparticles-updater-out-modes@2.12.0/node_modules/tsparticles-updater-out-modes/esm/OutOutMode.js
 var OutOutMode = class {
   constructor(container) {
     this.container = container;
@@ -798,7 +798,7 @@ var OutOutMode = class {
   }
 };
 
-// node_modules/tsparticles-updater-out-modes/esm/OutOfCanvasUpdater.js
+// node_modules/.pnpm/tsparticles-updater-out-modes@2.12.0/node_modules/tsparticles-updater-out-modes/esm/OutOfCanvasUpdater.js
 var OutOfCanvasUpdater = class {
   constructor(container) {
     this.container = container;
@@ -828,12 +828,12 @@ var OutOfCanvasUpdater = class {
   }
 };
 
-// node_modules/tsparticles-updater-out-modes/esm/index.js
+// node_modules/.pnpm/tsparticles-updater-out-modes@2.12.0/node_modules/tsparticles-updater-out-modes/esm/index.js
 async function loadOutModesUpdater(engine, refresh = true) {
   await engine.addParticleUpdater("outModes", (container) => new OutOfCanvasUpdater(container), refresh);
 }
 
-// node_modules/tsparticles-updater-size/esm/Utils.js
+// node_modules/.pnpm/tsparticles-updater-size@2.12.0/node_modules/tsparticles-updater-size/esm/Utils.js
 function checkDestroy2(particle, value, minValue, maxValue) {
   switch (particle.options.size.animation.destroy) {
     case "max":
@@ -895,7 +895,7 @@ function updateSize(particle, delta) {
   }
 }
 
-// node_modules/tsparticles-updater-size/esm/SizeUpdater.js
+// node_modules/.pnpm/tsparticles-updater-size@2.12.0/node_modules/tsparticles-updater-size/esm/SizeUpdater.js
 var SizeUpdater = class {
   init(particle) {
     const container = particle.container, sizeOptions = particle.options.size, sizeAnimation = sizeOptions.animation;
@@ -920,12 +920,12 @@ var SizeUpdater = class {
   }
 };
 
-// node_modules/tsparticles-updater-size/esm/index.js
+// node_modules/.pnpm/tsparticles-updater-size@2.12.0/node_modules/tsparticles-updater-size/esm/index.js
 async function loadSizeUpdater(engine, refresh = true) {
   await engine.addParticleUpdater("size", () => new SizeUpdater(), refresh);
 }
 
-// node_modules/tsparticles-basic/esm/index.js
+// node_modules/.pnpm/tsparticles-basic@2.12.0/node_modules/tsparticles-basic/esm/index.js
 async function loadBasic(engine, refresh = true) {
   await loadBaseMover(engine, false);
   await loadCircleShape(engine, false);
@@ -936,14 +936,14 @@ async function loadBasic(engine, refresh = true) {
   await engine.refresh(refresh);
 }
 
-// node_modules/tsparticles-plugin-easing-quad/esm/index.js
+// node_modules/.pnpm/tsparticles-plugin-easing-quad@2.12.0/node_modules/tsparticles-plugin-easing-quad/esm/index.js
 async function loadEasingQuadPlugin() {
   addEasing("ease-in-quad", (value) => value ** 2);
   addEasing("ease-out-quad", (value) => 1 - (1 - value) ** 2);
   addEasing("ease-in-out-quad", (value) => value < 0.5 ? 2 * value ** 2 : 1 - (-2 * value + 2) ** 2 / 2);
 }
 
-// node_modules/tsparticles-interaction-external-attract/esm/Options/Classes/Attract.js
+// node_modules/.pnpm/tsparticles-interaction-external-attract@2.12.0/node_modules/tsparticles-interaction-external-attract/esm/Options/Classes/Attract.js
 var Attract = class {
   constructor() {
     this.distance = 200;
@@ -978,7 +978,7 @@ var Attract = class {
   }
 };
 
-// node_modules/tsparticles-interaction-external-attract/esm/Attractor.js
+// node_modules/.pnpm/tsparticles-interaction-external-attract@2.12.0/node_modules/tsparticles-interaction-external-attract/esm/Attractor.js
 var Attractor = class extends ExternalInteractorBase {
   constructor(engine, container) {
     super(container);
@@ -1099,12 +1099,12 @@ var Attractor = class extends ExternalInteractorBase {
   }
 };
 
-// node_modules/tsparticles-interaction-external-attract/esm/index.js
+// node_modules/.pnpm/tsparticles-interaction-external-attract@2.12.0/node_modules/tsparticles-interaction-external-attract/esm/index.js
 async function loadExternalAttractInteraction(engine, refresh = true) {
   await engine.addInteractor("externalAttract", (container) => new Attractor(engine, container), refresh);
 }
 
-// node_modules/tsparticles-interaction-external-bounce/esm/Options/Classes/Bounce.js
+// node_modules/.pnpm/tsparticles-interaction-external-bounce@2.12.0/node_modules/tsparticles-interaction-external-bounce/esm/Options/Classes/Bounce.js
 var Bounce = class {
   constructor() {
     this.distance = 200;
@@ -1119,7 +1119,7 @@ var Bounce = class {
   }
 };
 
-// node_modules/tsparticles-interaction-external-bounce/esm/Bouncer.js
+// node_modules/.pnpm/tsparticles-interaction-external-bounce@2.12.0/node_modules/tsparticles-interaction-external-bounce/esm/Bouncer.js
 var Bouncer = class extends ExternalInteractorBase {
   constructor(container) {
     super(container);
@@ -1193,12 +1193,12 @@ var Bouncer = class extends ExternalInteractorBase {
   }
 };
 
-// node_modules/tsparticles-interaction-external-bounce/esm/index.js
+// node_modules/.pnpm/tsparticles-interaction-external-bounce@2.12.0/node_modules/tsparticles-interaction-external-bounce/esm/index.js
 async function loadExternalBounceInteraction(engine, refresh = true) {
   await engine.addInteractor("externalBounce", (container) => new Bouncer(container), refresh);
 }
 
-// node_modules/tsparticles-interaction-external-bubble/esm/Options/Classes/BubbleBase.js
+// node_modules/.pnpm/tsparticles-interaction-external-bubble@2.12.0/node_modules/tsparticles-interaction-external-bubble/esm/Options/Classes/BubbleBase.js
 var BubbleBase = class {
   constructor() {
     this.distance = 200;
@@ -1233,7 +1233,7 @@ var BubbleBase = class {
   }
 };
 
-// node_modules/tsparticles-interaction-external-bubble/esm/Options/Classes/BubbleDiv.js
+// node_modules/.pnpm/tsparticles-interaction-external-bubble@2.12.0/node_modules/tsparticles-interaction-external-bubble/esm/Options/Classes/BubbleDiv.js
 var BubbleDiv = class extends BubbleBase {
   constructor() {
     super();
@@ -1259,7 +1259,7 @@ var BubbleDiv = class extends BubbleBase {
   }
 };
 
-// node_modules/tsparticles-interaction-external-bubble/esm/Options/Classes/Bubble.js
+// node_modules/.pnpm/tsparticles-interaction-external-bubble@2.12.0/node_modules/tsparticles-interaction-external-bubble/esm/Options/Classes/Bubble.js
 var Bubble = class extends BubbleBase {
   load(data) {
     super.load(data);
@@ -1274,7 +1274,7 @@ var Bubble = class extends BubbleBase {
   }
 };
 
-// node_modules/tsparticles-interaction-external-bubble/esm/Utils.js
+// node_modules/.pnpm/tsparticles-interaction-external-bubble@2.12.0/node_modules/tsparticles-interaction-external-bubble/esm/Utils.js
 function calculateBubbleValue(particleValue, modeValue, optionsValue, ratio) {
   if (modeValue >= optionsValue) {
     const value = particleValue + (modeValue - optionsValue) * ratio;
@@ -1285,7 +1285,7 @@ function calculateBubbleValue(particleValue, modeValue, optionsValue, ratio) {
   }
 }
 
-// node_modules/tsparticles-interaction-external-bubble/esm/Bubbler.js
+// node_modules/.pnpm/tsparticles-interaction-external-bubble@2.12.0/node_modules/tsparticles-interaction-external-bubble/esm/Bubbler.js
 var Bubbler = class extends ExternalInteractorBase {
   constructor(container) {
     super(container);
@@ -1546,12 +1546,12 @@ var Bubbler = class extends ExternalInteractorBase {
   }
 };
 
-// node_modules/tsparticles-interaction-external-bubble/esm/index.js
+// node_modules/.pnpm/tsparticles-interaction-external-bubble@2.12.0/node_modules/tsparticles-interaction-external-bubble/esm/index.js
 async function loadExternalBubbleInteraction(engine, refresh = true) {
   await engine.addInteractor("externalBubble", (container) => new Bubbler(container), refresh);
 }
 
-// node_modules/tsparticles-interaction-external-connect/esm/Options/Classes/ConnectLinks.js
+// node_modules/.pnpm/tsparticles-interaction-external-connect@2.12.0/node_modules/tsparticles-interaction-external-connect/esm/Options/Classes/ConnectLinks.js
 var ConnectLinks = class {
   constructor() {
     this.opacity = 0.5;
@@ -1566,7 +1566,7 @@ var ConnectLinks = class {
   }
 };
 
-// node_modules/tsparticles-interaction-external-connect/esm/Options/Classes/Connect.js
+// node_modules/.pnpm/tsparticles-interaction-external-connect@2.12.0/node_modules/tsparticles-interaction-external-connect/esm/Options/Classes/Connect.js
 var Connect = class {
   constructor() {
     this.distance = 80;
@@ -1599,7 +1599,7 @@ var Connect = class {
   }
 };
 
-// node_modules/tsparticles-interaction-external-connect/esm/Utils.js
+// node_modules/.pnpm/tsparticles-interaction-external-connect@2.12.0/node_modules/tsparticles-interaction-external-connect/esm/Utils.js
 function gradient(context, p1, p2, opacity) {
   const gradStop = Math.floor(p2.getRadius() / p1.getRadius()), color1 = p1.getFillColor(), color2 = p2.getFillColor();
   if (!color1 || !color2) {
@@ -1635,7 +1635,7 @@ function drawConnection(container, p1, p2) {
   });
 }
 
-// node_modules/tsparticles-interaction-external-connect/esm/Connector.js
+// node_modules/.pnpm/tsparticles-interaction-external-connect@2.12.0/node_modules/tsparticles-interaction-external-connect/esm/Connector.js
 var Connector = class extends ExternalInteractorBase {
   constructor(container) {
     super(container);
@@ -1690,12 +1690,12 @@ var Connector = class extends ExternalInteractorBase {
   }
 };
 
-// node_modules/tsparticles-interaction-external-connect/esm/index.js
+// node_modules/.pnpm/tsparticles-interaction-external-connect@2.12.0/node_modules/tsparticles-interaction-external-connect/esm/index.js
 async function loadExternalConnectInteraction(engine, refresh = true) {
   await engine.addInteractor("externalConnect", (container) => new Connector(container), refresh);
 }
 
-// node_modules/tsparticles-interaction-external-grab/esm/Options/Classes/GrabLinks.js
+// node_modules/.pnpm/tsparticles-interaction-external-grab@2.12.0/node_modules/tsparticles-interaction-external-grab/esm/Options/Classes/GrabLinks.js
 var GrabLinks = class {
   constructor() {
     this.blink = false;
@@ -1721,7 +1721,7 @@ var GrabLinks = class {
   }
 };
 
-// node_modules/tsparticles-interaction-external-grab/esm/Options/Classes/Grab.js
+// node_modules/.pnpm/tsparticles-interaction-external-grab@2.12.0/node_modules/tsparticles-interaction-external-grab/esm/Options/Classes/Grab.js
 var Grab = class {
   constructor() {
     this.distance = 100;
@@ -1750,7 +1750,7 @@ var Grab = class {
   }
 };
 
-// node_modules/tsparticles-interaction-external-grab/esm/Utils.js
+// node_modules/.pnpm/tsparticles-interaction-external-grab@2.12.0/node_modules/tsparticles-interaction-external-grab/esm/Utils.js
 function drawGrabLine(context, width, begin, end, colorLine, opacity) {
   drawLine(context, begin, end);
   context.strokeStyle = getStyleFromRgb(colorLine, opacity);
@@ -1764,7 +1764,7 @@ function drawGrab(container, particle, lineColor, opacity, mousePos) {
   });
 }
 
-// node_modules/tsparticles-interaction-external-grab/esm/Grabber.js
+// node_modules/.pnpm/tsparticles-interaction-external-grab@2.12.0/node_modules/tsparticles-interaction-external-grab/esm/Grabber.js
 var Grabber = class extends ExternalInteractorBase {
   constructor(container) {
     super(container);
@@ -1830,12 +1830,12 @@ var Grabber = class extends ExternalInteractorBase {
   }
 };
 
-// node_modules/tsparticles-interaction-external-grab/esm/index.js
+// node_modules/.pnpm/tsparticles-interaction-external-grab@2.12.0/node_modules/tsparticles-interaction-external-grab/esm/index.js
 async function loadExternalGrabInteraction(engine, refresh = true) {
   await engine.addInteractor("externalGrab", (container) => new Grabber(container), refresh);
 }
 
-// node_modules/tsparticles-interaction-external-pause/esm/Pauser.js
+// node_modules/.pnpm/tsparticles-interaction-external-pause@2.12.0/node_modules/tsparticles-interaction-external-pause/esm/Pauser.js
 var Pauser = class extends ExternalInteractorBase {
   constructor(container) {
     super(container);
@@ -1864,12 +1864,12 @@ var Pauser = class extends ExternalInteractorBase {
   }
 };
 
-// node_modules/tsparticles-interaction-external-pause/esm/index.js
+// node_modules/.pnpm/tsparticles-interaction-external-pause@2.12.0/node_modules/tsparticles-interaction-external-pause/esm/index.js
 async function loadExternalPauseInteraction(engine, refresh = true) {
   await engine.addInteractor("externalPause", (container) => new Pauser(container), refresh);
 }
 
-// node_modules/tsparticles-interaction-external-push/esm/Options/Classes/Push.js
+// node_modules/.pnpm/tsparticles-interaction-external-push@2.12.0/node_modules/tsparticles-interaction-external-push/esm/Options/Classes/Push.js
 var Push = class {
   constructor() {
     this.default = true;
@@ -1902,7 +1902,7 @@ var Push = class {
   }
 };
 
-// node_modules/tsparticles-interaction-external-push/esm/Pusher.js
+// node_modules/.pnpm/tsparticles-interaction-external-push@2.12.0/node_modules/tsparticles-interaction-external-push/esm/Pusher.js
 var Pusher = class extends ExternalInteractorBase {
   constructor(container) {
     super(container);
@@ -1943,12 +1943,12 @@ var Pusher = class extends ExternalInteractorBase {
   }
 };
 
-// node_modules/tsparticles-interaction-external-push/esm/index.js
+// node_modules/.pnpm/tsparticles-interaction-external-push@2.12.0/node_modules/tsparticles-interaction-external-push/esm/index.js
 async function loadExternalPushInteraction(engine, refresh = true) {
   await engine.addInteractor("externalPush", (container) => new Pusher(container), refresh);
 }
 
-// node_modules/tsparticles-interaction-external-remove/esm/Options/Classes/Remove.js
+// node_modules/.pnpm/tsparticles-interaction-external-remove@2.12.0/node_modules/tsparticles-interaction-external-remove/esm/Options/Classes/Remove.js
 var Remove = class {
   constructor() {
     this.quantity = 2;
@@ -1970,7 +1970,7 @@ var Remove = class {
   }
 };
 
-// node_modules/tsparticles-interaction-external-remove/esm/Remover.js
+// node_modules/.pnpm/tsparticles-interaction-external-remove@2.12.0/node_modules/tsparticles-interaction-external-remove/esm/Remover.js
 var Remover = class extends ExternalInteractorBase {
   constructor(container) {
     super(container);
@@ -2004,12 +2004,12 @@ var Remover = class extends ExternalInteractorBase {
   }
 };
 
-// node_modules/tsparticles-interaction-external-remove/esm/index.js
+// node_modules/.pnpm/tsparticles-interaction-external-remove@2.12.0/node_modules/tsparticles-interaction-external-remove/esm/index.js
 async function loadExternalRemoveInteraction(engine, refresh = true) {
   await engine.addInteractor("externalRemove", (container) => new Remover(container), refresh);
 }
 
-// node_modules/tsparticles-interaction-external-repulse/esm/Options/Classes/RepulseBase.js
+// node_modules/.pnpm/tsparticles-interaction-external-repulse@2.12.0/node_modules/tsparticles-interaction-external-repulse/esm/Options/Classes/RepulseBase.js
 var RepulseBase = class {
   constructor() {
     this.distance = 200;
@@ -2044,7 +2044,7 @@ var RepulseBase = class {
   }
 };
 
-// node_modules/tsparticles-interaction-external-repulse/esm/Options/Classes/RepulseDiv.js
+// node_modules/.pnpm/tsparticles-interaction-external-repulse@2.12.0/node_modules/tsparticles-interaction-external-repulse/esm/Options/Classes/RepulseDiv.js
 var RepulseDiv = class extends RepulseBase {
   constructor() {
     super();
@@ -2070,7 +2070,7 @@ var RepulseDiv = class extends RepulseBase {
   }
 };
 
-// node_modules/tsparticles-interaction-external-repulse/esm/Options/Classes/Repulse.js
+// node_modules/.pnpm/tsparticles-interaction-external-repulse@2.12.0/node_modules/tsparticles-interaction-external-repulse/esm/Options/Classes/Repulse.js
 var Repulse = class extends RepulseBase {
   load(data) {
     super.load(data);
@@ -2085,7 +2085,7 @@ var Repulse = class extends RepulseBase {
   }
 };
 
-// node_modules/tsparticles-interaction-external-repulse/esm/Repulser.js
+// node_modules/.pnpm/tsparticles-interaction-external-repulse@2.12.0/node_modules/tsparticles-interaction-external-repulse/esm/Repulser.js
 var Repulser = class extends ExternalInteractorBase {
   constructor(engine, container) {
     super(container);
@@ -2234,12 +2234,12 @@ var Repulser = class extends ExternalInteractorBase {
   }
 };
 
-// node_modules/tsparticles-interaction-external-repulse/esm/index.js
+// node_modules/.pnpm/tsparticles-interaction-external-repulse@2.12.0/node_modules/tsparticles-interaction-external-repulse/esm/index.js
 async function loadExternalRepulseInteraction(engine, refresh = true) {
   await engine.addInteractor("externalRepulse", (container) => new Repulser(engine, container), refresh);
 }
 
-// node_modules/tsparticles-interaction-external-slow/esm/Options/Classes/Slow.js
+// node_modules/.pnpm/tsparticles-interaction-external-slow@2.12.0/node_modules/tsparticles-interaction-external-slow/esm/Options/Classes/Slow.js
 var Slow = class {
   constructor() {
     this.factor = 3;
@@ -2258,7 +2258,7 @@ var Slow = class {
   }
 };
 
-// node_modules/tsparticles-interaction-external-slow/esm/Slower.js
+// node_modules/.pnpm/tsparticles-interaction-external-slow@2.12.0/node_modules/tsparticles-interaction-external-slow/esm/Slower.js
 var Slower = class extends ExternalInteractorBase {
   constructor(container) {
     super(container);
@@ -2305,16 +2305,16 @@ var Slower = class extends ExternalInteractorBase {
   }
 };
 
-// node_modules/tsparticles-interaction-external-slow/esm/index.js
+// node_modules/.pnpm/tsparticles-interaction-external-slow@2.12.0/node_modules/tsparticles-interaction-external-slow/esm/index.js
 async function loadExternalSlowInteraction(engine, refresh = true) {
   await engine.addInteractor("externalSlow", (container) => new Slower(container), refresh);
 }
 
-// node_modules/tsparticles-shape-image/esm/GifUtils/Constants.js
+// node_modules/.pnpm/tsparticles-shape-image@2.12.0/node_modules/tsparticles-shape-image/esm/GifUtils/Constants.js
 var InterlaceOffsets = [0, 4, 2, 1];
 var InterlaceSteps = [8, 8, 4, 2];
 
-// node_modules/tsparticles-shape-image/esm/GifUtils/ByteStream.js
+// node_modules/.pnpm/tsparticles-shape-image@2.12.0/node_modules/tsparticles-shape-image/esm/GifUtils/ByteStream.js
 var ByteStream = class {
   constructor(bytes) {
     this.pos = 0;
@@ -2360,7 +2360,7 @@ var ByteStream = class {
   }
 };
 
-// node_modules/tsparticles-shape-image/esm/GifUtils/Utils.js
+// node_modules/.pnpm/tsparticles-shape-image@2.12.0/node_modules/tsparticles-shape-image/esm/GifUtils/Utils.js
 function parseColorTable(byteStream, count) {
   const colors = [];
   for (let i = 0; i < count; i++) {
@@ -2672,7 +2672,7 @@ async function decodeGIF(gifURL, progressCallback, avgAlpha) {
   }
 }
 
-// node_modules/tsparticles-shape-image/esm/Utils.js
+// node_modules/.pnpm/tsparticles-shape-image@2.12.0/node_modules/tsparticles-shape-image/esm/Utils.js
 var currentColorRegex = /(#(?:[0-9a-f]{2}){2,4}|(#[0-9a-f]{3})|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d.]+%?\))|currentcolor/gi;
 function replaceColorSvg(imageShape, color, opacity) {
   const { svgData } = imageShape;
@@ -2775,7 +2775,7 @@ function replaceImageColor(image, imageData, color, particle) {
   });
 }
 
-// node_modules/tsparticles-shape-image/esm/ImageDrawer.js
+// node_modules/.pnpm/tsparticles-shape-image@2.12.0/node_modules/tsparticles-shape-image/esm/ImageDrawer.js
 var ImageDrawer = class {
   constructor(engine) {
     this.loadImageShape = async (imageShape) => {
@@ -2956,7 +2956,7 @@ var ImageDrawer = class {
   }
 };
 
-// node_modules/tsparticles-shape-image/esm/Options/Classes/Preload.js
+// node_modules/.pnpm/tsparticles-shape-image@2.12.0/node_modules/tsparticles-shape-image/esm/Options/Classes/Preload.js
 var Preload = class {
   constructor() {
     this.src = "";
@@ -2987,7 +2987,7 @@ var Preload = class {
   }
 };
 
-// node_modules/tsparticles-shape-image/esm/ImagePreloader.js
+// node_modules/.pnpm/tsparticles-shape-image@2.12.0/node_modules/tsparticles-shape-image/esm/ImagePreloader.js
 var ImagePreloaderPlugin = class {
   constructor(engine) {
     this.id = "imagePreloader";
@@ -3020,7 +3020,7 @@ var ImagePreloaderPlugin = class {
   }
 };
 
-// node_modules/tsparticles-shape-image/esm/index.js
+// node_modules/.pnpm/tsparticles-shape-image@2.12.0/node_modules/tsparticles-shape-image/esm/index.js
 function addLoadImageToEngine(engine) {
   if (engine.loadImage) {
     return;
@@ -3061,7 +3061,7 @@ async function loadImageShape(engine, refresh = true) {
   await engine.addShape(["image", "images"], new ImageDrawer(engine), refresh);
 }
 
-// node_modules/tsparticles-updater-life/esm/Options/Classes/LifeDelay.js
+// node_modules/.pnpm/tsparticles-updater-life@2.12.0/node_modules/tsparticles-updater-life/esm/Options/Classes/LifeDelay.js
 var LifeDelay = class extends ValueWithRandom {
   constructor() {
     super();
@@ -3078,7 +3078,7 @@ var LifeDelay = class extends ValueWithRandom {
   }
 };
 
-// node_modules/tsparticles-updater-life/esm/Options/Classes/LifeDuration.js
+// node_modules/.pnpm/tsparticles-updater-life@2.12.0/node_modules/tsparticles-updater-life/esm/Options/Classes/LifeDuration.js
 var LifeDuration = class extends ValueWithRandom {
   constructor() {
     super();
@@ -3096,7 +3096,7 @@ var LifeDuration = class extends ValueWithRandom {
   }
 };
 
-// node_modules/tsparticles-updater-life/esm/Options/Classes/Life.js
+// node_modules/.pnpm/tsparticles-updater-life@2.12.0/node_modules/tsparticles-updater-life/esm/Options/Classes/Life.js
 var Life = class {
   constructor() {
     this.count = 0;
@@ -3115,7 +3115,7 @@ var Life = class {
   }
 };
 
-// node_modules/tsparticles-updater-life/esm/LifeUpdater.js
+// node_modules/.pnpm/tsparticles-updater-life@2.12.0/node_modules/tsparticles-updater-life/esm/LifeUpdater.js
 var LifeUpdater = class {
   constructor(container) {
     this.container = container;
@@ -3207,12 +3207,12 @@ var LifeUpdater = class {
   }
 };
 
-// node_modules/tsparticles-updater-life/esm/index.js
+// node_modules/.pnpm/tsparticles-updater-life@2.12.0/node_modules/tsparticles-updater-life/esm/index.js
 async function loadLifeUpdater(engine, refresh = true) {
   await engine.addParticleUpdater("life", (container) => new LifeUpdater(container), refresh);
 }
 
-// node_modules/tsparticles-shape-line/esm/LineDrawer.js
+// node_modules/.pnpm/tsparticles-shape-line@2.12.0/node_modules/tsparticles-shape-line/esm/LineDrawer.js
 var LineDrawer = class {
   draw(context, particle, radius) {
     const shapeData = particle.shapeData;
@@ -3225,12 +3225,12 @@ var LineDrawer = class {
   }
 };
 
-// node_modules/tsparticles-shape-line/esm/index.js
+// node_modules/.pnpm/tsparticles-shape-line@2.12.0/node_modules/tsparticles-shape-line/esm/index.js
 async function loadLineShape(engine, refresh = true) {
   await engine.addShape("line", new LineDrawer(), refresh);
 }
 
-// node_modules/tsparticles-move-parallax/esm/ParallaxMover.js
+// node_modules/.pnpm/tsparticles-move-parallax@2.12.0/node_modules/tsparticles-move-parallax/esm/ParallaxMover.js
 var ParallaxMover = class {
   init() {
   }
@@ -3258,12 +3258,12 @@ var ParallaxMover = class {
   }
 };
 
-// node_modules/tsparticles-move-parallax/esm/index.js
+// node_modules/.pnpm/tsparticles-move-parallax@2.12.0/node_modules/tsparticles-move-parallax/esm/index.js
 async function loadParallaxMover(engine, refresh = true) {
   await engine.addMover("parallax", () => new ParallaxMover(), refresh);
 }
 
-// node_modules/tsparticles-interaction-particles-attract/esm/Attractor.js
+// node_modules/.pnpm/tsparticles-interaction-particles-attract@2.12.0/node_modules/tsparticles-interaction-particles-attract/esm/Attractor.js
 var Attractor2 = class extends ParticlesInteractorBase {
   constructor(container) {
     super(container);
@@ -3292,12 +3292,12 @@ var Attractor2 = class extends ParticlesInteractorBase {
   }
 };
 
-// node_modules/tsparticles-interaction-particles-attract/esm/index.js
+// node_modules/.pnpm/tsparticles-interaction-particles-attract@2.12.0/node_modules/tsparticles-interaction-particles-attract/esm/index.js
 async function loadParticlesAttractInteraction(engine, refresh = true) {
   await engine.addInteractor("particlesAttract", (container) => new Attractor2(container), refresh);
 }
 
-// node_modules/tsparticles-interaction-particles-collisions/esm/Absorb.js
+// node_modules/.pnpm/tsparticles-interaction-particles-collisions@2.12.0/node_modules/tsparticles-interaction-particles-collisions/esm/Absorb.js
 function updateAbsorb(p1, r1, p2, r2, delta, pixelRatio) {
   const factor = clamp(p1.options.collisions.absorb.speed * delta.factor / 10, 0, r2);
   p1.size.value += factor / 2;
@@ -3322,7 +3322,7 @@ function absorb(p1, p2, delta, pixelRatio) {
   }
 }
 
-// node_modules/tsparticles-interaction-particles-collisions/esm/Bounce.js
+// node_modules/.pnpm/tsparticles-interaction-particles-collisions@2.12.0/node_modules/tsparticles-interaction-particles-collisions/esm/Bounce.js
 var fixBounceSpeed = (p) => {
   if (p.collisionMaxSpeed === void 0) {
     p.collisionMaxSpeed = getRangeValue(p.options.collisions.maxSpeed);
@@ -3337,7 +3337,7 @@ function bounce(p1, p2) {
   fixBounceSpeed(p2);
 }
 
-// node_modules/tsparticles-interaction-particles-collisions/esm/Destroy.js
+// node_modules/.pnpm/tsparticles-interaction-particles-collisions@2.12.0/node_modules/tsparticles-interaction-particles-collisions/esm/Destroy.js
 function destroy(p1, p2) {
   if (!p1.unbreakable && !p2.unbreakable) {
     bounce(p1, p2);
@@ -3352,7 +3352,7 @@ function destroy(p1, p2) {
   }
 }
 
-// node_modules/tsparticles-interaction-particles-collisions/esm/ResolveCollision.js
+// node_modules/.pnpm/tsparticles-interaction-particles-collisions@2.12.0/node_modules/tsparticles-interaction-particles-collisions/esm/ResolveCollision.js
 function resolveCollision(p1, p2, delta, pixelRatio) {
   switch (p1.options.collisions.mode) {
     case "absorb": {
@@ -3370,7 +3370,7 @@ function resolveCollision(p1, p2, delta, pixelRatio) {
   }
 }
 
-// node_modules/tsparticles-interaction-particles-collisions/esm/Collider.js
+// node_modules/.pnpm/tsparticles-interaction-particles-collisions@2.12.0/node_modules/tsparticles-interaction-particles-collisions/esm/Collider.js
 var Collider = class extends ParticlesInteractorBase {
   constructor(container) {
     super(container);
@@ -3406,12 +3406,12 @@ var Collider = class extends ParticlesInteractorBase {
   }
 };
 
-// node_modules/tsparticles-interaction-particles-collisions/esm/index.js
+// node_modules/.pnpm/tsparticles-interaction-particles-collisions@2.12.0/node_modules/tsparticles-interaction-particles-collisions/esm/index.js
 async function loadParticlesCollisionsInteraction(engine, refresh = true) {
   await engine.addInteractor("particlesCollisions", (container) => new Collider(container), refresh);
 }
 
-// node_modules/tsparticles-interaction-particles-links/esm/CircleWarp.js
+// node_modules/.pnpm/tsparticles-interaction-particles-links@2.12.0/node_modules/tsparticles-interaction-particles-links/esm/CircleWarp.js
 var CircleWarp = class extends Circle {
   constructor(x, y, radius, canvasSize) {
     super(x, y, radius);
@@ -3442,7 +3442,7 @@ var CircleWarp = class extends Circle {
   }
 };
 
-// node_modules/tsparticles-interaction-particles-links/esm/Options/Classes/LinksShadow.js
+// node_modules/.pnpm/tsparticles-interaction-particles-links@2.12.0/node_modules/tsparticles-interaction-particles-links/esm/Options/Classes/LinksShadow.js
 var LinksShadow = class {
   constructor() {
     this.blur = 5;
@@ -3464,7 +3464,7 @@ var LinksShadow = class {
   }
 };
 
-// node_modules/tsparticles-interaction-particles-links/esm/Options/Classes/LinksTriangle.js
+// node_modules/.pnpm/tsparticles-interaction-particles-links@2.12.0/node_modules/tsparticles-interaction-particles-links/esm/Options/Classes/LinksTriangle.js
 var LinksTriangle = class {
   constructor() {
     this.enable = false;
@@ -3489,7 +3489,7 @@ var LinksTriangle = class {
   }
 };
 
-// node_modules/tsparticles-interaction-particles-links/esm/Options/Classes/Links.js
+// node_modules/.pnpm/tsparticles-interaction-particles-links@2.12.0/node_modules/tsparticles-interaction-particles-links/esm/Options/Classes/Links.js
 var Links = class {
   constructor() {
     this.blink = false;
@@ -3542,7 +3542,7 @@ var Links = class {
   }
 };
 
-// node_modules/tsparticles-interaction-particles-links/esm/Linker.js
+// node_modules/.pnpm/tsparticles-interaction-particles-links@2.12.0/node_modules/tsparticles-interaction-particles-links/esm/Linker.js
 function getLinkDistance(pos1, pos2, optDistance, canvasSize, warp) {
   const { dx, dy, distance } = getDistances(pos1, pos2);
   if (!warp || distance <= optDistance) {
@@ -3632,12 +3632,12 @@ var Linker = class extends ParticlesInteractorBase {
   }
 };
 
-// node_modules/tsparticles-interaction-particles-links/esm/interaction.js
+// node_modules/.pnpm/tsparticles-interaction-particles-links@2.12.0/node_modules/tsparticles-interaction-particles-links/esm/interaction.js
 async function loadLinksInteraction(engine, refresh = true) {
   await engine.addInteractor("particlesLinks", (container) => new Linker(container), refresh);
 }
 
-// node_modules/tsparticles-interaction-particles-links/esm/Utils.js
+// node_modules/.pnpm/tsparticles-interaction-particles-links@2.12.0/node_modules/tsparticles-interaction-particles-links/esm/Utils.js
 function drawLinkLine(params) {
   let drawn = false;
   const { begin, end, maxDistance, context, canvasSize, width, backgroundMask, colorLine, opacity, links } = params;
@@ -3728,7 +3728,7 @@ function setLinkFrequency(particles, dictionary) {
   return res;
 }
 
-// node_modules/tsparticles-interaction-particles-links/esm/LinkInstance.js
+// node_modules/.pnpm/tsparticles-interaction-particles-links@2.12.0/node_modules/tsparticles-interaction-particles-links/esm/LinkInstance.js
 var LinkInstance = class {
   constructor(container) {
     this.container = container;
@@ -3872,7 +3872,7 @@ var LinkInstance = class {
   }
 };
 
-// node_modules/tsparticles-interaction-particles-links/esm/plugin.js
+// node_modules/.pnpm/tsparticles-interaction-particles-links@2.12.0/node_modules/tsparticles-interaction-particles-links/esm/plugin.js
 var LinksPlugin = class {
   constructor() {
     this.id = "links";
@@ -3891,13 +3891,13 @@ async function loadLinksPlugin(engine, refresh = true) {
   await engine.addPlugin(plugin, refresh);
 }
 
-// node_modules/tsparticles-interaction-particles-links/esm/index.js
+// node_modules/.pnpm/tsparticles-interaction-particles-links@2.12.0/node_modules/tsparticles-interaction-particles-links/esm/index.js
 async function loadParticlesLinksInteraction(engine, refresh = true) {
   await loadLinksInteraction(engine, refresh);
   await loadLinksPlugin(engine, refresh);
 }
 
-// node_modules/tsparticles-shape-polygon/esm/PolygonDrawerBase.js
+// node_modules/.pnpm/tsparticles-shape-polygon@2.12.0/node_modules/tsparticles-shape-polygon/esm/PolygonDrawerBase.js
 var PolygonDrawerBase = class {
   draw(context, particle, radius) {
     const start = this.getCenter(particle, radius), side = this.getSidesData(particle, radius), sideCount = side.count.numerator * side.count.denominator, decimalSides = side.count.numerator / side.count.denominator, interiorAngleDegrees = 180 * (decimalSides - 2) / decimalSides, interiorAngle = Math.PI - Math.PI * interiorAngleDegrees / 180;
@@ -3919,7 +3919,7 @@ var PolygonDrawerBase = class {
   }
 };
 
-// node_modules/tsparticles-shape-polygon/esm/PolygonDrawer.js
+// node_modules/.pnpm/tsparticles-shape-polygon@2.12.0/node_modules/tsparticles-shape-polygon/esm/PolygonDrawer.js
 var PolygonDrawer = class extends PolygonDrawerBase {
   getCenter(particle, radius) {
     return {
@@ -3939,7 +3939,7 @@ var PolygonDrawer = class extends PolygonDrawerBase {
   }
 };
 
-// node_modules/tsparticles-shape-polygon/esm/TriangleDrawer.js
+// node_modules/.pnpm/tsparticles-shape-polygon@2.12.0/node_modules/tsparticles-shape-polygon/esm/TriangleDrawer.js
 var TriangleDrawer = class extends PolygonDrawerBase {
   getCenter(particle, radius) {
     return {
@@ -3961,7 +3961,7 @@ var TriangleDrawer = class extends PolygonDrawerBase {
   }
 };
 
-// node_modules/tsparticles-shape-polygon/esm/index.js
+// node_modules/.pnpm/tsparticles-shape-polygon@2.12.0/node_modules/tsparticles-shape-polygon/esm/index.js
 async function loadGenericPolygonShape(engine, refresh = true) {
   await engine.addShape("polygon", new PolygonDrawer(), refresh);
 }
@@ -3973,7 +3973,7 @@ async function loadPolygonShape(engine, refresh = true) {
   await loadTriangleShape(engine, refresh);
 }
 
-// node_modules/tsparticles-updater-rotate/esm/Options/Classes/RotateAnimation.js
+// node_modules/.pnpm/tsparticles-updater-rotate@2.12.0/node_modules/tsparticles-updater-rotate/esm/Options/Classes/RotateAnimation.js
 var RotateAnimation = class {
   constructor() {
     this.enable = false;
@@ -4000,7 +4000,7 @@ var RotateAnimation = class {
   }
 };
 
-// node_modules/tsparticles-updater-rotate/esm/Options/Classes/Rotate.js
+// node_modules/.pnpm/tsparticles-updater-rotate@2.12.0/node_modules/tsparticles-updater-rotate/esm/Options/Classes/Rotate.js
 var Rotate = class extends ValueWithRandom {
   constructor() {
     super();
@@ -4024,7 +4024,7 @@ var Rotate = class extends ValueWithRandom {
   }
 };
 
-// node_modules/tsparticles-updater-rotate/esm/RotateUpdater.js
+// node_modules/.pnpm/tsparticles-updater-rotate@2.12.0/node_modules/tsparticles-updater-rotate/esm/RotateUpdater.js
 function updateRotate(particle, delta) {
   const rotate = particle.rotate, rotateOptions = particle.options.rotate;
   if (!rotate || !rotateOptions) {
@@ -4116,12 +4116,12 @@ var RotateUpdater = class {
   }
 };
 
-// node_modules/tsparticles-updater-rotate/esm/index.js
+// node_modules/.pnpm/tsparticles-updater-rotate@2.12.0/node_modules/tsparticles-updater-rotate/esm/index.js
 async function loadRotateUpdater(engine, refresh = true) {
   await engine.addParticleUpdater("rotate", (container) => new RotateUpdater(container), refresh);
 }
 
-// node_modules/tsparticles-shape-square/esm/SquareDrawer.js
+// node_modules/.pnpm/tsparticles-shape-square@2.12.0/node_modules/tsparticles-shape-square/esm/SquareDrawer.js
 var fixFactor = Math.sqrt(2);
 var SquareDrawer = class {
   draw(context, particle, radius) {
@@ -4133,12 +4133,12 @@ var SquareDrawer = class {
   }
 };
 
-// node_modules/tsparticles-shape-square/esm/index.js
+// node_modules/.pnpm/tsparticles-shape-square@2.12.0/node_modules/tsparticles-shape-square/esm/index.js
 async function loadSquareShape(engine, refresh = true) {
   await engine.addShape(["edge", "square"], new SquareDrawer(), refresh);
 }
 
-// node_modules/tsparticles-shape-star/esm/StarDrawer.js
+// node_modules/.pnpm/tsparticles-shape-star@2.12.0/node_modules/tsparticles-shape-star/esm/StarDrawer.js
 var StarDrawer = class {
   draw(context, particle, radius) {
     const sides = particle.sides, inset = particle.starInset ?? 2;
@@ -4160,12 +4160,12 @@ var StarDrawer = class {
   }
 };
 
-// node_modules/tsparticles-shape-star/esm/index.js
+// node_modules/.pnpm/tsparticles-shape-star@2.12.0/node_modules/tsparticles-shape-star/esm/index.js
 async function loadStarShape(engine, refresh = true) {
   await engine.addShape("star", new StarDrawer(), refresh);
 }
 
-// node_modules/tsparticles-updater-stroke-color/esm/Utils.js
+// node_modules/.pnpm/tsparticles-updater-stroke-color@2.12.0/node_modules/tsparticles-updater-stroke-color/esm/Utils.js
 function updateColorValue2(delta, colorValue, valueAnimation, max, decrease) {
   if (!colorValue || !valueAnimation.enable || (colorValue.maxLoops ?? 0) > 0 && (colorValue.loops ?? 0) > (colorValue.maxLoops ?? 0)) {
     return;
@@ -4226,7 +4226,7 @@ function updateStrokeColor(particle, delta) {
   }
 }
 
-// node_modules/tsparticles-updater-stroke-color/esm/StrokeColorUpdater.js
+// node_modules/.pnpm/tsparticles-updater-stroke-color@2.12.0/node_modules/tsparticles-updater-stroke-color/esm/StrokeColorUpdater.js
 var StrokeColorUpdater = class {
   constructor(container) {
     this.container = container;
@@ -4255,12 +4255,12 @@ var StrokeColorUpdater = class {
   }
 };
 
-// node_modules/tsparticles-updater-stroke-color/esm/index.js
+// node_modules/.pnpm/tsparticles-updater-stroke-color@2.12.0/node_modules/tsparticles-updater-stroke-color/esm/index.js
 async function loadStrokeColorUpdater(engine, refresh = true) {
   await engine.addParticleUpdater("strokeColor", (container) => new StrokeColorUpdater(container), refresh);
 }
 
-// node_modules/tsparticles-shape-text/esm/TextDrawer.js
+// node_modules/.pnpm/tsparticles-shape-text@2.12.0/node_modules/tsparticles-shape-text/esm/TextDrawer.js
 var validTypes = ["text", "character", "char"];
 var TextDrawer = class {
   draw(context, particle, radius, opacity) {
@@ -4318,12 +4318,12 @@ var TextDrawer = class {
   }
 };
 
-// node_modules/tsparticles-shape-text/esm/index.js
+// node_modules/.pnpm/tsparticles-shape-text@2.12.0/node_modules/tsparticles-shape-text/esm/index.js
 async function loadTextShape(engine, refresh = true) {
   await engine.addShape(validTypes, new TextDrawer(), refresh);
 }
 
-// node_modules/tsparticles-slim/esm/index.js
+// node_modules/.pnpm/tsparticles-slim@2.12.0/node_modules/tsparticles-slim/esm/index.js
 async function loadSlim(engine, refresh = true) {
   initPjs(engine);
   await loadParallaxMover(engine, false);

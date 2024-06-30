@@ -1,6 +1,6 @@
 import "./chunk-5WWUZCGV.js";
 
-// node_modules/minisearch/dist/es/index.js
+// node_modules/.pnpm/minisearch@6.1.0/node_modules/minisearch/dist/es/index.js
 var __assign = function() {
   __assign = Object.assign || function __assign2(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {

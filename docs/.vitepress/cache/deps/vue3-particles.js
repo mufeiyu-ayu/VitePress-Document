@@ -1,15 +1,15 @@
 import {
   tsParticles
-} from "./chunk-RXYKNIVE.js";
+} from "./chunk-TBLUOB55.js";
 import {
   createElementBlock,
   defineComponent,
   nextTick,
   openBlock
-} from "./chunk-V634PGSD.js";
+} from "./chunk-67UUJLDS.js";
 import "./chunk-5WWUZCGV.js";
 
-// node_modules/vue3-particles/dist/vue3-particles.es.js
+// node_modules/.pnpm/vue3-particles@2.12.0/node_modules/vue3-particles/dist/vue3-particles.es.js
 var e;
 var u = defineComponent({
   props: {
