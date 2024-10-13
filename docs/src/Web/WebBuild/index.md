@@ -396,4 +396,5 @@ module.exports = {
 
 1.**常用命令**
 ```bash
-git flow init -d # 初始化git flow 
+git flow init  #初始化git flow 
+```
