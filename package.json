@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",
-    "preview": "vitepress preview docs"
+    "preview": "vitepress preview docs",
+    "cmt": "git add . && git-cz"
   },
   "dependencies": {
     "animate.css": "^4.1.1",

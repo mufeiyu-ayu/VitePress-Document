@@ -434,7 +434,7 @@ git flow release finish 1.1.5 # 完成release [1.1.5]分支
   "script": {
     "build": "rollup -c rollup.config.js", // 构建
   }, // 脚本
-  "bin": "./dist/ai-lowcode-utils.js",// 命令行入口
+  "bin": "./dist/ai-lowcode-utils.js",//  or => key ：value 命令行入口
   "repository": "git@github.com:ai-lowcode/core.git",
   "config": {
     "commitizen": "cz-conventional-changelog" 
@@ -452,7 +452,7 @@ git flow release finish 1.1.5 # 完成release [1.1.5]分支
 “exports”提供了“main”的现代替代方案，允许定义多个入口点，支持环境之间的条件入口解析，并防止除“exports”中定义的入口点之外的任何其他入口点。这种封装允许模块作者为他们的包清楚地定义公共接口。
 对于针对当前支持的Node.js版本的新包，建议使用“exports”字段。对于支持Node.js 10及以下版本的包，“main”字段是必需的。如果同时定义了“exports”和“main”，则在支持的Node.js版本中，“exports”字段**优先于**“main”。
 
-### version
+#### version
 在使用 npm 安装包时，版本控制是非常灵活的。你可以指定特定版本或使用不同的符号来表示你接受的版本范围。版本号的控制一般遵循 语义化版本控制（SemVer），它的格式是 MAJOR.MINOR.PATCH（主版本号.次版本号.修补版本号）。
 ```npm
 npm install vue3-admin-template@1.0.0 # 安装指定版本
@@ -474,3 +474,28 @@ npm install package-name # 如果不指定版本号，npm 会默认安装包的�
 1. 精确版本（1.2.3）只安装指定的版本。
 2. 你可以使用 >=、<= 等符号来定义版本范围，确保灵活性。
 3. * 和 x 用于允许更大范围的版本。
+
+### .npmrc
+.npmrc 是一个配置文件，用于定义和自定义 npm（Node Package Manager）的行为和选项。它允许你通过编写配置参数来控制 npm 的操作，例如指定注册表、设置代理、管理缓存目录等。
+配置级别
+全局配置文件：位于用户的主目录下（例如：~/.npmrc），这是针对系统全局用户的配置，影响所有项目。
+
+项目级配置文件：存储在项目的根目录下，影响该项目的 npm 行为。每个项目可以有自己独立的 .npmrc 文件来覆盖全局配置。
+
+用户级配置文件：同样位于用户主目录中的 ~/.npmrc 文件中，可以影响当前用户的 npm 操作。
+
+运行时配置：通过命令行传递选项（如 npm install --registry https://custom-registry.com），这些配置只会影响当前命令执行的过程。
+
+环境变量：你也可以通过环境变量来覆盖 .npmrc 中的某些配置。
+
+**示例配置
+
+```cmd
+registry=https://registry.npmjs.org/ # 指定 npm 的注册表
+strict-ssl=true # 禁用 SSL
+proxy=http://proxy.company.com:8080 #
+save-exact=true # 保存精确匹配
+link-workspace-packages=true # 依赖关联（项目使用分包模型时，安装依赖优先从本地下载）
+workspace-packages=true # 启用分包模型
+strict-peer-dependencies=false # 严格依赖关联（用于指定一个包运行时所需的依赖，但这些依赖不由当前包来安装，而是由使用这个包的 宿主环境（如最终的应用程序或库）来提供。）
+```
