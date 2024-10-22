@@ -500,92 +500,14 @@ workspace-packages=true # 启用分包模型
 strict-peer-dependencies=false # 严格依赖关联（用于指定一个包运行时所需的依赖，但这些依赖不由当前包来安装，而是由使用这个包的 宿主环境（如最终的应用程序或库）来提供。）
 ```
 
-### Command
-Commander 是一个流行的 Node.js 模块，用于创建命令行界面（CLI）应用程序。它提供了一种简单而强大的方式来定义和处理命令行参数、选项和命令。以下是 Commander 的主要用途和特点：
 
-1. 定义命令行选项：
-允许你轻松地为你的 CLI 应用定义各种命令行选项，包括短选项（如 -v）和长选项（如 --version）。
-2. 解析命令行参数：
-自动解析用户输入的命令行参数，并将它们转换为易于使用的 JavaScript 对象。
-3. 子命令支持：
-支持创建具有多个子命令的复杂 CLI 应用，类似于 git 这样的工具（如 git commit, git push 等）。
-4. 自动生成帮助信息：
-基于你定义的命令和选项，自动生成帮助文档，使用户可以通过 --help 选项查看使用说明。
-5. 版本信息：
-轻松添加和显示应用程序的版本信息。
-6. 类型转换：
-自动将命令行参数转换为适当的 JavaScript 类型。
-7. 可定制性：
-提供了丰富的 API 来自定义 CLI 的行为和输出。
+### npm,pnpm 
+对于 npm，pnpm 我一直都停留在浅薄认识中，但是我从未深入地去研究他们，可能只有在面试的时候才会想着去背一下面试题，但是当我遇到了他们的时候，我才知道他们的价值，这对于了解前端工程化有很重要的意义
 
+[npm 文档](https://docs.npmjs.com/) <br>
+[pnpm 文档](https://www.pnpm.cn/)
 
-
-#### 1.option
-```js
-.option(flags, description, [defaultValue|fn], [fn])
-```
-**参数解释**
--  flags: 定义选项的短标志和长标志
--  description: 选项的描述，在帮助信息中显示
--  defaultValue: （可选）选项的默认值
--  fn: （可选）用于处理或验证选项值的函数
-
-**值处理**
-- 默认情况下，选项值被视为字符串
-- 可以提供一个函数作为最后一个参数来处理值
-
-**特殊用法** 
-- 布尔选项：不带值的选项默认为布尔类型
-- 否定选项：使用 --no- 前缀可以创建否定的布尔选项
-- 可重复选项：可以多次使用同一选项，值会被收集到一个数组中
-
-
-**demo**
-```js
-// 基本布尔标志：-d, --debug 是一个简单的开关，不需要值。使用时，options.debug 将为 true。
-program.option('-d, --debug', 'output extra debugging');
-
-// 2. 必需值选项：-u, --user <name> 要求提供一个值。如果使用时没有提供值，Commander 会报错。
-program.option('-u, --user <name>', 'user\'s name');
-O
-// 3. 可选值选项：-t, --tag [value] 的值是可选的。如果使用时没有提供值，options.tag 将为 true
-program.option('-t, --tag [value]', 'tag to add');
-
-// 4. 默认值选项：-p, --port <number> 有一个默认值 '3000'。如果不指定，将使用这个默认值。
-program.option('-p, --port <number>', 'port number', '3000');
-
-// 5. 选择列表：-s, --size <size> 限制了可选值为 'small'、'medium' 或 'large'。
-program.option('-s, --size <size>', 'pizza size', ['small', 'medium', 'large']);
-
-// 6. 自定义处理函数：-l, --list <items> 使用函数将逗号分隔的输入转换为数组
-program.option('-l, --list <items>', 'comma separated list', (value) => value.split(','));
-
-// 7. 否定布尔选项：--no-sauce 允许禁用一个默认为 true 的选项
-program.option('--no-sauce', 'Remove sauce');
-
-// 8. 可变参数选项：-i, --ingredient <ingredient> 可以多次指定，所有值都会被收集到一个数组中。
-program.option('-i, --ingredient <ingredient>', 'pizza ingredient', (ingredient, previous) => previous.concat([ingredient]), []);
-
-// 9. 自定义验证：-q, --quantity <number> 使用函数验证输入是否为有效的数字。
-program.option('-q, --quantity <number>', 'number of pizzas', (value) => {
-  const parsed = parseInt(value, 10);
-  if (isNaN(parsed)) {
-    throw new Error('Invalid quantity, must be a number.');
-  }
-  return parsed;
-});
-
-// 组合选项：-c, --cheese <type> 和 -C, --no-cheese 展示了如何处理相关的选项。
-program.option('-c, --cheese <type>', 'add the specified type of cheese', 'mozzarella')
-       .option('-C, --no-cheese', 'remove cheese');
-
-program.parse(process.argv);
-
-const options = program.opts();
-console.log(options);
-```
-
-```cmd
-node script.js -d -u Alice --tag important -p 8080 -s medium -l tomato,mushroom --ingredient pepperoni -i olives -q 2 -c cheddar
-```
-
+**很有意义的博客**
+- [npm依赖安装那些事](https://www.pnpm.cn/)
+- [平铺的结构不是 node_modules 的唯一实现方式](https://www.pnpm.cn/blog/2020/05/27/flat-node-modules-is-not-the-only-way)
+- [pnpm 的严格性有助于避免愚蠢的错误](https://medium.com/pnpm/pnpms-strictness-helps-to-avoid-silly-bugs-9a15fb306308)
