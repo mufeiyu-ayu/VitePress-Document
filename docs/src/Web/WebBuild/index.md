@@ -492,12 +492,25 @@ npm install package-name # 如果不指定版本号，npm 会默认安装包的�
 
 ```cmd
 registry=https://registry.npmjs.org/ # 指定 npm 的注册表
+
 strict-ssl=true # 禁用 SSL
-proxy=http://proxy.company.com:8080 #
+
+proxy=http://proxy.company.com:8080  # 设置代理
+
 save-exact=true # 保存精确匹配
-link-workspace-packages=true # 依赖关联（项目使用分包模型时，安装依赖优先从本地下载）
+
+link-workspace-packages=true/deep/false # 依赖关联（项目使用分包模型时，本地可用的 packaegs 将被链接到 node_modules）
+
 workspace-packages=true # 启用分包模型
+
+shared-workspace-lockfile=true # 启用此选项 pnpm 会在工作空间的根目录中创建一个唯一的 pnpm-lock.yaml 文件。 这也意味着工作空间的packages的所有依赖项都将位于单个 node_modules 中。（同时软链接到它们packages 的 node_modules 文件夹中用于 Node 的模块解析），既所有依赖都将硬链接到 node_modules中，在分包模式中安装的更快
+
 strict-peer-dependencies=false # 严格依赖关联（用于指定一个包运行时所需的依赖，但这些依赖不由当前包来安装，而是由使用这个包的 宿主环境（如最终的应用程序或库）来提供。）
+
+save-workspace-protocol = true/false/rolling #设置从工作区链接的 dependencies 如何添加到package.json ,（不建议修改）
+
+save-prefix=‘~’ #仅允许补丁版本升级。
+
 ```
 
 
@@ -511,3 +524,14 @@ strict-peer-dependencies=false # 严格依赖关联（用于指定一个包运�
 - [npm依赖安装那些事](https://www.pnpm.cn/)
 - [平铺的结构不是 node_modules 的唯一实现方式](https://www.pnpm.cn/blog/2020/05/27/flat-node-modules-is-not-the-only-way)
 - [pnpm 的严格性有助于避免愚蠢的错误](https://medium.com/pnpm/pnpms-strictness-helps-to-avoid-silly-bugs-9a15fb306308)
+
+
+**命令**
+``` bash
+pnpm -C <path> //运行指定目录  pnpm -C /packages/utils build
+pnpm --filter <filter> # 过滤 pnpm --filter ./packages/utils build
+pnpm add <package> # 添加依赖到dependencies
+pnpm add -D <package> # 添加依赖到devDependencies
+pnpm add -P <package> # 添加依赖到peerDependencies
+
+```
