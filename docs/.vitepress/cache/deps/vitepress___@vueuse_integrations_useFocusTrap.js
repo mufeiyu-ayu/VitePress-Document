@@ -1121,7 +1121,7 @@ var createFocusTrap = function createFocusTrap2(elements, userOptions) {
   return trap;
 };
 
-// node_modules/.pnpm/@vueuse+integrations@10.5.0_focus-trap@7.5.4_nprogress@0.2.0_vue@3.3.4/node_modules/@vueuse/integrations/useFocusTrap.mjs
+// node_modules/.pnpm/@vueuse+integrations@10.5.0_async-validator@4.2.5_focus-trap@7.5.4_nprogress@0.2.0_vue@3.3.4/node_modules/@vueuse/integrations/useFocusTrap.mjs
 function useFocusTrap(target, options = {}) {
   let trap;
   const { immediate, ...focusTrapOptions } = options;

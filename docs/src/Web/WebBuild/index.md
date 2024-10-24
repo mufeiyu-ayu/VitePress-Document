@@ -393,7 +393,7 @@ module.exports = {
 
 
 ### git flow 
-
+[git flow 文档](https://www.git-tower.com/learn/git/ebook/cn/command-line/advanced-topics/git-flow)
 1.**常用命令**
 ```bash
 git flow init  #初始化仓库
@@ -514,7 +514,7 @@ save-prefix=‘~’ #仅允许补丁版本升级。
 ```
 
 
-### npm,pnpm 
+### npm,pnpm ,npx
 对于 npm，pnpm 我一直都停留在浅薄认识中，但是我从未深入地去研究他们，可能只有在面试的时候才会想着去背一下面试题，但是当我遇到了他们的时候，我才知道他们的价值，这对于了解前端工程化有很重要的意义
 
 [npm 文档](https://docs.npmjs.com/) <br>
@@ -535,3 +535,114 @@ pnpm add -D <package> # 添加依赖到devDependencies
 pnpm add -P <package> # 添加依赖到peerDependencies
 
 ```
+
+**npm,pnpm 与 npx 的区别**
+
+通过上面的文章我们大体知道执行 npm 或者 pnpm 运行命令或者安装的原理，npx 其实可以达到同样的效果，但是有一点不同
+
+npx 执行流程<br/>
+输入 npx create-react-app my-app<br/>
+↓<br/>
+检查本地有没有这个包<br/>
+↓<br/>
+没有则临时下载到特定目录<br/>
+↓<br/>
+执行命令<br/>
+↓<br/>
+执行完自动删除下载的包<br/>
+
+- 这种机制的好处
+- 节省磁盘空间
+- 避免全局包过多
+- 总是使用最新版本
+- 避免版本冲突
+
+但是要注意：频繁使用的工具包，还是建议通过 npm,pnpm 安装，这样避免重复下载，更节省时间。
+
+**pnpm,npm 与 npx 执行脚本命令的区别**
+1. 查找位置的不同
+npm run xxx：
+- 先找 package.json 的 scripts 
+- 再找 node_modules/.bin 目录
+
+npx xxx：
+- 先找 node_modules/.bin
+- 再找环境变量 PATH
+- 都找不到就临时下载执行
+
+2.执行本地命令的方式不同
+
+```cmd
+npm 需要写在 scripts 里或者写完整路径
+npm run eslint
+# 或
+./node_modules/.bin/eslint
+
+# npx 可以直接执行
+npx eslint
+```
+
+
+### changesets
+
+**changeset 旨在让贡献者在做出贡献时做出关键决策，从而使您的工作流程变得更加轻松。变更集包含两个关键信息：版本类型（遵循semver ）和要添加到变更日志中的变更信息**
+
+在做基于分包搭建的前端架构来说，版本管理是非常重要的因素，changesets 可以非常简单的实现版本管理。
+
+(下文我会将 changeset 转义为变更集助于理解)
+1. 安装及初始化
+```
+pnpm install -D @changesets/cli && npx changeset init
+```
+init 之后会在项目根目录下创建.changeset文件夹，md 包含所有的变更信息，config.json 包含changeset 配置
+``` json
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.0.2/schema.json",
+  "changelog": "@changesets/cli/changelog",
+  "commit": false,  
+  "fixed": [],
+  "linked": [],
+  "access": "public", //当使用npm 组织时，必须设置为 public 
+  "baseBranch": "master", // 以项目当前分支为准
+  "updateInternalDependencies": "patch",
+  "ignore": []
+}
+
+```
+2. 使用(运行changeset add来添加变更集，但在不使用任何命令的情况下运行变更集也可以)
+```
+pnpm changeset
+```
+当执行完命令选择包后会有以下选项<br/>
+Which packages should have a major bump(选择是否更新主版本号，一般用于重大变化时更新)<br/>
+Which packages should have a minor bump(选择是否更新次版本号，一般用于当前版本的小功能模块的迭代)<br/>
+
+若什么都不选，则默认更新修订号<br/>
+既然都使用 changeset 了，那么我们应该严格遵守版本号更新的规则。<br/>
+
+3. 提交（提升版本）
+这会消耗所有变更集，并根据这些变更集更新到最合适的 semver 版本。它还为每个使用的变更集写入变更日志条目
+```
+pnpm changeset version 
+```
+
+4. 查看变更集状态<br/
+可以在根目录去查看变更集状态，也可以在每个包的根目录去查看变更集状态，或者执行命令查看
+```
+pnpm changeset status
+```
+
+5. 发包
+```
+pnpm changeset publish
+```
+**默认情况下，使用npm publish发布作用域包会将包发布为私有包。如果使用免费组织计划的组织的成员，或者使用付费组织计划但想要将范围包发布为公共，则必须传递--access public标志：**
+
+
+- 将单个包的包可见性设置为公开
+导航到当前包目录执行npm config set access public
+
+- 将所有包的包可见性设置为公开
+导航到根目录执行npm config set access public --global
+
+- 在全局.npmrc中将包访问权限设置为public将影响您创建的所有包，包括您个人帐户范围内的包以及您组织范围内的包。
