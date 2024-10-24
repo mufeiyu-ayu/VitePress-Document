@@ -393,8 +393,256 @@ module.exports = {
 
 
 ### git flow 
-
+[git flow 文档](https://www.git-tower.com/learn/git/ebook/cn/command-line/advanced-topics/git-flow)
 1.**常用命令**
 ```bash
-git flow init  #初始化git flow 
+git flow init  #初始化仓库
+git flow feature start xxx # 开启feature [xxx]分支
+git flow feature finish xxx # 完成feature [xxx]分支
+git flow release start 1.1.5 # 开启release [1.1.5]分支
+git flow release finish 1.1.5 # 完成release [1.1.5]分支
 ```
+
+### package.josn
+[package.json文档](https://docs.npmjs.com/cli/v10/configuring-npm/package-json)
+```json
+{
+    "name": "vue3-admin-template", // 项目名称
+    "version": "0.0.1", // 项目版本
+    "description": "vue3-admin-template", // 项目描述
+    "keywords": ['vue3-admin-template']" // 关键字
+    "homepage": "https://github.com/zhangyuang/vue3-admin-template" // 项目主页
+    "bug": "https://github.com/zhangyuang/vue3-admin-template/issues" // 错误报告
+    "license": "MIT", // 许可证（MITK开源许可证）
+    "private": true, // 私有项目(如设置为 true，则 npm 拒绝发布它)
+     "author": "ayu" // 作者
+    "contributors": [
+        {
+            "name": "mufeiyu-ayu",
+            "email": "19986442013@163.com"
+        }
+    ],// 贡献者
+    "files":['dist'], // 用于描述当您的包作为依赖项安装时要包含的条目,*代表包含所有文件   
+    "exports": {
+    ".": {
+      "types": "./dist/index.d.ts", // 引用 ts 类型时查找以此路径为查找目标
+      "import": "./dist/ai-lowcode-utils.js", // 引用 es 模块
+      "require": "./dist/ai-lowcode-utils.cjs" // 引用 node 模块
+      }
+    }, // 提供了“main”的现代替代方案，允许定义多个入口点，支持环境之间的条件入口解析，并防止除“exports”中定义的入口点之外的任何其他入口点
+  "main": "./dist/ai-lowcode-utils.cjs", // 默认入口
+  "script": {
+    "build": "rollup -c rollup.config.js", // 构建
+  }, // 脚本
+  "bin": "./dist/ai-lowcode-utils.js",//  or => key ：value 命令行入口
+  "repository": "git@github.com:ai-lowcode/core.git",
+  "config": {
+    "commitizen": "cz-conventional-changelog" 
+  }, //设置在升级过程中持续存在的包脚本中使用的配置参数
+  "peerDependencies": {
+    "vue": "^3.2.13"
+  }, // 运行时依赖
+  "engines": {
+    "node": ">=18.20.3 <20.0.0"
+  }, // 指定版本 (若未设置engine-strictconfig标志，否则此字段仅为建议字段，并且仅在将软件包作为依赖项安装时才会产生警告)
+  
+}
+```
+#### export
+“exports”提供了“main”的现代替代方案，允许定义多个入口点，支持环境之间的条件入口解析，并防止除“exports”中定义的入口点之外的任何其他入口点。这种封装允许模块作者为他们的包清楚地定义公共接口。
+对于针对当前支持的Node.js版本的新包，建议使用“exports”字段。对于支持Node.js 10及以下版本的包，“main”字段是必需的。如果同时定义了“exports”和“main”，则在支持的Node.js版本中，“exports”字段**优先于**“main”。
+
+#### version
+在使用 npm 安装包时，版本控制是非常灵活的。你可以指定特定版本或使用不同的符号来表示你接受的版本范围。版本号的控制一般遵循 语义化版本控制（SemVer），它的格式是 MAJOR.MINOR.PATCH（主版本号.次版本号.修补版本号）。
+```npm
+npm install vue3-admin-template@1.0.0 # 安装指定版本
+npm install vue3-admin-template@^1.0.0 # 安装大于等于1.0.0的版本，但不包括2.0.0
+npm install package-name@~1.2.3 # 安装大于等于1.2.3，但小于1.3.0的版本
+npm install package-name@1.2.x # 允许升级到 1.2.x 的任意版本，类似于 >=1.2.0 <1.3.0。即只允许更新补丁版本，不会升级次版本
+npm install package-name@1.x # 允许升级到 1.x.x 的任意版本，类似于 >=1.0.0 <2.0.0。只允许更新次版本和补丁版本，不会升级到 2.x
+npm install package-name@* # 安装任何版本
+npm install package-name@latest # 安装最新版本
+npm install package-name@>=1.2.3 # 安装大于等于1.2.3的版本
+npm install package-name@<=1.2.3 # 安装小于等于1.2.3的版本
+npm install package-name@1.2.3 - 1.3.0 # 安装1.2.3到1.3.0之间的版本
+npm install package-name@>=1.2.3 <2.0.0 # 安装大于等于1.2.3，小于2.0.0的版本
+npm install package-name@next # 安装下一个版本，如1.2.3-beta.1，会安装1.2.3-beta.2，而不是1.3.0
+npm install package-name # 如果不指定版本号，npm 会默认安装包的最新稳定版本，即 latest 标签所对应的版本。
+
+```
+**总结**
+1. 精确版本（1.2.3）只安装指定的版本。
+2. 你可以使用 >=、<= 等符号来定义版本范围，确保灵活性。
+3. * 和 x 用于允许更大范围的版本。
+
+### .npmrc
+.npmrc 是一个配置文件，用于定义和自定义 npm（Node Package Manager）的行为和选项。它允许你通过编写配置参数来控制 npm 的操作，例如指定注册表、设置代理、管理缓存目录等。
+配置级别
+全局配置文件：位于用户的主目录下（例如：~/.npmrc），这是针对系统全局用户的配置，影响所有项目。
+
+项目级配置文件：存储在项目的根目录下，影响该项目的 npm 行为。每个项目可以有自己独立的 .npmrc 文件来覆盖全局配置。
+
+用户级配置文件：同样位于用户主目录中的 ~/.npmrc 文件中，可以影响当前用户的 npm 操作。
+
+运行时配置：通过命令行传递选项（如 npm install --registry https://custom-registry.com），这些配置只会影响当前命令执行的过程。
+
+环境变量：你也可以通过环境变量来覆盖 .npmrc 中的某些配置。
+
+**示例配置**
+
+```cmd
+registry=https://registry.npmjs.org/ # 指定 npm 的注册表
+
+strict-ssl=true # 禁用 SSL
+
+proxy=http://proxy.company.com:8080  # 设置代理
+
+save-exact=true # 保存精确匹配
+
+link-workspace-packages=true/deep/false # 依赖关联（项目使用分包模型时，本地可用的 packaegs 将被链接到 node_modules）
+
+workspace-packages=true # 启用分包模型
+
+shared-workspace-lockfile=true # 启用此选项 pnpm 会在工作空间的根目录中创建一个唯一的 pnpm-lock.yaml 文件。 这也意味着工作空间的packages的所有依赖项都将位于单个 node_modules 中。（同时软链接到它们packages 的 node_modules 文件夹中用于 Node 的模块解析），既所有依赖都将硬链接到 node_modules中，在分包模式中安装的更快
+
+strict-peer-dependencies=false # 严格依赖关联（用于指定一个包运行时所需的依赖，但这些依赖不由当前包来安装，而是由使用这个包的 宿主环境（如最终的应用程序或库）来提供。）
+
+save-workspace-protocol = true/false/rolling #设置从工作区链接的 dependencies 如何添加到package.json ,（不建议修改）
+
+save-prefix=‘~’ #仅允许补丁版本升级。
+
+```
+
+
+### npm,pnpm ,npx
+对于 npm，pnpm 我一直都停留在浅薄认识中，但是我从未深入地去研究他们，可能只有在面试的时候才会想着去背一下面试题，但是当我遇到了他们的时候，我才知道他们的价值，这对于了解前端工程化有很重要的意义
+
+[npm 文档](https://docs.npmjs.com/) <br>
+[pnpm 文档](https://www.pnpm.cn/)
+
+**很有意义的博客**
+- [npm依赖安装那些事](https://www.pnpm.cn/)
+- [平铺的结构不是 node_modules 的唯一实现方式](https://www.pnpm.cn/blog/2020/05/27/flat-node-modules-is-not-the-only-way)
+- [pnpm 的严格性有助于避免愚蠢的错误](https://medium.com/pnpm/pnpms-strictness-helps-to-avoid-silly-bugs-9a15fb306308)
+
+
+**命令**
+``` bash
+pnpm -C <path> //运行指定目录  pnpm -C /packages/utils build
+pnpm --filter <filter> # 过滤 pnpm --filter ./packages/utils build
+pnpm add <package> # 添加依赖到dependencies
+pnpm add -D <package> # 添加依赖到devDependencies
+pnpm add -P <package> # 添加依赖到peerDependencies
+
+```
+
+**npm,pnpm 与 npx 的区别**
+
+通过上面的文章我们大体知道执行 npm 或者 pnpm 运行命令或者安装的原理，npx 其实可以达到同样的效果，但是有一点不同
+
+npx 执行流程<br/>
+输入 npx create-react-app my-app<br/>
+↓<br/>
+检查本地有没有这个包<br/>
+↓<br/>
+没有则临时下载到特定目录<br/>
+↓<br/>
+执行命令<br/>
+↓<br/>
+执行完自动删除下载的包<br/>
+
+- 这种机制的好处
+- 节省磁盘空间
+- 避免全局包过多
+- 总是使用最新版本
+- 避免版本冲突
+
+但是要注意：频繁使用的工具包，还是建议通过 npm,pnpm 安装，这样避免重复下载，更节省时间。
+
+**pnpm,npm 与 npx 执行脚本命令的区别**
+1. 查找位置的不同
+npm run xxx：
+- 先找 package.json 的 scripts 
+- 再找 node_modules/.bin 目录
+
+npx xxx：
+- 先找 node_modules/.bin
+- 再找环境变量 PATH
+- 都找不到就临时下载执行
+
+2.执行本地命令的方式不同
+
+```cmd
+npm 需要写在 scripts 里或者写完整路径
+npm run eslint
+# 或
+./node_modules/.bin/eslint
+
+# npx 可以直接执行
+npx eslint
+```
+
+
+### changesets
+
+**changeset 旨在让贡献者在做出贡献时做出关键决策，从而使您的工作流程变得更加轻松。变更集包含两个关键信息：版本类型（遵循semver ）和要添加到变更日志中的变更信息**
+
+在做基于分包搭建的前端架构来说，版本管理是非常重要的因素，changesets 可以非常简单的实现版本管理。
+
+(下文我会将 changeset 转义为变更集助于理解)
+1. 安装及初始化
+```
+pnpm install -D @changesets/cli && npx changeset init
+```
+init 之后会在项目根目录下创建.changeset文件夹，md 包含所有的变更信息，config.json 包含changeset 配置
+``` json
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.0.2/schema.json",
+  "changelog": "@changesets/cli/changelog",
+  "commit": false,  
+  "fixed": [],
+  "linked": [],
+  "access": "public", //当使用npm 组织时，必须设置为 public 
+  "baseBranch": "master", // 以项目当前分支为准
+  "updateInternalDependencies": "patch",
+  "ignore": []
+}
+
+```
+2. 使用(运行changeset add来添加变更集，但在不使用任何命令的情况下运行变更集也可以)
+```
+pnpm changeset
+```
+当执行完命令选择包后会有以下选项<br/>
+Which packages should have a major bump(选择是否更新主版本号，一般用于重大变化时更新)<br/>
+Which packages should have a minor bump(选择是否更新次版本号，一般用于当前版本的小功能模块的迭代)<br/>
+
+若什么都不选，则默认更新修订号<br/>
+既然都使用 changeset 了，那么我们应该严格遵守版本号更新的规则。<br/>
+
+3. 提交（提升版本）
+这会消耗所有变更集，并根据这些变更集更新到最合适的 semver 版本。它还为每个使用的变更集写入变更日志条目
+```
+pnpm changeset version 
+```
+
+4. 查看变更集状态<br/
+可以在根目录去查看变更集状态，也可以在每个包的根目录去查看变更集状态，或者执行命令查看
+```
+pnpm changeset status
+```
+
+5. 发包
+```
+pnpm changeset publish
+```
+**默认情况下，使用npm publish发布作用域包会将包发布为私有包。如果使用免费组织计划的组织的成员，或者使用付费组织计划但想要将范围包发布为公共，则必须传递--access public标志：**
+
+
+- 将单个包的包可见性设置为公开
+导航到当前包目录执行npm config set access public
+
+- 将所有包的包可见性设置为公开
+导航到根目录执行npm config set access public --global
+
+- 在全局.npmrc中将包访问权限设置为public将影响您创建的所有包，包括您个人帐户范围内的包以及您组织范围内的包。
