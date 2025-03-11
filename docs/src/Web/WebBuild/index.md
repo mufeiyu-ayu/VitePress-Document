@@ -396,5 +396,81 @@ module.exports = {
 
 1.**常用命令**
 ```bash
-git flow init  #初始化git flow 
+git flow init  #初始化仓库
+git flow feature start xxx # 开启feature [xxx]分支
+git flow feature finish xxx # 完成feature [xxx]分支
+git flow release start 1.1.5 # 开启release [1.1.5]分支
+git flow release finish 1.1.5 # 完成release [1.1.5]分支
 ```
+
+### package.josn
+[package.json文档](https://docs.npmjs.com/cli/v10/configuring-npm/package-json)
+```json
+{
+    "name": "vue3-admin-template", // 项目名称
+    "version": "0.0.1", // 项目版本
+    "description": "vue3-admin-template", // 项目描述
+    "keywords": ['vue3-admin-template']" // 关键字
+    "homepage": "https://github.com/zhangyuang/vue3-admin-template" // 项目主页
+    "bug": "https://github.com/zhangyuang/vue3-admin-template/issues" // 错误报告
+    "license": "MIT", // 许可证（MITK开源许可证）
+    "private": true, // 私有项目(如设置为 true，则 npm 拒绝发布它)
+     "author": "ayu" // 作者
+    "contributors": [
+        {
+            "name": "mufeiyu-ayu",
+            "email": "19986442013@163.com"
+        }
+    ],// 贡献者
+    "files":['dist'], // 用于描述当您的包作为依赖项安装时要包含的条目,*代表包含所有文件   
+    "exports": {
+    ".": {
+      "types": "./dist/index.d.ts", // 引用 ts 类型时查找以此路径为查找目标
+      "import": "./dist/ai-lowcode-utils.js", // 引用 es 模块
+      "require": "./dist/ai-lowcode-utils.cjs" // 引用 node 模块
+      }
+    }, // 提供了“main”的现代替代方案，允许定义多个入口点，支持环境之间的条件入口解析，并防止除“exports”中定义的入口点之外的任何其他入口点
+  "main": "./dist/ai-lowcode-utils.cjs", // 默认入口
+  "script": {
+    "build": "rollup -c rollup.config.js", // 构建
+  }, // 脚本
+  "bin": "./dist/ai-lowcode-utils.js",// 命令行入口
+  "repository": "git@github.com:ai-lowcode/core.git",
+  "config": {
+    "commitizen": "cz-conventional-changelog" 
+  }, //设置在升级过程中持续存在的包脚本中使用的配置参数
+  "peerDependencies": {
+    "vue": "^3.2.13"
+  }, // 运行时依赖
+  "engines": {
+    "node": ">=18.20.3 <20.0.0"
+  }, // 指定版本 (若未设置engine-strictconfig标志，否则此字段仅为建议字段，并且仅在将软件包作为依赖项安装时才会产生警告)
+  
+}
+```
+#### export
+“exports”提供了“main”的现代替代方案，允许定义多个入口点，支持环境之间的条件入口解析，并防止除“exports”中定义的入口点之外的任何其他入口点。这种封装允许模块作者为他们的包清楚地定义公共接口。
+对于针对当前支持的Node.js版本的新包，建议使用“exports”字段。对于支持Node.js 10及以下版本的包，“main”字段是必需的。如果同时定义了“exports”和“main”，则在支持的Node.js版本中，“exports”字段**优先于**“main”。
+
+### version
+在使用 npm 安装包时，版本控制是非常灵活的。你可以指定特定版本或使用不同的符号来表示你接受的版本范围。版本号的控制一般遵循 语义化版本控制（SemVer），它的格式是 MAJOR.MINOR.PATCH（主版本号.次版本号.修补版本号）。
+```npm
+npm install vue3-admin-template@1.0.0 # 安装指定版本
+npm install vue3-admin-template@^1.0.0 # 安装大于等于1.0.0的版本，但不包括2.0.0
+npm install package-name@~1.2.3 # 安装大于等于1.2.3，但小于1.3.0的版本
+npm install package-name@1.2.x # 允许升级到 1.2.x 的任意版本，类似于 >=1.2.0 <1.3.0。即只允许更新补丁版本，不会升级次版本
+npm install package-name@1.x # 允许升级到 1.x.x 的任意版本，类似于 >=1.0.0 <2.0.0。只允许更新次版本和补丁版本，不会升级到 2.x
+npm install package-name@* # 安装任何版本
+npm install package-name@latest # 安装最新版本
+npm install package-name@>=1.2.3 # 安装大于等于1.2.3的版本
+npm install package-name@<=1.2.3 # 安装小于等于1.2.3的版本
+npm install package-name@1.2.3 - 1.3.0 # 安装1.2.3到1.3.0之间的版本
+npm install package-name@>=1.2.3 <2.0.0 # 安装大于等于1.2.3，小于2.0.0的版本
+npm install package-name@next # 安装下一个版本，如1.2.3-beta.1，会安装1.2.3-beta.2，而不是1.3.0
+npm install package-name # 如果不指定版本号，npm 会默认安装包的最新稳定版本，即 latest 标签所对应的版本。
+
+```
+**总结**
+1. 精确版本（1.2.3）只安装指定的版本。
+2. 你可以使用 >=、<= 等符号来定义版本范围，确保灵活性。
+3. * 和 x 用于允许更大范围的版本。
